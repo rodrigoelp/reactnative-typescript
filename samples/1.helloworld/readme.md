@@ -1,5 +1,26 @@
 # Hello World + Typescript
 
+## Want to play with this code
+
+1. Download/Clone it.
+1. Open a terminal and enter `$> cd <cloned-folder>/1.helloworld/`
+1. Then `$> npm install` (this will set up the dependencies for your project)
+1. To start React-Native packager type: `$> react-native start` (it will block the terminal as it will be running a web server)
+1. In a new terminal type in the same folder: `$> react-native run-ios` or `$> react-native run-android` (depends on the version you want to run)
+
+### Note:
+
+When you see
+
+`$> {command}`
+
+Its my terminal prompt.
+For instance, my terminal shows me
+
+`~/d/r/samples ❯❯❯ {command}`
+
+Yours might show something different. Don't copy the characters `$>` if you are trying to follow these instructions.
+
 ## Steps I have followed to set up this project
 
 1. `$> react-native init helloworld` (initialising the react-native project. This downloads react, react-native and other dependencies)
@@ -68,4 +89,4 @@ AppRegistry.registerComponent("helloworld", () => App);
 1. Refresh your simulator to look at your awesome new app.
 1. At this moment, tests are broken, so let's fix them. Unfortunately, you will need to split the index into two files (do not test the `AppRegistry`). Copy the class `App` with its imports into `App.tsx`. Check file `App.tsx` provided in this repo.
 1. Fix `index.tsx` to import `App` into your scope. Check `index.tsx` provided in this repo.
-1. Run `./node_modules/.bin/tsc && npm run test`. If react-native is not broken (which it is as I am typing this) and everything else was done correctly. You should get 1 green test.
+1. Run `$> ./node_modules/.bin/tsc && npm run test`. If react-native is not broken (which it is as I am typing this) and everything else was done correctly. You should get 1 green test.
