@@ -6,6 +6,12 @@ So, what is in this repo?
 
 Multiple examples (and hopefully some explanation) of things you need to get react-native and typescript to work nicely between each other.
 
+## Objective
+
+- Learn react-native
+- Share with others working examples of react-native and typescript.
+- Get feedback from others, if you have more knowledge and you have ways to improve these examples? by all means contribute to this or provide feedback.
+
 ## Background
 
 I want to learn how to start building apps on [react-native](https://facebook.github.io/react-native/). Now, I've done web development in the past and I've also spent some time playing with [nodejs](https://nodejs.org/en/) so, I am not a complete foreigner to some of its concepts.
