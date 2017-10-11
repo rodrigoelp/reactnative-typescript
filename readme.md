@@ -8,7 +8,7 @@ Multiple examples (and hopefully some explanation) of things you need to get rea
 
 ## Background
 
-Professionally, I have been given the challenge to build apps on [react-native](https://facebook.github.io/react-native/). Now, I've done web development in the past and I've also spent some time playing with [nodejs](https://nodejs.org/en/) so, I am not a complete foreigner to some of its concepts.
+I want to learn how to start building apps on [react-native](https://facebook.github.io/react-native/). Now, I've done web development in the past and I've also spent some time playing with [nodejs](https://nodejs.org/en/) so, I am not a complete foreigner to some of its concepts.
 
 Now, React, React-Native and Node are technologies based on JavaScript, which in _my personal view_ is a pervasive, evil programming language that should've been improved a long time ago and no real consensus has been formed on what it should be. ES[5, 6, 7, etc] is a good first start but still is missing some important features for me. I like a static type system so I wanted something guiding me as I write my code.
 
