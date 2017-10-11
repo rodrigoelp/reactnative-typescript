@@ -252,3 +252,22 @@ Icon
 # Directories potentially created on remote AFP share
 
 # End of https://www.gitignore.io/api/node,macos,reactnative
+
+
+# EXTRA COMMENTS:
+# You might want to start ignoring cache directories and the output.
+# In this case, the ./lib/ folder should be ignored as you will regenerate
+# it from the typescript files. But I left it in for you to play directly
+# and run without having to compile.
+# Ignoring the .jest directories...
+
+.jest/
+
+# Uncomment the line below if you want to ignore the lib folder
+# (our output directory)
+
+#**/lib
+
+# if you just want to ignore the map files.
+#**/lib/*.js.map
+#**/lib/*/*.js.map
