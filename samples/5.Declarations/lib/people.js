@@ -3,7 +3,7 @@
  * @description: It describes the basic information of a person, their name, sex and age.
  */
 
-var Gender = { male: 'M', female: 'F', other: 'U' };
+var genderType = { male: 'M', female: 'F', other: 'U' };
 
 var Person = (function () {
     function Person(name, gender, age) {
@@ -13,9 +13,9 @@ var Person = (function () {
         this.describeYourself = function () {
             var genderDef = function(g) {
                 switch (g) {
-                    case Gender.male:
+                    case genderType.male:
                         return "male";
-                    case Gender.female:
+                    case genderType.female:
                         return "female";
                     default:
                         return "other";
@@ -53,5 +53,5 @@ var People = (function () {
 })();
 
 exports.Person = Person;
-exports.Gender = Gender;
+exports.Gender = genderType;
 exports.People = People;
