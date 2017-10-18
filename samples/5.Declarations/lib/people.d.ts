@@ -8,6 +8,12 @@ export declare class Person {
     shortPrint: () => string;
 }
 
+export declare class People {
+    constructor();
+    register(p: Person): void;
+    printList(): string;
+}
+
 export enum Gender {
     Male = "M",
     Female = "F",
