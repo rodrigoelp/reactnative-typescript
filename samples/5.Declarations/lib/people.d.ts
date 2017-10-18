@@ -3,7 +3,7 @@
  * Representation of a person.
  */
 export declare class Person {
-    constructor(name: string, gender: string, age: number);
+    constructor(name: string, gender: genderValue, age: number);
     describeYourself: () => string;
     shortPrint: () => string;
 }
@@ -19,3 +19,5 @@ export enum Gender {
     Female = "F",
     Other = "U"
 }
+
+export type genderValue = Gender.Male | Gender.Female | Gender.Other;
