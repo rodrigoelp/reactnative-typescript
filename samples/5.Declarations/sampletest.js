@@ -1,4 +1,3 @@
-
 var p = require("./lib/people");
 var g = require("./lib/geometry");
 

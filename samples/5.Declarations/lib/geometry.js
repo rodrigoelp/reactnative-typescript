@@ -44,7 +44,7 @@ var Geometry = {
         );
     },
     distance: function(line) {
-        return distanceBetweenPoints(line.start, line.end);
+        return Geometry.distanceBetweenPoints(line.start, line.end);
     }
 };
 
