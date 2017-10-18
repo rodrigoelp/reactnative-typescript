@@ -2,7 +2,7 @@
 console.log("Starting script...\n\n");
 
 import { Gender, Person, People } from "../lib/people";
-import { Geometry, Point } from "../lib/geometry";
+import { Geometry } from "../lib/geometry";
 
 const knowerOfNothing = new Person("Jon Snow", Gender.Male, 25);
 const motherOfDragons = new Person("Daenerys", Gender.Female, 19);
