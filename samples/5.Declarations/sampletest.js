@@ -1,11 +1,11 @@
 var p = require("./lib/people");
 var g = require("./lib/geometry");
 
-var knowerOfNothing = new p.Person("Jon Snow", "M", 25);
-var motherOfDragons = new p.Person("Daenerys", "F", 19);
+var knowerOfNothing = new p.Person("Jon Snow", p.Gender.male, 25);
+var motherOfDragons = new p.Person("Daenerys", p.Gender.female, 19);
 
-console.log("About to register", knowerOfNothing.print());
-console.log("About to register", motherOfDragons.print());
+console.log("About to register", knowerOfNothing.describeYourself());
+console.log("About to register", motherOfDragons.describeYourself());
 var cast = new p.People();
 cast.register(knowerOfNothing);
 cast.register(motherOfDragons);

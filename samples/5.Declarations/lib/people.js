@@ -1,15 +1,30 @@
+/**
+ * @name: Person
+ * @description: It describes the basic information of a person, their name, sex and age.
+ */
+
+var Gender = { male: 'M', female: 'F', other: 'U' };
+
 var Person = (function () {
-    function Person(name, sex, age) {
+    function Person(name, gender, age) {
         this.name = name;
-        this.sex = sex;
+        this.gender = gender;
         this.age = age;
         this.describeYourself = function () {
-            var gender = this.sex === 'M' ? 'male' : 'female';
-            return `{ I am ${this.name} (${gender}) and I am ${this.age} years old.}`
+            var genderDef = function(g) {
+                switch (g) {
+                    case Gender.male:
+                        return "male";
+                    case Gender.female:
+                        return "female";
+                    default:
+                        return "other";
+                }
+            }
+            var genderName = genderDef(this.gender);
+            return `{ I am ${this.name} (${genderName}) and I am ${this.age} years old.}`
         }
-        this.print = function () {
-            return `{ name: ${this.name} | sex: ${this.sex} | age: ${this.age} }`;
-        }
+        this.shortPrint = function () { return `${this.name} (${this.age})`;}
     }
     return Person;
 })();
@@ -31,11 +46,12 @@ var People = (function () {
         }
 
         this.printList = function () {
-            return this.registered.reduce((acc, v) => `${acc}${v.print()}\n`, "");
+            return this.registered.reduce((acc, person) => `${acc}${person.shortPrint()}\n`, "\n");
         }
     }
     return People;
 })();
 
 exports.Person = Person;
+exports.Gender = Gender;
 exports.People = People;
