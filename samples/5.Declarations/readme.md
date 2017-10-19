@@ -53,7 +53,7 @@ From there I started generating `people.d.ts` and `geometry.d.ts` which I had to
 
 ## BTW!!!!
 
-I did **not** included the `output/app.js` generated file from the `src/app.tsx`. If you want to check this works, remember to compile the code and then run node with the output.
+I did **not** include the `output/app.js` generated file from the `src/app.tsx`. If you want to check this works, remember to compile the code and then run node with the output.
 
 ```sh
 $> npm install
