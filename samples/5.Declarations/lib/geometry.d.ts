@@ -21,4 +21,6 @@ export declare module Geometry {
         distance: () => number;
         infoString: () => string;
     }
+
+    export function distanceBetweenPoints(p1: Point, p2: Point): number;
 }

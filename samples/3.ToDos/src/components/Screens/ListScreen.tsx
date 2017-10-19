@@ -7,10 +7,8 @@ import { Button } from "../Controls";
 import { EditorMode, IEditorParams, IListNavigationProp, ITodoItem } from "../Interfaces";
 
 export default class ListScreen extends React.Component<IListNavigationProp> {
-
     constructor(props: IListNavigationProp) {
         super(props);
-
     }
 
     public render() {

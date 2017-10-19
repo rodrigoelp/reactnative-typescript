@@ -44,3 +44,15 @@ Going back to baby steps. Let's get navigation to work. The objective is:
 - How to pass arguments between each other (more especifically, how to send data to the top of the stack)
 - What's the minimum configuration to get the navigator to work.
 - Improving my understanding of flex.
+
+## 5. Declarations
+
+Not a __react native__ exercise.
+
+The idea behind this exercise is to understandh how to generate the type definitions (or `d.ts` files) for a given javascrip library.
+
+**Why?**
+
+Typescript gives you a rich way to understand your code. It gives you guidance when writing it and type safety when invoking your code.
+
+Unfortunately, most of the Javascript developer have not used Typescript (_shocking! I know!_) and sometimes you will find a library that has not been 'defined' for typescript. The type definition file bridges your Javascript and Typescript world.
