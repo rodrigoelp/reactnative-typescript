@@ -4,6 +4,7 @@ import { FlatList, View, Text, ListRenderItemInfo, } from "react-native";
 import { User, GameScore, Game, Gender } from "../models/models";
 import { UniqueId } from "../models/sysTypes";
 import { StoreState } from "../stores/store";
+import { appStyles } from "../styles";
 
 /**
  * This container needs to take this special property
@@ -23,12 +24,12 @@ class UserBoard extends React.Component<any, object> {
     public render() {
         const players: Array<User> = this.props.players;
         return (
-            <View style={{ flex: 1, alignContent: "stretch" }}>
-                <Text style={{ flexBasis: "auto", marginTop: 48, marginLeft: 24, marginRight: 24, textAlign: "center", fontSize: 24 }}>
+            <View style={appStyles.appContainer}>
+                <Text style={appStyles.sectionHeader}>
                     Displaying a total of {players.length}
                 </Text>
                 <FlatList
-                    style={{ flexGrow: 1 }}
+                    style={appStyles.genericContainer}
                     data={players}
                     keyExtractor={this.getKeyForPlayer}
                     renderItem={this.renderPlayer}
@@ -44,16 +45,17 @@ class UserBoard extends React.Component<any, object> {
 
     // It renders the player information. Optionally, this could be pulled as its own separate component.
     renderPlayer = ({ item }: ListRenderItemInfo<User>) => {
+        const adjective = item.gender == Gender.Male ? "His" :
+            item.gender == Gender.Female ? "Her" : "Its";
         return (
             <View style={{ flex: 1, margin: 10, padding: 10, alignContent: "stretch" }}>
                 <View style={{ flex: 1 }}>
-                    <Text style={{ fontSize: 18, fontWeight: "bold" }}>{item.name}</Text>
-                    <Text style={{ fontSize: 8}}>{item.userName} </Text>
+                    <Text style={appStyles.header1}>{item.name}</Text>
+                    <Text style={appStyles.infoText}>{item.userName} </Text>
                 </View>
-                <View style={{ flex: 1, flexWrap: "wrap", marginTop: 8 }}>
+                <View style={appStyles.wrappingContainer}>
                     <Text>
-                        {item.gender == Gender.Male ? "His" :
-                            item.gender == Gender.Female ? "Her" : "Its" } games:
+                        {adjective} games:
                     </Text>
                     { item.ownGames.map(this.renderScore)}
                 </View>
@@ -65,9 +67,9 @@ class UserBoard extends React.Component<any, object> {
     renderScore = ({ game, highestScore }: GameScore) => {
         const key = UniqueId.newId().toString();
         return (
-            <View key={key} style={{ flex: 1, justifyContent: "flex-end", marginTop: 8 }}>
-                <Text style={{ fontWeight: "bold", textAlign: "right" }}>{Game[game]}: </Text>
-                <Text style={{ textAlign: "right" }}>{highestScore}</Text>
+            <View key={key} style={appStyles.scoreContainer}>
+                <Text style={appStyles.scoreTitle}>{Game[game]}: </Text>
+                <Text style={appStyles.score}>{highestScore}</Text>
             </View>
         );
     }
