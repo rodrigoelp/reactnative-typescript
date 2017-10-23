@@ -1,6 +1,7 @@
 
 import { combineReducers } from "redux";
 import { UserReducer } from "./users";
+import { User } from "../models/models";
 
 // the reducer is a simple function (at the moment) that contains the list of users
 // if I got multiple reducers and merge it into one to provide it to the store.

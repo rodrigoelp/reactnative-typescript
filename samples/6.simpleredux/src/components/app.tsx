@@ -1,17 +1,16 @@
 
 import * as React from "react";
 import { AppRegistry } from "react-native";
-import { createStore } from "redux";
 import { Provider } from "react-redux";
-import { allReducers } from "../reducers";
-import { UserBoard } from "../containers/UserBoard";
-
-const store = createStore(allReducers);
+import UserBoard from "../containers/userBoard";
+import { store } from "../stores/store";
 
 /**
  * This is the entry point for the application.
  * It will create a provider (with the data store) to be use in the application.
  * The store wraps all the reducers in the application.
+ * 
+ * To get to this point, I have created a reducer, then created a store from that reducer and feed it into the provider.
  */
 const App = () => {
     return (
