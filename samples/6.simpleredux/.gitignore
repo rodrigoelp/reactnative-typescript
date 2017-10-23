@@ -51,3 +51,7 @@ buck-out/
 */fastlane/report.xml
 */fastlane/Preview.html
 */fastlane/screenshots
+
+# Ignoring all the js build output.
+
+lib/
