@@ -6,10 +6,17 @@ export enum Game {
     WhackAMole,
 }
 
+export enum Gender {
+    Male,
+    Female,
+    Other,
+}
+
 export interface User {
     id: number;
     name: string;
     userName: string;
+    gender: Gender,
     ownGames: GameScore[],
 }
 

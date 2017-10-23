@@ -1,10 +1,10 @@
 
 import { Reducer } from "redux";
-import { Game, User } from "../models/models";
+import { Game, User, Gender } from "../models/models";
 
 const userlist: Array<User> = [
     {
-        id: 1, name: "John", userName: "knowerOfNothing@thewall.org",
+        id: 1, name: "John", userName: "knowerOfNothing@thewall.org", gender: Gender.Male,
         ownGames: [
             { game: Game.Pitfall, highestScore: 32000 },
             { game: Game.PacMan, highestScore: 31000 },
@@ -13,7 +13,7 @@ const userlist: Array<User> = [
         ]
     } as User,
     {
-        id: 2, name: "Danaerys", userName: "motherOfDragons@goingforthethrone.com",
+        id: 2, name: "Danaerys", userName: "motherOfDragons@goingforthethrone.com", gender: Gender.Female,
         ownGames: [
             { game: Game.Pitfall, highestScore: 31999 },
             { game: Game.PacMan, highestScore: 32000 },
@@ -22,7 +22,7 @@ const userlist: Array<User> = [
         ]
     } as User,
     {
-        id: 3, name: "Sandor", userName: "fuckthis@fuckthat.co",
+        id: 3, name: "Sandor", userName: "fuckthis@fuckthat.co", gender: Gender.Male,
         ownGames: [
             { game: Game.WhackAMole, highestScore: 9999999 }
         ]
