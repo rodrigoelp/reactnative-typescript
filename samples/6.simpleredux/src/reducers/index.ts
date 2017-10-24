@@ -1,5 +1,6 @@
 
 import { combineReducers } from "redux";
+import { ActiveUserReducer } from "./activeUser"
 import { UserReducer } from "./users";
 import { User } from "../models/models";
 
@@ -7,4 +8,5 @@ import { User } from "../models/models";
 // if I got multiple reducers and merge it into one to provide it to the store.
 export const allReducers = combineReducers({
     users: UserReducer,
+    activeUser: ActiveUserReducer,
 });

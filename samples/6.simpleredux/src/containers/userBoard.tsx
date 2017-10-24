@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { FlatList, View, Text, ListRenderItemInfo } from "react-native";
+import { FlatList, Modal, View, Text, ListRenderItemInfo } from "react-native";
 import { selectUserActionCreator, ActionInfo } from "../reducers/actions";
 import { Button } from "../components/controls";
 import { User, GameScore, Game, Gender } from "../models/models";

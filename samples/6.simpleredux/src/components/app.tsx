@@ -1,8 +1,9 @@
 
 import * as React from "react";
-import { AppRegistry } from "react-native";
+import { AppRegistry, View } from "react-native";
 import { Provider } from "react-redux";
 import UserBoard from "../containers/userBoard";
+import UserDetail from "../containers/userDetail";
 import { store } from "../stores/store";
 
 /**

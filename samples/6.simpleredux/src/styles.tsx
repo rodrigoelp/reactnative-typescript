@@ -17,6 +17,8 @@ export const appStyles = StyleSheet.create({
     },
     genericContainer: {
         flex: 1,
+        flexBasis: 1,
+        backgroundColor: "pink",
     },
     wrappingContainer: {
         flex: 1, flexWrap: "wrap", marginTop: 8
