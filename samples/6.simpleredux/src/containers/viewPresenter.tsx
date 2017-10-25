@@ -1,13 +1,13 @@
 import * as React from "react";
 import { View } from "react-native";
 import { connect } from "react-redux";
-import { Screens } from "../models/screens";
 import { appStyles } from "../styles";
 import { IStoreState } from "../stores/store";
-    import UserBoard from "../containers/userBoard";
+import UserBoard from "../containers/userBoard";
+import { ScreenName } from "../models/models";
 
 interface IViewPresenterProps {
-    screenOnDisplay: Screens;
+    screenOnDisplay: ScreenName;
 }
 
 class ViewPresenter extends React.Component<any> {
@@ -20,11 +20,11 @@ class ViewPresenter extends React.Component<any> {
         return this.getViewFor(props.screenOnDisplay);
     }
 
-    getViewFor(screen: Screens): JSX.Element {
+    getViewFor(screen: ScreenName): JSX.Element {
         switch (screen) {
-            case Screens.Home:
+            case ScreenName.Home:
                 return <UserBoard />;
-            case Screens.UserDetails:
+            case ScreenName.UserDetails:
                 return <View style={appStyles.appContainer} />;
         }
     }

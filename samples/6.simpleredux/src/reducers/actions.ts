@@ -1,10 +1,10 @@
 
-import { User } from "../models/models";
+import { User, ScreenName } from "../models/models";
 import { AnyAction } from "redux";
 
 export enum ActionType {
-    GoToHome = "NAVIGATE_HOME",
-    GoToUserDetails = "NAVIGATE_USER_DETAILS",
+    SwitchContainer = "SWITCH_CONTAINER",
+    SetActiveUser = "SET_ACTIVE_USER",
 }
 
 export interface ITypedAction<T> extends AnyAction {
@@ -12,11 +12,19 @@ export interface ITypedAction<T> extends AnyAction {
     payload: T;
 }
 
-export const selectUserActionCreator = (user: User) : ITypedAction<User> => {
+export const SetActiveUserActionCreator = (user: User) : ITypedAction<User> => {
     console.assert(user !== undefined, `You provided an undefined user to be selected.`);
     console.log(`triggering user selection for ${user.name}`);
     return {
-        type: ActionType.GoToUserDetails,
+        type: ActionType.SetActiveUser,
         payload: user
     };
 }
+
+export const SwitchToScreenActionCreator = (screen: ScreenName): ITypedAction<ScreenName> => {
+    console.log(`Switching current container to: ${ScreenName[screen]}`);
+    return {
+        type: ActionType.SwitchContainer,
+        payload: screen,
+    };
+};

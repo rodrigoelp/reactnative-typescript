@@ -12,6 +12,14 @@ export enum Gender {
     Other,
 }
 
+export function genderToAdjective(gender: Gender) {
+    switch (gender) {
+        case Gender.Male: return "His";
+        case Gender.Female: return "Her";
+        default: return "Its";
+    }
+}
+
 export interface User {
     id: number;
     name: string;
@@ -23,4 +31,9 @@ export interface User {
 export interface GameScore  {
     game: Game;
     highestScore: number;
+}
+
+export enum ScreenName {
+    Home,
+    UserDetails
 }

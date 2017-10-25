@@ -1,9 +1,9 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { FlatList, View, Text, ListRenderItemInfo } from "react-native";
-import { selectUserActionCreator, ITypedAction } from "../reducers/actions";
+import { SetActiveUserActionCreator, SwitchToScreenActionCreator, ITypedAction } from "../reducers/actions";
 import { Button } from "../components/controls";
-import { User, GameScore, Game, Gender } from "../models/models";
+import { User, GameScore, Game, Gender, genderToAdjective, ScreenName } from "../models/models";
 import { UniqueId } from "../models/sysTypes";
 import { IStoreState } from "../stores/store";
 import { appStyles } from "../styles";
@@ -20,12 +20,17 @@ import { bindActionCreators, Dispatch } from "redux";
  * exported further down with the 'connect' method.
  */
 class UserBoard extends React.Component<any, object> {
+
+    private _props: IUserBoardProps;
+
     constructor(props: any) {
         super(props);
+
+        this._props = props as IUserBoardProps;
     }
 
     public render() {
-        const players: Array<User> = this.props.players;
+        const players: Array<User> = this._props.players;
         return (
             <View style={appStyles.appContainer}>
                 <Text style={appStyles.sectionHeader}>
@@ -42,14 +47,20 @@ class UserBoard extends React.Component<any, object> {
     }
 
     // it just returns the user id as a key for react.
-    getKeyForPlayer = (item: User): string => {
-        return item.id.toString();
+    getKeyForPlayer = (user: User): string => {
+        return user.id.toString();
+    }
+
+    showUserDetails = (user: User) => {
+        const { selectUser, switchScreen } = this._props;
+
+        selectUser(user);
+        switchScreen(ScreenName.UserDetails);
     }
 
     // It renders the player information. Optionally, this could be pulled as its own separate component.
     renderPlayer = ({ item }: ListRenderItemInfo<User>) => {
-        const adjective = item.gender == Gender.Male ? "His" :
-            item.gender == Gender.Female ? "Her" : "Its";
+        const adjective = genderToAdjective(item.gender);
         return (
             <View style={{ flex: 1, margin: 10, padding: 10, alignContent: "stretch" }}>
                 <View style={{ flex: 1 }}>
@@ -62,7 +73,7 @@ class UserBoard extends React.Component<any, object> {
                     </Text>
                     { item.ownGames.map(this.renderScore)}
                 </View>
-                <Button title="View" onPress={() => this.props.selectUser(item)} />
+                <Button title="View" onPress={() => this.showUserDetails(item)} />
             </View>
         );
     }
@@ -79,21 +90,25 @@ class UserBoard extends React.Component<any, object> {
     }
 }
 
-export interface UserBoardProps { // changing React.Component<any> to React.Component<UserBoardProps> has nasty consequences at the moment.
+export interface IUserBoardProps { // changing React.Component<any> to React.Component<UserBoardProps> has nasty consequences at the moment.
     players: Array<User>;
     selectUser: (user: User) => ITypedAction<User>;
+    switchScreen: (screen: ScreenName) => ITypedAction<ScreenName>;
 }
 
 // mapping the store state created when we combined all the reducers into the properties we want to use in the view.
 function mapStateToProps(state: IStoreState) {
     return {
         players: state.users,
-    } as UserBoardProps;
+    } as IUserBoardProps;
 };
 
 // providing the user selection function to the container.
 function mapDispatchToProps(dispatch: Dispatch<any>) {
-    return bindActionCreators({ selectUser: selectUserActionCreator }, dispatch)
+    return bindActionCreators({
+        selectUser: SetActiveUserActionCreator,
+        switchScreen: SwitchToScreenActionCreator,
+    }, dispatch)
 }
 
 // exporting the connected container. This export will give you back a component that has been registered and connected with redux.

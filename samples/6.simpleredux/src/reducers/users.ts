@@ -29,9 +29,9 @@ const userlist: Array<User> = [
     } as User,
 ];
 
-const UserReducer: Reducer<Array<User>> = (state: Array<User> = userlist, action: AnyAction): Array<User> => {
+const UsersReducer: Reducer<Array<User>> = (state: Array<User> = userlist, action: AnyAction): Array<User> => {
     return state;
 }
 
-export default UserReducer;
+export default UsersReducer;
 
