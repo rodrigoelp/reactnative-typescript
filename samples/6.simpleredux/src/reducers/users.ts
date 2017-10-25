@@ -1,5 +1,5 @@
 
-import { Reducer } from "redux";
+import { Reducer, AnyAction } from "redux";
 import { Game, User, Gender } from "../models/models";
 
 const userlist: Array<User> = [
@@ -29,7 +29,9 @@ const userlist: Array<User> = [
     } as User,
 ];
 
-export function UserReducer(state: Array<User>, action: any): Array<User> {
-    return userlist;
+const UserReducer: Reducer<Array<User>> = (state: Array<User> = userlist, action: AnyAction): Array<User> => {
+    return state;
 }
+
+export default UserReducer;
 

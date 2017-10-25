@@ -2,7 +2,7 @@
 import * as React from "react";
 import { AppRegistry } from "react-native";
 import { Provider } from "react-redux";
-import UserBoard from "../containers/userBoard";
+import ViewPresenter from "../containers/viewPresenter";
 import { store } from "../stores/store";
 
 /**
@@ -11,11 +11,12 @@ import { store } from "../stores/store";
  * The store wraps all the reducers in the application.
  * 
  * To get to this point, I have created a reducer, then created a store from that reducer and feed it into the provider.
+ * Introduced a view presenter which will trigger a hacky navigation as I don't want to go through react-nativation at the moment.
  */
 const App = () => {
     return (
         <Provider store={store}>
-            <UserBoard />
+            <ViewPresenter />
         </Provider>
     );
 }

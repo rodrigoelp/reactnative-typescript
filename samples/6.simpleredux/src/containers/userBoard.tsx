@@ -1,11 +1,11 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { FlatList, View, Text, ListRenderItemInfo } from "react-native";
-import { selectUserActionCreator, ActionInfo } from "../reducers/actions";
+import { selectUserActionCreator, ITypedAction } from "../reducers/actions";
 import { Button } from "../components/controls";
 import { User, GameScore, Game, Gender } from "../models/models";
 import { UniqueId } from "../models/sysTypes";
-import { StoreState } from "../stores/store";
+import { IStoreState } from "../stores/store";
 import { appStyles } from "../styles";
 import { bindActionCreators, Dispatch } from "redux";
 
@@ -81,11 +81,11 @@ class UserBoard extends React.Component<any, object> {
 
 export interface UserBoardProps { // changing React.Component<any> to React.Component<UserBoardProps> has nasty consequences at the moment.
     players: Array<User>;
-    selectUser: (user: User) => ActionInfo<User>;
+    selectUser: (user: User) => ITypedAction<User>;
 }
 
 // mapping the store state created when we combined all the reducers into the properties we want to use in the view.
-function mapStateToProps(state: StoreState) {
+function mapStateToProps(state: IStoreState) {
     return {
         players: state.users,
     } as UserBoardProps;

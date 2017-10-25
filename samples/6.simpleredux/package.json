@@ -22,6 +22,7 @@
     "babel-preset-react-native": "4.0.0",
     "jest": "21.2.1",
     "react-test-renderer": "16.0.0-beta.5",
+    "tslint": "^5.8.0",
     "typescript": "^2.5.3"
   },
   "jest": {
