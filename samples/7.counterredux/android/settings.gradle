@@ -1,0 +1,3 @@
+rootProject.name = 'counterredux'
+
+include ':app'
