@@ -62,7 +62,7 @@ class UserBoard extends React.Component<any, object> {
     renderPlayer = ({ item }: ListRenderItemInfo<User>) => {
         const adjective = genderToAdjective(item.gender);
         return (
-            <View style={{ flex: 1, margin: 10, padding: 10, alignContent: "stretch" }}>
+            <View style={appStyles.listItem}>
                 <View style={{ flex: 1 }}>
                     <Text style={appStyles.header1}>{item.name}</Text>
                     <Text style={appStyles.infoText}>{item.userName} </Text>

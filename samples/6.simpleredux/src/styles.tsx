@@ -24,6 +24,9 @@ export const appStyles = StyleSheet.create({
     scoreContainer: {
         flex: 1, justifyContent: "flex-end", marginTop: 8
     },
+    listItem: {
+        flex: 1, margin: 10, padding: 10, alignContent: "stretch"
+    },
     sectionHeader: {
         flexBasis: "auto",
         textAlign: "center",

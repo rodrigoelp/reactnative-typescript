@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { appStyles } from "../styles";
 import { IStoreState } from "../stores/store";
 import UserBoard from "../containers/userBoard";
+import GamerDetails from "../containers/gamerDetails";
 import { ScreenName } from "../models/models";
 
 interface IViewPresenterProps {
@@ -25,7 +26,7 @@ class ViewPresenter extends React.Component<any> {
             case ScreenName.Home:
                 return <UserBoard />;
             case ScreenName.UserDetails:
-                return <View style={appStyles.appContainer} />;
+                return <GamerDetails />;
         }
     }
 }
