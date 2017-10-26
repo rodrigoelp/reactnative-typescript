@@ -6,9 +6,16 @@ import { Dispatch } from "redux";
 import { ICountState } from "../models";
 import { appStyles } from "../styles";
 
+interface ICounterAppProps {
+    count: number;
+}
+
 class CounterApp extends React.Component<any, any> {
+    private _props: ICounterAppProps;
+
     constructor(props: any) {
         super(props);
+        this._props = props as ICounterAppProps;
     }
 
     public render() {
@@ -17,7 +24,7 @@ class CounterApp extends React.Component<any, any> {
                 <Text style={appStyles.header}>Welcome to counter:</Text>
                 <View style={appStyles.centerBox}>
                     <Text style={appStyles.reallyLargeText}>
-                        0
+                        {this._props.count.toString()}
                     </Text>
                 </View>
                 <View style={appStyles.bottomBox}>
@@ -40,7 +47,8 @@ class CounterApp extends React.Component<any, any> {
 
 function mapStateToProps(state: ICountState) {
     return {
-    };
+        count: state.currentCount,
+    } as ICounterAppProps;
 }
 
 function mapDispatchToProps(dispatch: Dispatch<any>) {

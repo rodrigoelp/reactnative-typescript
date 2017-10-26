@@ -5,7 +5,8 @@ const initialState: ICountState = {
     currentCount: 0,
 };
 
-const CountReducer: Reducer<ICountState> = (state: ICountState = initialState, action: AnyAction): ICountState => {
+// this reducer is only changing the current count.
+const CountReducer: Reducer<number> = (state: number = initialState.currentCount, action: AnyAction): number => {
     return state;
 };
 
