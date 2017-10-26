@@ -2,12 +2,15 @@ import * as React from "react";
 import { Button, Text, View } from "react-native";
 import { connect } from "react-redux";
 import * as Redux from "redux";
-import { Dispatch } from "redux";
+import { bindActionCreators, Dispatch } from "redux";
 import { ICountState } from "../models";
+import { DecrementActionCreator, IncrementActionCreator } from "../reducers/actions";
 import { appStyles } from "../styles";
 
 interface ICounterAppProps {
     count: number;
+    increase: (step: number) => void;
+    decrease: (step: number) => void;
 }
 
 class CounterApp extends React.Component<any, any> {
@@ -36,12 +39,20 @@ class CounterApp extends React.Component<any, any> {
         );
     }
 
+    private generateStep = (): number => {
+        return Math.ceil(Math.random() * 10);
+    }
+
     private decrement = (): void => {
-        console.log("trying to do the decrement");
+        const step = this.generateStep();
+        console.log(`trying to do the decrement by ${step}`);
+        this._props.decrease(step);
     }
 
     private increment = (): void => {
-        console.log("trying to do the increment");
+        const step = this.generateStep();
+        console.log(`trying to do the increment by ${step}`);
+        this._props.increase(step);
     }
 }
 
@@ -52,8 +63,10 @@ function mapStateToProps(state: ICountState) {
 }
 
 function mapDispatchToProps(dispatch: Dispatch<any>) {
-    return {
-    };
+    return bindActionCreators({
+        decrease: DecrementActionCreator,
+        increase: IncrementActionCreator,
+    }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CounterApp);
