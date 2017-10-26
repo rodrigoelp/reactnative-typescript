@@ -27,7 +27,7 @@ class CounterApp extends React.Component<any, any> {
                 <Text style={appStyles.header}>Welcome to counter:</Text>
                 <View style={appStyles.centerBox}>
                     <Text style={appStyles.reallyLargeText}>
-                        {this._props.count.toString()}
+                        {this._props.count}
                     </Text>
                 </View>
                 <View style={appStyles.bottomBox}>

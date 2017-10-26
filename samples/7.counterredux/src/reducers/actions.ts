@@ -7,7 +7,7 @@ const IncrementActionCreator = (step: number) => {
 };
 
 const DecrementActionCreator = (step: number) => {
-    return { type: DECREMENT, payload: -step };
+    return { type: DECREMENT, payload: step };
 };
 
 export { IncrementActionCreator, INCREMENT, DecrementActionCreator, DECREMENT };
