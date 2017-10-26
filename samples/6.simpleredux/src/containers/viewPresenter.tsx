@@ -2,10 +2,10 @@ import * as React from "react";
 import { View } from "react-native";
 import { connect } from "react-redux";
 import { appStyles } from "../styles";
-import { IStoreState } from "../stores/store";
+import { ScreenName } from "../models";
+import { IStoreState } from "../stores";
 import UserBoard from "../containers/userBoard";
 import GamerDetails from "../containers/gamerDetails";
-import { ScreenName } from "../models/models";
 
 interface IViewPresenterProps {
     screenOnDisplay: ScreenName;

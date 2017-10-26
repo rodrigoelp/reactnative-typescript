@@ -1,14 +1,13 @@
 
 import * as React from "react";
-import { Image, View, Text, FlatList, ListRenderItemInfo, Button } from "react-native";
+import { Image, View, Text, FlatList, ListRenderItemInfo } from "react-native";
 import { Dispatch, bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { ScreenName, User, GameScore, Game } from "../models/models";
-import { UniqueId } from "../models/sysTypes";
-import { IStoreState } from "../stores/store";
-import { getImageForGame } from "../stores/imageResolver";
 import { appStyles } from "../styles";
-import { SwitchToScreenActionCreator, ITypedAction } from "../reducers/actions";
+import { Button } from "../components/controls";
+import { IStoreState, getImageForGame } from "../stores";
+import { ScreenName, User, GameScore, Game, UniqueId } from "../models";
+import { SwitchToScreenActionCreator, ITypedAction } from "../reducers";
 
 interface IGamerDetailsProps {
     user: User;

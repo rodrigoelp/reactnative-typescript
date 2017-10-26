@@ -1,13 +1,12 @@
 import * as React from "react";
-import { connect } from "react-redux";
 import { FlatList, View, Text, ListRenderItemInfo } from "react-native";
-import { SetActiveUserActionCreator, SwitchToScreenActionCreator, ITypedAction } from "../reducers/actions";
-import { Button } from "../components/controls";
-import { User, GameScore, Game, Gender, genderToAdjective, ScreenName } from "../models/models";
-import { UniqueId } from "../models/sysTypes";
-import { IStoreState } from "../stores/store";
-import { appStyles } from "../styles";
 import { bindActionCreators, Dispatch } from "redux";
+import { connect } from "react-redux";
+import { appStyles } from "../styles";
+import { IStoreState } from "../stores";
+import { Button } from "../components/controls";
+import { User, GameScore, Game, Gender, genderToAdjective, ScreenName, UniqueId } from "../models";
+import { SetActiveUserActionCreator, SwitchToScreenActionCreator, ITypedAction } from "../reducers";
 
 /**
  * This container needs to take this special property
