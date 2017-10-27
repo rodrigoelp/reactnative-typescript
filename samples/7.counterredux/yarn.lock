@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@types/react-native@^0.49.3":
-  version "0.49.3"
-  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.49.3.tgz#5149f9c7bfbd5257a8829ab594d1326fa475099b"
+"@types/react-native@^0.49.4":
+  version "0.49.4"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.49.4.tgz#b3aca14f451cc7277424eb7a8dda503026a5deed"
   dependencies:
     "@types/react" "*"
 
@@ -18,12 +18,6 @@
 "@types/react@*", "@types/react@^16.0.18":
   version "16.0.18"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.18.tgz#c08eea79ada55bf10b5353e18c21797dd17afa23"
-
-"@types/redux@^3.6.0":
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/@types/redux/-/redux-3.6.0.tgz#f1ebe1e5411518072e4fdfca5c76e16e74c1399a"
-  dependencies:
-    redux "*"
 
 abab@^1.0.3:
   version "1.0.4"
@@ -3544,7 +3538,7 @@ readable-stream@~1.1.8, readable-stream@~1.1.9:
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
-redux@*, redux@^3.6.0, redux@^3.7.2:
+redux@^3.6.0, redux@^3.7.2:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/redux/-/redux-3.7.2.tgz#06b73123215901d25d065be342eb026bc1c8537b"
   dependencies:

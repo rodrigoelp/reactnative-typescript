@@ -8,9 +8,8 @@
 	},
 	"dependencies": {
 		"@types/react": "^16.0.18",
-		"@types/react-native": "^0.49.3",
+		"@types/react-native": "^0.49.4",
 		"@types/react-redux": "^5.0.11",
-		"@types/redux": "^3.6.0",
 		"react": "16.0.0-beta.5",
 		"react-native": "0.49.3",
 		"react-redux": "^5.0.6",
