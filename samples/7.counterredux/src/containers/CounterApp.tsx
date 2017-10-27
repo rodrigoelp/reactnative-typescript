@@ -7,18 +7,20 @@ import { ICountState } from "../models";
 import { DecrementActionCreator, IncrementActionCreator } from "../reducers/actions";
 import { appStyles } from "../styles";
 
-interface ICounterAppProps {
+interface ICounterAppDataProps {
     count: number;
+}
+
+interface ICounterAppActionProps {
     increase: (step: number) => void;
     decrease: (step: number) => void;
 }
 
-class CounterApp extends React.Component<any, any> {
-    private _props: ICounterAppProps;
+type ICounterAppCombinedProps = ICounterAppDataProps & ICounterAppActionProps;
 
+class CounterApp extends React.Component<ICounterAppCombinedProps, any> {
     constructor(props: any) {
         super(props);
-        this._props = props as ICounterAppProps;
     }
 
     public render() {
@@ -27,7 +29,7 @@ class CounterApp extends React.Component<any, any> {
                 <Text style={appStyles.header}>Welcome to counter:</Text>
                 <View style={appStyles.centerBox}>
                     <Text style={appStyles.reallyLargeText}>
-                        {this._props.count}
+                        {this.props.count}
                     </Text>
                 </View>
                 <View style={appStyles.bottomBox}>
@@ -46,23 +48,23 @@ class CounterApp extends React.Component<any, any> {
     private decrement = (): void => {
         const step = this.generateStep();
         console.log(`trying to do the decrement by ${step}`);
-        this._props.decrease(step);
+        this.props.decrease(step);
     }
 
     private increment = (): void => {
         const step = this.generateStep();
         console.log(`trying to do the increment by ${step}`);
-        this._props.increase(step);
+        this.props.increase(step);
     }
 }
 
-function mapStateToProps(state: ICountState) {
+function mapStateToProps(state: ICountState): ICounterAppDataProps {
     return {
         count: state.currentCount,
-    } as ICounterAppProps;
+    };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<any>) {
+function mapDispatchToProps(dispatch: Dispatch<any>): ICounterAppActionProps {
     return bindActionCreators({
         decrease: DecrementActionCreator,
         increase: IncrementActionCreator,
