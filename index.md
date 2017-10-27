@@ -12,7 +12,12 @@ Before running any project, you might need to setup its dependencies locally as 
 ```sh
 $> cd samples/<sampleapp_you_want_to_browse>
 $> npm install
+$> ./node_modules/.bin/tsc
 ```
+
+_Step 2: will install all the dependencies._
+
+_Step 3: will compile the typescript code and populate the `lib/` folder_
 
 If you want to know more about npm: [Follow this link](https://docs.npmjs.com/getting-started/installing-npm-packages-locally)
 
@@ -24,7 +29,7 @@ Minimum configuration to build and execute a react-native app in iOS and Android
 
 Just an increment of the previous sample. Learning about subcomponents, styles and usage of resources.
 
-## 3. ToDos
+## 3. ToDos (really simple-poorly built- list of todos)
 
 Getting the practice of setting up a new react-native + typescript is boring but necessary... so, decided to take a look at a very simple list of todos... How to add items and how to remove it.
 
@@ -36,7 +41,7 @@ Getting the practice of setting up a new react-native + typescript is boring but
 >
 > Hopefully, you will notice some of the mistakes I have made in that app. It made me understand that I needed to spend more time looking at some of the dependencies (and youtube videos to learn more).
 
-## 4. NavScreen
+## 4. NavScreen (Navigating between screens and passing data through)
 
 Going back to baby steps. Let's get navigation to work. The objective is:
 
@@ -56,3 +61,26 @@ The idea behind this exercise is to understandh how to generate the type definit
 Typescript gives you a rich way to understand your code. It gives you guidance when writing it and type safety when invoking your code.
 
 Unfortunately, most of the Javascript developer have not used Typescript (_shocking! I know!_) and sometimes you will find a library that has not been 'defined' for typescript. The type definition file bridges your Javascript and Typescript world.
+
+## 6. Simple Redux
+
+From the react-native site to most tutorials around the web, one common topic spoken around is Redux.
+
+But what is it?
+Plainly put, is a framework (not attached to react-native in particular) that tries to separate the application state from your logic to decrease the mutability of your state and helpfully adding some simple concepts to order the chaos of communicating changes between components.
+
+These are the first steps towards building an application with React-Native, Typescript and Redux. Unfortunately, I end up complicating things a bit too much. Exercise 7 should be easier to follow to begin with.
+
+## 7. Simple Redux app (A counter)
+
+This application will increase or decrease the current count... By how much you ask? I don't know... let's be crazy and get random numbers.
+
+This second exercise should allow me to practice and understand just redux concepts without having to worry about multiple reducers, action creators and the store.
+
+In here you will find a single container, single reducer, two action creators and one store (is always one store in redux). Also, will be trying to fix that nasty declaration from the simple redux exercise `class Container extends React.Component<any>`.
+
+## 8. The slow counter
+
+Redux so far has offered me a way to manage synchronous state... What should I learn to deal asyncrhonous state?
+
+Let's find out!
