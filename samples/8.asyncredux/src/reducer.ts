@@ -1,14 +1,42 @@
-import { combineReducers } from "redux";
+import { AnyAction, combineReducers, Reducer } from "redux";
+import { ActionType } from "./actions";
+import { ActivityStatus, IPost } from "./models";
 
-// planning on downloading this, or pushing my own set of data.
-// http://rest.learncode.academy/api/learncode/friends
+const initialState: IPost[] = [];
 
-const friendsReducer = (state: any, action: any): any => {
-    return state;
-};
+/**
+ * Provides all the posts, unfiltered.
+ * @param state Current list of posts.
+ * @param action Triggered action used to generate a new state. Just ActionType.ReceivedPosts
+ * a payload can change the behaviour of returning the current state.
+ * @see ActionType
+ * @see IPost
+ */
+const postsReducer: Reducer<IPost[]> =
+    (state: IPost[] = initialState, action: AnyAction): IPost[] => {
+        switch (action.type) {
+            case ActionType.ReceivedPosts:
+                return action.payload;
+            default:
+                return state;
+        }
+    };
+
+/**
+ * NOT DOING ANYTHING WITH THIS YET.
+ * @param state indicator of activity.
+ * @param action modifier of the activity indicator.
+ * @see ActivityStatus
+ */
+const activityIndicatorReducer: Reducer<ActivityStatus> =
+    (state: ActivityStatus = ActivityStatus.NoActivity, action: AnyAction): ActivityStatus => {
+        return state;
+    };
 
 const allReducers = combineReducers({
-    friends: friendsReducer,
-});
+    activityStatus: activityIndicatorReducer,
+    posts: postsReducer,
+}); // remember this object should match the definition of the application state.
 
-export { allReducers, friendsReducer };
+export { allReducers, postsReducer };
+// and getting everything to work in the appShell...
