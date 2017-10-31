@@ -1,3 +1,4 @@
+import { isNullOrUndefined } from "../globalfunctions";
 import { IAlbum, IPhoto, IUser } from "../models";
 import { Fetcher } from "./fetcher";
 import { RestService } from "./restService";
@@ -35,8 +36,18 @@ class PhotoLocator {
      * it will return the unknown user hosted in iconfinder.
      */
     public async getUserPhoto(userId: number): Promise<IPhoto> {
+        // WARNING: this is not the best way for doing this.
+        // Ideally there is a worker coordinating all the requests
+        // for the same user to prevent pulling the same resource
+        // mutliple times.
+
         // checking the quick cache first.
-        const { albumCache, photoCache } = PhotoLocator;
+        const { albumCache, photoCache, userPhotoCache } = PhotoLocator;
+        const userPhoto = userPhotoCache.find((up) => up.userId === userId);
+        if (!isNullOrUndefined(userPhoto)) {
+            return userPhoto!.photo;
+        }
+
         const userAlbums = albumCache.filter((a) => a.userId === userId);
 
         if (userAlbums.length > 0) {
@@ -67,9 +78,15 @@ class PhotoLocator {
                 };
             });
 
-            // storing everything in the cache.
-            PhotoLocator.albumCache = albumCache.concat(albums);
-            PhotoLocator.photoCache = photoCache.concat(photos);
+            // storing everything in the cache if nobody else has done it before.
+            if (PhotoLocator.albumCache.filter((a) => a.userId === userId).length === 0) {
+                PhotoLocator.albumCache = PhotoLocator.albumCache.concat(albums);
+                PhotoLocator.photoCache = PhotoLocator.photoCache.concat(photos);
+                if (photos.length > 0) {
+                    PhotoLocator.userPhotoCache = PhotoLocator.userPhotoCache
+                        .concat({ userId, photo: photos[0] });
+                }
+            }
 
             if (photos.length > 0) { // it was not in the cache, but was fetched from the network
                 return photos[0];
