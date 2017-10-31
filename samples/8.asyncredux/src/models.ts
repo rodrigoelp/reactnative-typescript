@@ -9,6 +9,7 @@ enum ActivityStatus {
 interface IAppState {
   activityStatus: ActivityStatus;
   posts: IPost[];
+  users: IUser[];
 }
 
 interface IPost {

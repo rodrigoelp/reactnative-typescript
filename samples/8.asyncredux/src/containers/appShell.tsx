@@ -3,18 +3,20 @@ import * as React from "react";
 import { Text, View } from "react-native";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { fetchPostsActionCreator } from "../actions";
+import { fetchPostsActionCreator, fetchUsersActionCreator } from "../actions";
 import appStyles from "../appStyles";
 import { PostListView } from "../components/postListView";
-import { ActivityStatus, IAppState, IPost } from "../models";
+import { ActivityStatus, IAppState, IPost, IUser } from "../models";
 
 interface IAppShellProps {
     actionStatus: ActivityStatus;
     posts: IPost[];
+    users: IUser[];
 }
 
 interface IAppShellActions {
     fetchPosts: () => void;
+    fetchUsers: () => any;
 }
 
 type AppShellProps = IAppShellProps & IAppShellActions;
@@ -25,6 +27,7 @@ class AppShell extends React.Component<AppShellProps> {
     }
 
     public componentDidMount() {
+        this.props.fetchUsers();
         this.props.fetchPosts();
     }
 
@@ -37,7 +40,7 @@ class AppShell extends React.Component<AppShellProps> {
                     </Text>
                 </View>
                 <View style={appStyles.containerBody}>
-                    <PostListView posts={this.props.posts} />
+                    <PostListView posts={this.props.posts} users={this.props.users} />
                 </View>
                 {this.renderFooter()}
             </View>
@@ -71,12 +74,14 @@ function mapStateToProps(state: IAppState): IAppShellProps {
     return {
         actionStatus: state.activityStatus,
         posts: state.posts,
+        users: state.users,
     };
 }
 
 function mapDispatchToProps(dispatch: Dispatch<any>): IAppShellActions {
     return {
         fetchPosts: fetchPostsActionCreator(dispatch),
+        fetchUsers: fetchUsersActionCreator(dispatch),
     };
 }
 

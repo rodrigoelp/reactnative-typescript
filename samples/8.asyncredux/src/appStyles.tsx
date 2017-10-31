@@ -30,8 +30,28 @@ const appStyles = StyleSheet.create({
         paddingRight: 8,
         paddingTop: 48,
     },
-    containerPostItem: {
+    containerPostItemPostArea: {
         flex: 1,
+        paddingLeft: 8,
+        paddingRight: 8,
+    },
+    containerPostItemSimple: {
+        flex: 1,
+        paddingBottom: 16,
+        paddingLeft: 8,
+        paddingRight: 8,
+        paddingTop: 8,
+    },
+    containerPostItemUserArea: {
+        flexBasis: "auto",
+        maxWidth: 100,
+        paddingLeft: 8,
+        paddingRight: 8,
+    },
+    containerPostItemWithUser: {
+        alignItems: "stretch",
+        flex: 1,
+        flexDirection: "column",
         paddingBottom: 16,
         paddingLeft: 8,
         paddingRight: 8,

@@ -14,8 +14,8 @@ enum ActionType {
     FetchingPosts = "POSTS_FETCHING",
     ReceivedPosts = "POSTS_RECEIVED",
     FailedFetchingPosts = "POSTS_FAILED",
-    ReceivedUser = "USER_RECEIVED",
-    FailedFetchingUser = "USER_FAILED",
+    ReceivedUsers = "USER_RECEIVED",
+    FailedFetchingUsers = "USER_FAILED",
 }
 
 /**
@@ -56,16 +56,19 @@ const fetchPostsActionCreator = (dispatch: Dispatch<any>) => () => {
     // performing the async action.
     fetchInstanceOfType<IPost[]>(getPostsUrl())
         .then((result) => dispatch(createTypedAction(ActionType.ReceivedPosts, result)))
-        .catch((err) => dispatch(createLightAction(ActionType.FailedFetchingPosts)));
+        .catch((err) => {
+            console.debug("Trying to download the list of posts.", err);
+            dispatch(createLightAction(ActionType.FailedFetchingPosts));
+        });
 };
 
-const fetchUserActionCreator = (id: number) => (dispatch: Dispatch<any>) => {
-    // for this one in particular, I don't want to indicate I am
-    // downloading anything to the user...
-
-    return fetchInstanceOfType<IUser>(getUserUrl(id))
-        .then((result) => dispatch(createTypedAction(ActionType.ReceivedUser, result)))
-        .catch((err) => dispatch(createTypedAction(ActionType.FailedFetchingUser, { id } as IUser )));
+const fetchUsersActionCreator = (dispatch: Dispatch<any>) => (): Promise<any> => {
+    return fetchInstanceOfType<IUser[]>(getPostsUrl())
+        .then((result) => dispatch(createTypedAction(ActionType.ReceivedUsers, result)))
+        .catch((err) => {
+            console.debug("Trying to download the list of users", err);
+            dispatch(createTypedAction(ActionType.FailedFetchingUsers, []));
+        });
 };
 
 // helper functions to create the actions.
@@ -77,6 +80,7 @@ function fetchInstanceOfType<T>(uri: string) {
             if (isNullOrUndefined(result)) {
                 throw Error(`Could not download data from the requested api ${uri}`);
             }
+            return result;
         });
 }
 
@@ -90,4 +94,4 @@ function createLightAction(type: ActionType): AnyAction {
 
 // exporting what is meaningful... Now to get the reducer to
 // respond as expected.
-export { ActionType, ITypedAction, fetchPostsActionCreator };
+export { ActionType, ITypedAction, fetchPostsActionCreator, fetchUsersActionCreator };
