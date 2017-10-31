@@ -30,6 +30,11 @@ const postsReducer: Reducer<IPost[]> =
  */
 const activityIndicatorReducer: Reducer<ActivityStatus> =
     (state: ActivityStatus = ActivityStatus.NoActivity, action: AnyAction): ActivityStatus => {
+        switch (action.type) {
+            case ActionType.FetchingPosts: return ActivityStatus.Loading;
+            case ActionType.ReceivedPosts: return ActivityStatus.Loaded;
+            case ActionType.FailedFetchingPosts: return ActivityStatus.LoadingFailed;
+        }
         return state;
     };
 

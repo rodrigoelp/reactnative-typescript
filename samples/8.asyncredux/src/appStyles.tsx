@@ -11,11 +11,17 @@ const appStyles = StyleSheet.create({
     },
     containerBody: {
         flex: 1,
-        paddingLeft: 8,
-        paddingRight: 8,
     },
     containerFooter: {
-        backgroundColor: "red",
+        backgroundColor: "#2e3703",
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        padding: 16,
+    },
+    containerFooterError: {
+        backgroundColor: "crimson",
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
         padding: 16,
     },
     containerHeader: {
@@ -27,6 +33,8 @@ const appStyles = StyleSheet.create({
     containerPostItem: {
         flex: 1,
         paddingBottom: 16,
+        paddingLeft: 8,
+        paddingRight: 8,
         paddingTop: 8,
     },
     textFooter: {
@@ -42,7 +50,7 @@ const appStyles = StyleSheet.create({
         fontSize: 14,
     },
     textPostTitle: {
-        fontFamily: "Helvetica",
+        fontFamily: "HelveticaNeue-Light",
         fontSize: 24,
     },
 });

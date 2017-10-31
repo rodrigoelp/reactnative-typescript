@@ -9,7 +9,7 @@ import { PostListView } from "../components/postListView";
 import { ActivityStatus, IAppState, IPost } from "../models";
 
 interface IAppShellProps {
-    isLoadingVisible: boolean;
+    actionStatus: ActivityStatus;
     posts: IPost[];
 }
 
@@ -29,9 +29,6 @@ class AppShell extends React.Component<AppShellProps> {
     }
 
     public render() {
-        const loadingText = this.props.isLoadingVisible ?
-            "Please wait. Loading..." :
-            "";
         return (
             <View style={appStyles.containerApp}>
                 <View style={appStyles.containerHeader}>
@@ -48,26 +45,33 @@ class AppShell extends React.Component<AppShellProps> {
     }
 
     private renderFooter = () => {
-        if (this.props.isLoadingVisible) {
-            return (
-                <View style={appStyles.containerFooter}>
-                    <Text style={appStyles.textFooter}>Loading posts...</Text>
-                </View>
-            );
+        if (this.props.actionStatus === ActivityStatus.NoActivity
+            || this.props.actionStatus === ActivityStatus.Loaded) {
+            return <View />;
         }
-        return (<View />);
+
+        let message = "";
+        let style = appStyles.containerFooter;
+        if (this.props.actionStatus === ActivityStatus.Loading) {
+            message = "Loading posts...";
+        } else {
+            message = "I'm sorry! I couldn't download the list of posts.";
+            style = appStyles.containerFooterError;
+        }
+
+        return (
+            <View style={style}>
+                <Text style={appStyles.textFooter}>{message}</Text>
+            </View>
+        );
     }
 }
 
 function mapStateToProps(state: IAppState): IAppShellProps {
     return {
-        isLoadingVisible: convertStatusToVisibility(),
+        actionStatus: state.activityStatus,
         posts: state.posts,
     };
-
-    function convertStatusToVisibility(): boolean {
-        return state.activityStatus === ActivityStatus.Loading;
-    }
 }
 
 function mapDispatchToProps(dispatch: Dispatch<any>): IAppShellActions {
