@@ -1,17 +1,36 @@
 import * as React from "react";
-import { Image, Text, View } from "react-native";
+import { Image, ImageURISource, Text, View } from "react-native";
 import appStyles from "../appStyles";
 import { isNullOrUndefined } from "../globalfunctions";
-import { IPost, IUser } from "../models";
+import { IPhoto, IPost, IUser} from "../models";
+import { PhotoLocator } from "../services";
 
 interface IProps {
     post: IPost;
     user: IUser | undefined;
 }
 
-class PostCellItemView extends React.Component<IProps> {
+interface IState {
+    photoUrl: string;
+}
+
+class PostCellItemView extends React.Component<IProps, IState> {
+    private photoLocator: PhotoLocator;
+
     constructor(props: IProps) {
         super(props);
+        this.photoLocator = new PhotoLocator();
+        this.state = { photoUrl: this.photoLocator.getUnknownPhoto().thumbnailUrl };
+    }
+
+    public componentDidMount() {
+        if (!isNullOrUndefined(this.props.user)) {
+            const user = this.props.user!;
+            this.photoLocator.getUserPhoto(user.id)
+                .then((photo) => {
+                    this.setState({ photoUrl: photo.thumbnailUrl });
+                });
+        }
     }
 
     public render() {
@@ -39,10 +58,11 @@ class PostCellItemView extends React.Component<IProps> {
     }
 
     private renderPostAndUser(post: IPost, user: IUser) {
+        const sourceUri = this.state.photoUrl;
         return (
             <View style={appStyles.containerPostAndUserItemWithUser}>
                 <View style={appStyles.containerPostAndUserUserArea}>
-                    <Image source={{}} style={{ backgroundColor: "gray", width: 60, height: 60}} />
+                    <Image source={{ uri: sourceUri}} style={{ backgroundColor: "gray", width: 60, height: 60}} />
                     <Text style={appStyles.textInfo}>
                         Author:
                     </Text>

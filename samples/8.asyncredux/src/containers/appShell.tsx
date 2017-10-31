@@ -8,19 +8,7 @@ import appStyles from "../appStyles";
 import { PostListView } from "../components/postListView";
 import { ActivityStatus, IAppState, IPost, IUser } from "../models";
 
-interface IAppShellProps {
-    actionStatus: ActivityStatus;
-    posts: IPost[];
-    users: IUser[];
-}
-
-interface IAppShellActions {
-    fetchPostsAndUsers: () => any;
-}
-
-type AppShellProps = IAppShellProps & IAppShellActions;
-
-class AppShell extends React.Component<AppShellProps, any> {
+class AppShell extends React.Component<AppShellProps> {
     constructor(props: AppShellProps) {
         super(props);
     }
@@ -68,7 +56,19 @@ class AppShell extends React.Component<AppShellProps, any> {
     }
 }
 
-function mapStateToProps(state: IAppState): IAppShellProps {
+interface IProps {
+    actionStatus: ActivityStatus;
+    posts: IPost[];
+    users: IUser[];
+}
+
+interface IActions {
+    fetchPostsAndUsers: () => any;
+}
+
+type AppShellProps = IProps & IActions;
+
+function mapStateToProps(state: IAppState): IProps {
     return {
         actionStatus: state.activityStatus,
         posts: state.posts,
@@ -76,7 +76,7 @@ function mapStateToProps(state: IAppState): IAppShellProps {
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<any>): IAppShellActions {
+function mapDispatchToProps(dispatch: Dispatch<any>): IActions {
     return {
         fetchPostsAndUsers: fetchPostsAndUsersActionCreator(dispatch),
     };

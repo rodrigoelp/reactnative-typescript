@@ -1,6 +1,7 @@
 import { AnyAction, Dispatch } from "redux";
 import { isNullOrUndefined } from "./globalfunctions";
 import { IPost, IUser } from "./models";
+import { Fetcher } from "./services";
 
 /**
  * Defining the list of actions I will be
@@ -55,20 +56,20 @@ const fetchPostsActionCreator = (dispatch: Dispatch<any>) => () => {
     dispatch(createLightAction(ActionType.FetchingStarted));
 
     // performing the async action.
-    fetchInstanceOfType<IPost[]>(getPostsUrl())
+    return Fetcher.fetchInstanceOf<IPost[]>(getPostsUrl())
         .then((result) => dispatch(createTypedAction(ActionType.ReceivedPosts, result)))
         .catch((err) => dispatch(createLightAction(ActionType.FailedFetchingPosts)));
 };
 
 const fetchPostsAndUsersActionCreator = (dispatch: Dispatch<any>) => (): Promise<any> => {
     dispatch(createLightAction(ActionType.FetchingStarted));
-    return fetchInstanceOfType<IPost[]>(getPostsUrl())
+    return Fetcher.fetchInstanceOf<IPost[]>(getPostsUrl())
         .then((result) => dispatch(createTypedAction(ActionType.ReceivedPosts, result)))
         .catch((err) => {
             console.debug("Failed to download the list of posts: ", err);
             dispatch(createLightAction(ActionType.FailedFetchingPosts));
         })
-        .then((_) => fetchInstanceOfType<IUser[]>(getUsersUrl()))
+        .then((_) => Fetcher.fetchInstanceOf<IUser[]>(getUsersUrl()))
         .then((result) => dispatch(createTypedAction(ActionType.ReceivedUsers, result)))
         .then((_) => dispatch(createLightAction(ActionType.FetchingDone)))
         .catch((err) => {
@@ -78,18 +79,6 @@ const fetchPostsAndUsersActionCreator = (dispatch: Dispatch<any>) => (): Promise
 };
 
 // helper functions to create the actions.
-function fetchInstanceOfType<T>(uri: string) {
-    return fetch(uri)
-        .then((response) => response.text())
-        .then((content) => {
-            const result: T = JSON.parse(content);
-            if (isNullOrUndefined(result)) {
-                throw Error(`Could not download data from the requested api ${uri}`);
-            }
-            return result;
-        });
-}
-
 function createTypedAction<T>(type: ActionType, payload: T): ITypedAction<T> {
     return { type, payload };
 }

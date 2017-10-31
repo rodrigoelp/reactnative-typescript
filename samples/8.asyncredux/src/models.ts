@@ -57,4 +57,10 @@ interface IPhoto {
   thumbnailUrl: string;
 }
 
-export { ActivityStatus, IAppState, IPost, IUser, ICompany, IAddress, IGeo, IPhoto };
+interface IAlbum {
+  userId: number;
+  id: number;
+  title: string;
+}
+
+export { ActivityStatus, IAlbum, IAppState, IPost, IUser, ICompany, IAddress, IGeo, IPhoto };
