@@ -39,28 +39,34 @@ interface ITypedAction<T> extends AnyAction {
 // so I am going to start using the https://jsonplaceholder.typicode.com/posts api
 // and build from there.
 
-const postsUrl = "https://jsonplaceholder.typicode.com/posts";
+const serviceUrl = "https://jsonplaceholder.typicode.com";
+const getPostsUrl = () => `${serviceUrl}/posts`;
+const getUsersUrl = () => `${serviceUrl}/users`;
 
-const fetchUsersActionCreator = (dispatch: Dispatch<any>) => () => {
+const fetchPostsActionCreator = (dispatch: Dispatch<any>) => () => {
     // const fetchUsersActionCreator = () => (dispatch: Dispatch<any>) => {
     // the line below tells the subscriber that I have started working
     // fetching the users.
     dispatch(createLightAction(ActionType.FetchingPosts));
 
     // performing the async action.
-    fetch(postsUrl)
-        .then((response: Response) => response.text())
-        .then((content: string) => {
-            const posts: IPost[] = JSON.parse(content);
-            if (isNullOrUndefined(posts)) {
-                throw Error(`It seems I won't be able to parse the information provided: ${content}`);
-            }
-            dispatch(createTypedAction(ActionType.ReceivedPosts, posts));
-        })
+    fetchInstancesOf<IPost[]>(dispatch, getPostsUrl())
+        .then((result) => dispatch(createTypedAction(ActionType.ReceivedPosts, result)))
         .catch((err) => dispatch(createLightAction(ActionType.FailedFetchingPosts)));
 };
 
 // helper functions to create the actions.
+function fetchInstancesOf<T>(dispatch: Dispatch<any>, uri: string) {
+    return fetch(uri)
+        .then((response) => response.text())
+        .then((content) => {
+            const result: T = JSON.parse(content);
+            if (isNullOrUndefined(result)) {
+                throw Error(`Could not download data from the requested api ${uri}`);
+            }
+        });
+}
+
 function createTypedAction<T>(type: ActionType, payload: T): ITypedAction<T> {
     return { type, payload };
 }
@@ -71,4 +77,4 @@ function createLightAction(type: ActionType): AnyAction {
 
 // exporting what is meaningful... Now to get the reducer to
 // respond as expected.
-export { ActionType, ITypedAction, fetchUsersActionCreator };
+export { ActionType, ITypedAction, fetchPostsActionCreator };

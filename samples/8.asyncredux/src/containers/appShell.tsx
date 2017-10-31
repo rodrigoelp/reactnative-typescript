@@ -3,7 +3,7 @@ import * as React from "react";
 import { Text, View } from "react-native";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { fetchUsersActionCreator } from "../actions";
+import { fetchPostsActionCreator } from "../actions";
 import appStyles from "../appStyles";
 import { PostListView } from "../components/postListView";
 import { ActivityStatus, IAppState, IPost } from "../models";
@@ -76,7 +76,7 @@ function mapStateToProps(state: IAppState): IAppShellProps {
 
 function mapDispatchToProps(dispatch: Dispatch<any>): IAppShellActions {
     return {
-        fetchPosts: fetchUsersActionCreator(dispatch),
+        fetchPosts: fetchPostsActionCreator(dispatch),
     };
 }
 
