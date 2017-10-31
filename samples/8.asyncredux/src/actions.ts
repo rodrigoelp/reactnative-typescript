@@ -50,13 +50,13 @@ const fetchPostsActionCreator = (dispatch: Dispatch<any>) => () => {
     dispatch(createLightAction(ActionType.FetchingPosts));
 
     // performing the async action.
-    fetchInstancesOf<IPost[]>(dispatch, getPostsUrl())
+    fetchInstancesOf<IPost[]>(getPostsUrl())
         .then((result) => dispatch(createTypedAction(ActionType.ReceivedPosts, result)))
         .catch((err) => dispatch(createLightAction(ActionType.FailedFetchingPosts)));
 };
 
 // helper functions to create the actions.
-function fetchInstancesOf<T>(dispatch: Dispatch<any>, uri: string) {
+function fetchInstancesOf<T>(uri: string) {
     return fetch(uri)
         .then((response) => response.text())
         .then((content) => {
