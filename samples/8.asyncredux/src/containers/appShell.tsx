@@ -4,6 +4,8 @@ import { Text, View } from "react-native";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { fetchUsersActionCreator } from "../actions";
+import appStyles from "../appStyles";
+import { PostListView } from "../components/postListView";
 import { ActivityStatus, IAppState, IPost } from "../models";
 
 interface IAppShellProps {
@@ -31,17 +33,29 @@ class AppShell extends React.Component<AppShellProps> {
             "Please wait. Loading..." :
             "";
         return (
-            <View style={{ flex: 1, paddingBottom: 30, paddingTop: 40 }}>
-                <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-                    <Text>
-                        Hi Muji {this.props.posts.length}
+            <View style={appStyles.containerApp}>
+                <View style={appStyles.containerHeader}>
+                    <Text style={appStyles.textInfo}>
+                        Displaying {this.props.posts.length} posts.
                     </Text>
                 </View>
-                <View style={{ flexBasis: "auto", minHeight: 40 }} >
-                    <Text>{loadingText}</Text>
+                <View style={appStyles.containerBody}>
+                    <PostListView posts={this.props.posts} />
                 </View>
+                {this.renderFooter()}
             </View>
         );
+    }
+
+    private renderFooter = () => {
+        if (this.props.isLoadingVisible) {
+            return (
+                <View style={appStyles.containerFooter}>
+                    <Text style={appStyles.textFooter}>Loading posts...</Text>
+                </View>
+            );
+        }
+        return (<View />);
     }
 }
 
