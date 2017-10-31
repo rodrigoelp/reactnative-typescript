@@ -58,7 +58,7 @@ function mapStateToProps(state: IAppState): IAppShellProps {
 
 function mapDispatchToProps(dispatch: Dispatch<any>): IAppShellActions {
     return {
-        fetchPosts: fetchUsersActionCreator,
+        fetchPosts: fetchUsersActionCreator(dispatch),
     };
 }
 

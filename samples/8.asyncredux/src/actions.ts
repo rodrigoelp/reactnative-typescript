@@ -1,5 +1,4 @@
-import { AnyAction } from "redux";
-import { Dispatch } from "redux";
+import { AnyAction, Dispatch } from "redux";
 import { isNullOrUndefined } from "./globalfunctions";
 import { IPost } from "./models";
 
@@ -42,24 +41,23 @@ interface ITypedAction<T> extends AnyAction {
 
 const postsUrl = "https://jsonplaceholder.typicode.com/posts";
 
-const fetchUsersActionCreator = () => {
-    return (dispatch: Dispatch<any>) => {
-        // the line below tells the subscriber that I have started working
-        // fetching the users.
-        dispatch(createLightAction(ActionType.FetchingPosts));
+const fetchUsersActionCreator = (dispatch: Dispatch<any>) => () => {
+    // const fetchUsersActionCreator = () => (dispatch: Dispatch<any>) => {
+    // the line below tells the subscriber that I have started working
+    // fetching the users.
+    dispatch(createLightAction(ActionType.FetchingPosts));
 
-        // performing the async action.
-        fetch(postsUrl)
-            .then((response: Response) => response.text())
-            .then((content: string) => {
-                const posts: IPost[] = JSON.parse(content);
-                if (isNullOrUndefined(posts)) {
-                    throw Error(`It seems I won't be able to parse the information provided: ${content}`);
-                }
-                dispatch(createTypedAction(ActionType.ReceivedPosts, posts));
-            })
-            .catch((err) => dispatch(createLightAction(ActionType.FailedFetchingPosts)));
-    };
+    // performing the async action.
+    fetch(postsUrl)
+        .then((response: Response) => response.text())
+        .then((content: string) => {
+            const posts: IPost[] = JSON.parse(content);
+            if (isNullOrUndefined(posts)) {
+                throw Error(`It seems I won't be able to parse the information provided: ${content}`);
+            }
+            dispatch(createTypedAction(ActionType.ReceivedPosts, posts));
+        })
+        .catch((err) => dispatch(createLightAction(ActionType.FailedFetchingPosts)));
 };
 
 // helper functions to create the actions.
