@@ -3,7 +3,7 @@ import * as React from "react";
 import { Text, View } from "react-native";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { fetchPostsActionCreator } from "../actions";
+import { fetchPostsAndUsersActionCreator } from "../actions";
 import appStyles from "../appStyles";
 import { PostListView } from "../components/postListView";
 import { ActivityStatus, IAppState, IPost } from "../models";
@@ -14,18 +14,18 @@ interface IAppShellProps {
 }
 
 interface IAppShellActions {
-    fetchPosts: () => void;
+    fetchPostsAndUsers: () => any;
 }
 
 type AppShellProps = IAppShellProps & IAppShellActions;
 
-class AppShell extends React.Component<AppShellProps> {
+class AppShell extends React.Component<AppShellProps, any> {
     constructor(props: AppShellProps) {
         super(props);
     }
 
     public componentDidMount() {
-        this.props.fetchPosts();
+        this.props.fetchPostsAndUsers();
     }
 
     public render() {
@@ -76,7 +76,7 @@ function mapStateToProps(state: IAppState): IAppShellProps {
 
 function mapDispatchToProps(dispatch: Dispatch<any>): IAppShellActions {
     return {
-        fetchPosts: fetchPostsActionCreator(dispatch),
+        fetchPostsAndUsers: fetchPostsAndUsersActionCreator(dispatch),
     };
 }
 

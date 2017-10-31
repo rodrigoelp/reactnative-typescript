@@ -1,8 +1,12 @@
 import { AnyAction, combineReducers, Reducer } from "redux";
 import { ActionType } from "./actions";
-import { ActivityStatus, IPost } from "./models";
+import { ActivityStatus, IAppState, IPost, IUser } from "./models";
 
-const initialState: IPost[] = [];
+const initialState: IAppState = {
+    activityStatus: ActivityStatus.NoActivity,
+    posts: [],
+    users: [],
+};
 
 /**
  * Provides all the posts, unfiltered.
@@ -13,35 +17,53 @@ const initialState: IPost[] = [];
  * @see IPost
  */
 const postsReducer: Reducer<IPost[]> =
-    (state: IPost[] = initialState, action: AnyAction): IPost[] => {
+    (state: IPost[] = initialState.posts, action: AnyAction): IPost[] => {
         switch (action.type) {
             case ActionType.ReceivedPosts:
+                console.debug("Updating list of posts");
+                const posts = action.payload as IPost[];
+                return posts.concat(); // creating a new list just in case.
+            default:
+                console.debug("Requested cached list of posts.");
+                return state;
+        }
+    };
+
+const usersReducer: Reducer<IUser[]> =
+    (state: IUser[] = initialState.users, action: AnyAction): IUser[] => {
+        switch (action.type) {
+            case ActionType.ReceivedUsers:
+                console.debug("Updated list of users.");
                 return action.payload;
             default:
+                console.debug("Requested cached list of users.");
                 return state;
         }
     };
 
 /**
- * NOT DOING ANYTHING WITH THIS YET.
+ * Indicates if the application is performing a process in the background.
  * @param state indicator of activity.
  * @param action modifier of the activity indicator.
  * @see ActivityStatus
  */
 const activityIndicatorReducer: Reducer<ActivityStatus> =
-    (state: ActivityStatus = ActivityStatus.NoActivity, action: AnyAction): ActivityStatus => {
+    (state: ActivityStatus = initialState.activityStatus, action: AnyAction): ActivityStatus => {
         switch (action.type) {
-            case ActionType.FetchingPosts: return ActivityStatus.Loading;
-            case ActionType.ReceivedPosts: return ActivityStatus.Loaded;
+            case ActionType.FetchingStarted: return ActivityStatus.Loading;
+            case ActionType.FetchingDone: return ActivityStatus.Loaded;
+            case ActionType.FailedFetchingUsers: return ActivityStatus.Loaded;
             case ActionType.FailedFetchingPosts: return ActivityStatus.LoadingFailed;
         }
         return state;
     };
 
+ // remember this object should match the definition of the application state.
 const allReducers = combineReducers({
     activityStatus: activityIndicatorReducer,
     posts: postsReducer,
-}); // remember this object should match the definition of the application state.
+    users: usersReducer,
+});
 
 export { allReducers, postsReducer };
 // and getting everything to work in the appShell...

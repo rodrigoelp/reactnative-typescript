@@ -11,11 +11,12 @@ import { IPost, IUser } from "./models";
  * Technically, is going to be the same(ish).
  */
 enum ActionType {
-    FetchingPosts = "POSTS_FETCHING",
+    FetchingStarted = "DATA_FETCHING",
+    FetchingDone = "DATA_FETCHED",
     ReceivedPosts = "POSTS_RECEIVED",
     FailedFetchingPosts = "POSTS_FAILED",
-    ReceivedUser = "USER_RECEIVED",
-    FailedFetchingUser = "USER_FAILED",
+    ReceivedUsers = "USERS_RECEIVED",
+    FailedFetchingUsers = "USERS_FAILED",
 }
 
 /**
@@ -51,7 +52,7 @@ const fetchPostsActionCreator = (dispatch: Dispatch<any>) => () => {
     // const fetchUsersActionCreator = () => (dispatch: Dispatch<any>) => {
     // the line below tells the subscriber that I have started working
     // fetching the users.
-    dispatch(createLightAction(ActionType.FetchingPosts));
+    dispatch(createLightAction(ActionType.FetchingStarted));
 
     // performing the async action.
     fetchInstanceOfType<IPost[]>(getPostsUrl())
@@ -59,13 +60,21 @@ const fetchPostsActionCreator = (dispatch: Dispatch<any>) => () => {
         .catch((err) => dispatch(createLightAction(ActionType.FailedFetchingPosts)));
 };
 
-const fetchUserActionCreator = (id: number) => (dispatch: Dispatch<any>) => {
-    // for this one in particular, I don't want to indicate I am
-    // downloading anything to the user...
-
-    return fetchInstanceOfType<IUser>(getUserUrl(id))
-        .then((result) => dispatch(createTypedAction(ActionType.ReceivedUser, result)))
-        .catch((err) => dispatch(createTypedAction(ActionType.FailedFetchingUser, { id } as IUser )));
+const fetchPostsAndUsersActionCreator = (dispatch: Dispatch<any>) => (): Promise<any> => {
+    dispatch(createLightAction(ActionType.FetchingStarted));
+    return fetchInstanceOfType<IPost[]>(getPostsUrl())
+        .then((result) => dispatch(createTypedAction(ActionType.ReceivedPosts, result)))
+        .catch((err) => {
+            console.debug("Failed to download the list of posts: ", err);
+            dispatch(createLightAction(ActionType.FailedFetchingPosts));
+        })
+        .then((_) => fetchInstanceOfType<IUser[]>(getUsersUrl()))
+        .then((result) => dispatch(createTypedAction(ActionType.ReceivedUsers, result)))
+        .then((_) => dispatch(createLightAction(ActionType.FetchingDone)))
+        .catch((err) => {
+            console.debug("Failed to download the list of users: ", err);
+            dispatch(createLightAction(ActionType.FailedFetchingUsers));
+        });
 };
 
 // helper functions to create the actions.
@@ -91,4 +100,4 @@ function createLightAction(type: ActionType): AnyAction {
 
 // exporting what is meaningful... Now to get the reducer to
 // respond as expected.
-export { ActionType, ITypedAction, fetchPostsActionCreator };
+export { ActionType, ITypedAction, fetchPostsAndUsersActionCreator, fetchPostsActionCreator };
