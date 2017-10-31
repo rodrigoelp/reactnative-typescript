@@ -1,6 +1,6 @@
 import { AnyAction, Dispatch } from "redux";
 import { isNullOrUndefined } from "./globalfunctions";
-import { IPost } from "./models";
+import { IPost, IUser } from "./models";
 
 /**
  * Defining the list of actions I will be
@@ -14,6 +14,8 @@ enum ActionType {
     FetchingPosts = "POSTS_FETCHING",
     ReceivedPosts = "POSTS_RECEIVED",
     FailedFetchingPosts = "POSTS_FAILED",
+    ReceivedUser = "USER_RECEIVED",
+    FailedFetchingUser = "USER_FAILED",
 }
 
 /**
@@ -41,7 +43,9 @@ interface ITypedAction<T> extends AnyAction {
 
 const serviceUrl = "https://jsonplaceholder.typicode.com";
 const getPostsUrl = () => `${serviceUrl}/posts`;
+const getPostUrl = (id: number) => `${getPostsUrl()}/${id}`;
 const getUsersUrl = () => `${serviceUrl}/users`;
+const getUserUrl = (id: number) => `${getUsersUrl()}/${id}`;
 
 const fetchPostsActionCreator = (dispatch: Dispatch<any>) => () => {
     // const fetchUsersActionCreator = () => (dispatch: Dispatch<any>) => {
@@ -50,13 +54,22 @@ const fetchPostsActionCreator = (dispatch: Dispatch<any>) => () => {
     dispatch(createLightAction(ActionType.FetchingPosts));
 
     // performing the async action.
-    fetchInstancesOf<IPost[]>(getPostsUrl())
+    fetchInstanceOfType<IPost[]>(getPostsUrl())
         .then((result) => dispatch(createTypedAction(ActionType.ReceivedPosts, result)))
         .catch((err) => dispatch(createLightAction(ActionType.FailedFetchingPosts)));
 };
 
+const fetchUserActionCreator = (id: number) => (dispatch: Dispatch<any>) => {
+    // for this one in particular, I don't want to indicate I am
+    // downloading anything to the user...
+
+    return fetchInstanceOfType<IUser>(getUserUrl(id))
+        .then((result) => dispatch(createTypedAction(ActionType.ReceivedUser, result)))
+        .catch((err) => dispatch(createTypedAction(ActionType.FailedFetchingUser, { id } as IUser )));
+};
+
 // helper functions to create the actions.
-function fetchInstancesOf<T>(uri: string) {
+function fetchInstanceOfType<T>(uri: string) {
     return fetch(uri)
         .then((response) => response.text())
         .then((content) => {
