@@ -6,11 +6,12 @@ import { Dispatch } from "redux";
 import { fetchPostsAndUsersActionCreator } from "../actions";
 import appStyles from "../appStyles";
 import { PostListView } from "../components/postListView";
-import { ActivityStatus, IAppState, IPost } from "../models";
+import { ActivityStatus, IAppState, IPost, IUser } from "../models";
 
 interface IAppShellProps {
     actionStatus: ActivityStatus;
     posts: IPost[];
+    users: IUser[];
 }
 
 interface IAppShellActions {
@@ -37,7 +38,7 @@ class AppShell extends React.Component<AppShellProps, any> {
                     </Text>
                 </View>
                 <View style={appStyles.containerBody}>
-                    <PostListView posts={this.props.posts} />
+                    <PostListView posts={this.props.posts} users={this.props.users} />
                 </View>
                 {this.renderFooter()}
             </View>
@@ -71,6 +72,7 @@ function mapStateToProps(state: IAppState): IAppShellProps {
     return {
         actionStatus: state.activityStatus,
         posts: state.posts,
+        users: state.users,
     };
 }
 

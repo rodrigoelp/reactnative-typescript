@@ -1,11 +1,17 @@
 import * as React from "react";
 import { FlatList, ListRenderItemInfo, Text, View } from "react-native";
 import appStyles from "../appStyles";
-import { IPost } from "../models";
+import { IPost, IUser } from "../models";
 import { PostCellItemView } from "./postCellItemView";
 
 interface IProps {
     posts: IPost[];
+    users: IUser[];
+}
+
+interface IPostWithUser {
+    post: IPost;
+    user: IUser | undefined;
 }
 
 class PostListView extends React.Component<IProps> {
@@ -14,10 +20,16 @@ class PostListView extends React.Component<IProps> {
     }
 
     public render() {
+        const postsAndUsers =
+            this.props.posts
+                .map((p, i) => {
+                    const author = this.props.users.find((u) => u.id === p.userId);
+                    return { post: p, user: author } as IPostWithUser;
+                });
         return (
             <View style={appStyles.container}>
                 <FlatList
-                    data={this.props.posts}
+                    data={postsAndUsers}
                     renderItem={this.renderPost}
                     keyExtractor={this.getKeyForItem}
                 />
@@ -25,8 +37,11 @@ class PostListView extends React.Component<IProps> {
         );
     }
 
-    private getKeyForItem = (post: IPost) => post.id.toString();
-    private renderPost = (itemInfo: ListRenderItemInfo<IPost>) => <PostCellItemView post={itemInfo.item} />;
+    private getKeyForItem = (p: IPostWithUser) => p.post.id.toString();
+    private renderPost = (itemInfo: ListRenderItemInfo<IPostWithUser>) => {
+        const { item } = itemInfo;
+        return <PostCellItemView post={item.post} user={item.user} />;
+    }
 }
 
 export { PostListView };
