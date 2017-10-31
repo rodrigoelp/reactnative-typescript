@@ -77,6 +77,7 @@ function fetchInstanceOfType<T>(uri: string) {
             if (isNullOrUndefined(result)) {
                 throw Error(`Could not download data from the requested api ${uri}`);
             }
+            return result;
         });
 }
 
