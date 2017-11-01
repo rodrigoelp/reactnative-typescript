@@ -1,4 +1,5 @@
 import { applyMiddleware, createStore } from "redux";
+import { createLogger } from "redux-logger";
 import thunk from "redux-thunk";
 import { allReducers } from "./reducer";
 
@@ -21,7 +22,8 @@ import { allReducers } from "./reducer";
 // The middleware allows you to intercept calls and dispatch
 // continuations to async calls, without you having to configure every action
 
-const middleware = applyMiddleware(thunk); // why thunk? it has all the functionality for async stuff.
+const logger = createLogger();
+const middleware = applyMiddleware(logger, thunk); // why thunk? it has all the functionality for async stuff.
 const store = createStore(allReducers, middleware);
 
 export { store };

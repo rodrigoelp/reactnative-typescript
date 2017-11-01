@@ -49,19 +49,7 @@ const getPostUrl = (id: number) => `${getPostsUrl()}/${id}`;
 const getUsersUrl = () => `${serviceUrl}/users`;
 const getUserUrl = (id: number) => `${getUsersUrl()}/${id}`;
 
-const fetchPostsActionCreator = (dispatch: Dispatch<any>) => () => {
-    // const fetchUsersActionCreator = () => (dispatch: Dispatch<any>) => {
-    // the line below tells the subscriber that I have started working
-    // fetching the users.
-    dispatch(createLightAction(ActionType.FetchingStarted));
-
-    // performing the async action.
-    return Fetcher.fetchInstanceOf<IPost[]>(getPostsUrl())
-        .then((result) => dispatch(createTypedAction(ActionType.ReceivedPosts, result)))
-        .catch((err) => dispatch(createLightAction(ActionType.FailedFetchingPosts)));
-};
-
-const fetchPostsAndUsersActionCreator = (dispatch: Dispatch<any>) => (): Promise<any> => {
+const fetchPostsAndUsersActionCreator = () => (dispatch: Dispatch<any>) => {
     dispatch(createLightAction(ActionType.FetchingStarted));
     return Fetcher.fetchInstanceOf<IPost[]>(getPostsUrl())
         .then((result) => dispatch(createTypedAction(ActionType.ReceivedPosts, result)))
@@ -89,4 +77,4 @@ function createLightAction(type: ActionType): AnyAction {
 
 // exporting what is meaningful... Now to get the reducer to
 // respond as expected.
-export { ActionType, ITypedAction, fetchPostsAndUsersActionCreator, fetchPostsActionCreator };
+export { ActionType, ITypedAction, fetchPostsAndUsersActionCreator };

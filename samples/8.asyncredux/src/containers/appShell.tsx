@@ -2,7 +2,7 @@
 import * as React from "react";
 import { Text, View } from "react-native";
 import { connect } from "react-redux";
-import { Dispatch } from "redux";
+import { bindActionCreators, Dispatch } from "redux";
 import { fetchPostsAndUsersActionCreator } from "../actions";
 import appStyles from "../appStyles";
 import { PostListView } from "../components/postListView";
@@ -76,10 +76,16 @@ function mapStateToProps(state: IAppState): IProps {
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<any>): IActions {
-    return {
-        fetchPostsAndUsers: fetchPostsAndUsersActionCreator(dispatch),
-    };
+function mapDispatchToProps(dispatch: Dispatch<any>) {
+    return bindActionCreators({ // <=== such a tiny thing I forgot to do... yet so important.
+        // javascript (any typescript) happily assumed the mapDispatchToProps
+        // did not require bindActionCreators and the application kind of
+        // worked. Yet in order to get everything to work the async actions
+        // bindActionCreators has to be there. I overlooked this so many times
+        // and wasted so much time trying to understand what I was doing wrong...
+        // Javascript... you got me again.
+        fetchPostsAndUsers: fetchPostsAndUsersActionCreator,
+    }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppShell);
