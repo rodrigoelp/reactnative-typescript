@@ -43,66 +43,67 @@ class PhotoLocator {
 
         // checking the quick cache first.
         const { albumCache, photoCache, userPhotoCache } = PhotoLocator;
-        const userPhoto = userPhotoCache.find((up) => up.userId === userId);
+        const userPhoto = this.getCachedUserPhoto(userId);
         if (!isNullOrUndefined(userPhoto)) {
-            return userPhoto!.photo;
+            return userPhoto!;
         }
 
-        const userAlbums = albumCache.filter((a) => a.userId === userId);
+        console.debug(`Requested user photo not available in cache for: ${userId}`);
+        const { albums, photos } = await this.downloadAlbumsAndPhotosOfUser(userId);
 
-        if (userAlbums.length > 0) {
-            // there must be a cache we can access.
-            const firstAlbum = userAlbums[0];
-            return this.getFirstPhotoOfAlbum(firstAlbum.id);
-        } else {
-            console.debug(`Requested user photo not available in cache for: ${userId}`);
-            // let's download the content, put it in the cache and resolve from it.
-            const albums = await Fetcher.fetchInstanceOf<IAlbum[]>(RestService.getUserAlbumsUrl(userId));
+        this.persistInCacheIfRequired(userId, albums, photos);
 
-            let photos =
-                flatten(
-                    await Promise.all(
-                        albums.map(
-                            async (a) =>
-                                await Fetcher.fetchInstanceOf<IPhoto[]>(
-                                    RestService.getAlbumPhotosUrl(a.id)))));
+        if (photos.length > 0) { // it was not in the cache, but was fetched from the network
+            return photos[0];
+        }
 
-            // at this point we have a list of photos...
-            // the problem is the service returns it with http.
-            // correcting that now.
-            photos = photos.map<IPhoto>((p) => {
-                return {
+        // it was not cached, wasn't downloaded.
+        return unknownPhoto;
+    }
+
+    private getCachedUserPhoto(userId: number): IPhoto | undefined {
+        const register = PhotoLocator.userPhotoCache.find((p) => p.userId === userId);
+        if (register === undefined) { // does javascript/typescript has optionals? couldn't find it in the doco.
+            return undefined;
+        }
+        return register.photo;
+    }
+
+    private async downloadAlbumsAndPhotosOfUser(userId: number): Promise<{ albums: IAlbum[], photos: IPhoto[] }> {
+        // let's download the content, put it in the cache and resolve from it.
+        const albums = await Fetcher.fetchInstanceOf<IAlbum[]>(RestService.getUserAlbumsUrl(userId));
+        const photos = await Promise.resolve(albums)
+            .then((albs) => Promise.all(
+                albs.map(
+                    (a) => Fetcher.fetchInstanceOf<IPhoto[]>(RestService.getAlbumPhotosUrl(a.id)))))
+            .then((ps) => flatten(ps))
+            .then((ps) => ps.map(
+                // at this point we have a list of photos...
+                // the problem is the service returns it with http.
+                // correcting that now.
+                (p) => ({
                     ...p,
                     thumbnailUrl: p.thumbnailUrl.replace("http://", "https://"),
                     url: p.url.replace("http://", "https://"),
-                };
-            });
-
-            // storing everything in the cache if nobody else has done it before.
-            if (PhotoLocator.albumCache.filter((a) => a.userId === userId).length === 0) {
-                PhotoLocator.albumCache = PhotoLocator.albumCache.concat(albums);
-                PhotoLocator.photoCache = PhotoLocator.photoCache.concat(photos);
-                if (photos.length > 0) {
-                    PhotoLocator.userPhotoCache = PhotoLocator.userPhotoCache
-                        .concat({ userId, photo: photos[0] });
-                }
-            }
-
-            if (photos.length > 0) { // it was not in the cache, but was fetched from the network
-                return photos[0];
-            }
-
-            // it was not cached, wasn't downloaded.
-            return unknownPhoto;
-        }
+                })));
+        return { albums, photos };
     }
 
-    private getFirstPhotoOfAlbum(albumId: number) {
-        const photos = PhotoLocator.photoCache.filter((p) => p.albumId === albumId);
-        if (photos.length > 0) {
-            return photos[0];
+    private persistInCacheIfRequired(userId: number, albums: IAlbum[], photos: IPhoto[]) {
+        // this following statement is just a simple safe guard to prevent multiple
+        // calls from adding the same information to the cache.
+        // In reality it has several flaws and it doesn't prevent completely that rasing
+        // condition... but I don't want to implement a lock function at the moment
+        // (is not what I am trying to learn)
+        // storing everything in the cache if nobody else has done it before.
+        if (PhotoLocator.albumCache.filter((a) => a.userId === userId).length === 0) {
+            PhotoLocator.albumCache = PhotoLocator.albumCache.concat(albums);
+            PhotoLocator.photoCache = PhotoLocator.photoCache.concat(photos);
+            if (photos.length > 0) {
+                PhotoLocator.userPhotoCache = PhotoLocator.userPhotoCache
+                    .concat({ userId, photo: photos[0] });
+            }
         }
-        return unknownPhoto;
     }
 }
 
