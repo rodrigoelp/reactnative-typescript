@@ -17,6 +17,12 @@ interface IState {
 class PostCellItemView extends React.Component<IProps, IState> {
     private photoLocator: PhotoLocator;
 
+    private isMountedAttr: boolean;
+    get isMounted() { return this.isMountedAttr; }
+    set isMounted(newIsMounted: boolean) {
+        this.isMountedAttr = newIsMounted;
+    }
+
     constructor(props: IProps) {
         super(props);
         this.photoLocator = new PhotoLocator();
@@ -24,13 +30,20 @@ class PostCellItemView extends React.Component<IProps, IState> {
     }
 
     public componentDidMount() {
+        this.isMounted = true;
         if (!isNullOrUndefined(this.props.user)) {
             const user = this.props.user!;
             this.photoLocator.getUserPhoto(user.id)
                 .then((photo) => {
-                    this.setState({ photoUrl: photo.thumbnailUrl });
+                    if (this.isMounted) {
+                        this.setState({ photoUrl: photo.thumbnailUrl });
+                    }
                 });
         }
+    }
+
+    public componentWillUnmount() {
+        this.isMounted = false;
     }
 
     public render() {
