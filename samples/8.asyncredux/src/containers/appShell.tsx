@@ -8,8 +8,20 @@ import appStyles from "../appStyles";
 import { PostListView } from "../components/postListView";
 import { ActivityStatus, IAppState, IPost, IUser } from "../models";
 
-class AppShell extends React.Component<AppShellProps> {
-    constructor(props: AppShellProps) {
+interface IProps {
+    actionStatus: ActivityStatus;
+    posts: IPost[];
+    users: IUser[];
+}
+
+interface IActions {
+    fetchPostsAndUsers: () => any;
+}
+
+type AppShellProps = IProps & IActions;
+
+class AppShell extends React.Component<AppShellProps, any> {
+    constructor(props: any) {
         super(props);
     }
 
@@ -55,18 +67,6 @@ class AppShell extends React.Component<AppShellProps> {
         );
     }
 }
-
-interface IProps {
-    actionStatus: ActivityStatus;
-    posts: IPost[];
-    users: IUser[];
-}
-
-interface IActions {
-    fetchPostsAndUsers: () => any;
-}
-
-type AppShellProps = IProps & IActions;
 
 function mapStateToProps(state: IAppState): IProps {
     return {
