@@ -15,9 +15,9 @@ $> npm install
 $> ./node_modules/.bin/tsc
 ```
 
-_Step 2: will install all the dependencies._
+_Step 2: will install all the dependencies. Alternatively, you can run `$> yarn` which will install the dependencies as well (if you have yarn installed)_
 
-_Step 3: will compile the typescript code and populate the `lib/` folder_
+_Step 3: will compile the typescript code and populate the `lib/` folder. OTHERWISE YOU WILL GET THE RED SCREEN OF FAILURES_
 
 If you want to know more about npm: [Follow this link](https://docs.npmjs.com/getting-started/installing-npm-packages-locally)
 
@@ -89,7 +89,7 @@ What should I learn to deal asyncrhonous state?
 
 Let's find out!
 
-## 9. Back to basics
+## 9. Back to basics (standard controls)
 
 As much fun as I had building the feeder app, I've started to notice I've not played with most controls... and as the matter of fact, haven't played with the android emulator either... so, I will create a project that allows me to practice different controls, nothing fancy and no logic behind all the controls, just a showcase of the controls.
 
