@@ -13,6 +13,7 @@ class AppShell extends React.Component {
     public render() {
         return (
             <ScrollView style={{ paddingTop: 30 }} contentContainerStyle={{ paddingBottom: 25 }} alwaysBounceVertical={true}>
+                <Image source={{uri:"https://dutchghetto.files.wordpress.com/2014/01/orb-1.gif", height:300, width: 160}} />
                 <Text>Rendering all controls at once:</Text>
                 <Text>All these components should be recognised on both platforms.</Text>
                 <TextInput style={{ margin: 8 }} placeholder="TextInput without styling..." keyboardAppearance="dark" />
@@ -107,11 +108,9 @@ class AppShell extends React.Component {
     private getSupportForAndroid() {
         return (
             <View style={{ paddingTop: 24, paddingLeft: 4, paddingRight: 4, borderColor: "gray", borderWidth: 1 }}>
-                <Text>These are unsupported</Text>
+                <Text>These are supported</Text>
                 <TouchableNativeFeedback
-                    onPress={() => Alert.alert("Tap tap, tappity tap")}
-                // background={TouchableNativeFeedback.SelectableBackground()}
-                >
+                    onPress={() => Alert.alert("Tap tap, tappity tap")}>
                     <View style={{ backgroundColor: 'red' }}>
                         <Text style={{ margin: 30 }}>Button</Text>
                     </View>
