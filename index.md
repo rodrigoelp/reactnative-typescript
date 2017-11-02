@@ -79,8 +79,18 @@ This second exercise should allow me to practice and understand just redux conce
 
 In here you will find a single container, single reducer, two action creators and one store (is always one store in redux). Also, will be trying to fix that nasty declaration from the simple redux exercise `class Container extends React.Component<any>`.
 
-## 8. The slow counter
+## 8. A feeder app (first try)
 
-Redux so far has offered me a way to manage synchronous state... What should I learn to deal asyncrhonous state?
+So far I've done two exercises with redux, the first one (exercise 6) allowed me to start understanding these concepts and the second one (exercise 7), gave me the opportunity to test those concepts in a very simple scenario.
+
+Now, so far I have been practicing with synchronous functions and that is kind of boring. In the real world most opertions take some time to complete. How does redux deal with that?
+
+What should I learn to deal asyncrhonous state?
 
 Let's find out!
+
+## 9. Back to basics
+
+As much fun as I had building the feeder app, I've started to notice I've not played with most controls... and as the matter of fact, haven't played with the android emulator either... so, I will create a project that allows me to practice different controls, nothing fancy and no logic behind all the controls, just a showcase of the controls.
+
+
