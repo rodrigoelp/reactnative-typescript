@@ -93,4 +93,28 @@ Let's find out!
 
 As much fun as I had building the feeder app, I've started to notice I've not played with most controls... and as the matter of fact, haven't played with the android emulator either... so, I will create a project that allows me to practice different controls, nothing fancy and no logic behind all the controls, just a showcase of the controls.
 
+## 10. Typepography (CURRENTLY WORKING ON THIS ONE)
 
+Over these past exercises, just noticed the font names have unexpected names (some times)... So, let's create a simple app that explores all the different fonts available to us in react native.
+
+## 11. Typepography 2.0 (Upcoming)
+
+Wondering if there is a dynamic way of getting all the systems fonts, if react native does not provide it, could I create a native service to look that for me and pass it through the react native side of the app?
+
+This means: time for interops `iOS => React Native` and `Android => React Native`! (and maybe back?)
+
+## 12. Back to the Futuredux (redux and navigation) (Upcoming)
+
+Uhms... I used the `StackNavigator` and completely ignored `TabNavigator`.
+
+In fact, how do I do navigators with [redux](https://reactnavigation.org/docs/guides/redux)?
+
+Info to [tabnavigator](https://reactnavigation.org/docs/navigators/tab)
+
+## 13. Making feeder great again (not building a wall)
+
+The rest api has lots of things I did not explore...
+
+How about if we have a list of the users and from there explore their photos? Maybe it will be a good opportunity to use the section list and try to implement refresh.
+
+How about if we show the details of one of the posts with its comments?
