@@ -40,7 +40,7 @@ You will need already installed to use/try/abuse/copy/whatever this code:
 
 Once you have downloaded the repo (or you could browse it in here) you will find inside the folder `samples` each of my attempts. Inside there is a small explanation of what is contained.
 
-If you want to read the intention behind any of the samples, open the [index file](./index.md)
+If you want to read the intention behind any of the samples/exercises, open the [index file](./index.md).
 
 **Enjoy and I hope you find this repo useful.**
 

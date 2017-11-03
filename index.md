@@ -93,7 +93,7 @@ Let's find out!
 
 As much fun as I had building the feeder app, I've started to notice I've not played with most controls... and as the matter of fact, haven't played with the android emulator either... so, I will create a project that allows me to practice different controls, nothing fancy and no logic behind all the controls, just a showcase of the controls.
 
-## 10. Typography (CURRENTLY WORKING ON THIS ONE)
+## 10. Typography
 
 Over these past exercises, just noticed the font names have unexpected names (some times)... So, let's create a simple app that explores all the different fonts available to us in react native.
 
