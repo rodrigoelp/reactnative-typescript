@@ -33,10 +33,11 @@ class App extends React.Component {
             <View style={styles.appContainer}>
                 <SectionList
                     sections={this.fonts}
-                    renderItem={({ item }) => this.renderItem(item)}
+                    renderItem={({ item, index }) => this.renderItem(item, index)}
                     renderSectionHeader={({ section }) => this.renderHeader(section.title)}
                     keyExtractor={this.getKeyForItem}
                     stickySectionHeadersEnabled={true}
+                    pagingEnabled={false} // this is an apple setting, it forces sections to collapse when you start scrolling
                 />
             </View>
         );
@@ -45,8 +46,8 @@ class App extends React.Component {
     private renderHeader = (title: string | undefined) => {
         const header = (title === undefined) ? " --- " : title;
         return (
-            <View style={{backgroundColor: "silver" }}>
-                <Text style={styles.title}>{header}</Text>
+            <View style={styles.headerContainer}>
+                <Text style={styles.headerTitle}>{header}</Text>
             </View>
         );
     }
@@ -55,14 +56,14 @@ class App extends React.Component {
         return `${item.fontFamily}-${item.fontWeight}-${index}`;
     }
 
-    private renderItem = (item: ISectionItem) => {
+    private renderItem = (item: ISectionItem, index: number) => {
         return (
-            <View style={styles.container}>
-                <Text style={styles.info}>
-                    Weight: {item.fontWeight}
-                </Text>
+            <View style={styles.itemContainer}>
                 <Text style={[styles.item, { fontFamily: item.fontFamily, fontWeight: item.fontWeight }]}>
                     The fox jumps over the lazy dog
+                </Text>
+                <Text style={styles.info}>
+                    Weight: {item.fontWeight}
                 </Text>
             </View>
         );

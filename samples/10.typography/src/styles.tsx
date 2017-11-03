@@ -12,16 +12,16 @@ const styles = StyleSheet.create({
     backgroundColor: colorAppBackground,
     paddingTop: 40,
   },
-  container: {
+  itemContainer: {
     flex: 1,
     backgroundColor: "white",
     padding: 8,
   },
-  header: {
-    backgroundColor: "silver",
+  headerContainer: {
+    backgroundColor: colorHeaderBackground,
   },
-  title: {
-    color: "white",
+  headerTitle: {
+    color: colorHeader,
     fontSize: 30,
     paddingTop: 16,
     paddingBottom: 16,
@@ -29,10 +29,11 @@ const styles = StyleSheet.create({
     paddingRight: 8
   },
   item: {
-    fontSize: 16,
+    fontSize: 18,
+    color: colorItem,
   },
   info: {
-    fontSize: 8,
+    fontSize: 12,
     paddingBottom: 4,
   }
 });
