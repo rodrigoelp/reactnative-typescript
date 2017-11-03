@@ -111,10 +111,22 @@ In fact, how do I do navigators with [redux](https://reactnavigation.org/docs/gu
 
 Info to [tabnavigator](https://reactnavigation.org/docs/navigators/tab)
 
-## 13. Making feeder great again (not building a wall)
+## 13. Making feeder great again (not building a wall) (upcoming)
 
 The rest api has lots of things I did not explore...
 
 How about if we have a list of the users and from there explore their photos? Maybe it will be a good opportunity to use the section list and try to implement refresh.
 
 How about if we show the details of one of the posts with its comments?
+
+## 14. How do I persist things locally? (need to read more)
+
+Reading about [redux-persist](https://github.com/rt2zz/redux-persist/blob/master/README.md) makes me think that downloading everything from the rest api is not a great experience for the users. Maybe I can find a way to retain some of the information between sessions without having to deal with databases right away.
+
+## 15. Time to hit the couch! (need to read more)
+
+Simple storage: [plain react native storage](https://facebook.github.io/react-native/docs/asyncstorage.html)
+Couchbasing: [To the blog](https://blog.couchbase.com/getting-started-with-react-native-android-and-couchbase-lite/)
+Couchbase: [Github](https://github.com/couchbaselabs/react-native-couchbase-lite)... It worries me there has not been any activity for a while (being one of their products)
+Sample app: [thank you library for all](https://github.com/libraryforall/ebook-catalog-react-native)
+Pouching?: [Pouch sample](https://blog.yld.io/2016/07/05/building-a-offline-first-application-using-react-native-and-pouchdb/#.Wfux0BOCyRc)
