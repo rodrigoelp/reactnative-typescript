@@ -13,6 +13,7 @@ const androidFonts = [
 ];
 
 const iOsFonts = [
+    "system font", // this is meant to be San Francisco!
     // "San Francisco", // san francisco causes a crash as I can not be found.
     "Academy Engraved LET",
     "AcademyEngravedLetPlain",
