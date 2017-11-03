@@ -44,7 +44,9 @@ class App extends React.Component {
     }
 
     private renderHeader = (title: string | undefined) => {
-        const header = (title === undefined) ? " --- " : title;
+        const header = (title === undefined) ?
+            " --- "
+            : (title === "system font" && Platform.OS === "ios") ? "San Francisco" : title; // just to display the right name on iOS
         return (
             <View style={styles.headerContainer}>
                 <Text style={styles.headerTitle}>{header}</Text>
