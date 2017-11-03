@@ -13,7 +13,7 @@ const androidFonts = [
 ];
 
 const iOsFonts = [
-    // "San Francisco",
+    // "San Francisco", // san francisco causes a crash as I can not be found.
     "Academy Engraved LET",
     "AcademyEngravedLetPlain",
     "Al Nile",
