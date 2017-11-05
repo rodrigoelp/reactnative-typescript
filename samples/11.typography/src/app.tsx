@@ -31,7 +31,7 @@ class App extends React.Component<IProps, IState> {
                 <Text>Displaying list of available fonts: {this.state.fonts.length}</Text>
                 <FlatList
                     data={this.state.fonts}
-                    renderItem={({ item }) => <Text style={{ fontFamily: item }}>{item}</Text>}
+                    renderItem={({ item }) => <Text style={[styles.item, { fontFamily: item }]}>{item}</Text>}
                     keyExtractor={(item) => item}
                 />
             </View>
@@ -43,6 +43,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 40,
+    },
+    item: {
+        paddingRight: 20,
+        paddingLeft: 20,
+        paddingBottom: 16,
+        fontSize: 20
     },
 });
 
