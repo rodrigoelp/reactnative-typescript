@@ -1,5 +1,6 @@
 import * as React from "react";
 import { View, StyleSheet, FlatList, Text, AppRegistry } from "react-native";
+import { fetchSystemFonts } from "./fontLookup";
 
 interface IProps {
 }
@@ -14,6 +15,14 @@ class App extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         this.state = { fonts: [] };
+    }
+
+    componentDidMount() {
+        fetchSystemFonts()
+            .then((fonts) => {
+                this.setState({ fonts });
+            })
+            .catch((error) => this.setState({ fonts: [], error }));
     }
 
     public render() {
