@@ -11,7 +11,8 @@ import {
   Text,
   View,
   FlatList,
-  NativeModules
+  NativeModules,
+  ToastAndroid
 } from 'react-native';
 
 var FontLookup = require("NativeModules").FontLookup;
@@ -44,7 +45,7 @@ export default class App extends Component {
           Welcome to React Native! {this.state.size}
         </Text>
         <FlatList style={{ flex: 1 }} data={this.state.fonts}
-          renderItem={({ item }) => <Text>{item}</Text>}
+          renderItem={({ item }) => <Text style={{fontFamily: item}}>{item}</Text>}
         />
       </View>
     );
@@ -60,13 +61,13 @@ export default class App extends Component {
           this.setState({ fonts, size: fonts.lenght })
         });
     } else if (Platform.OS == "android") {
-      const fonts = NativeModules.FontLookup.getRegisteredFonts();
-      if (fonts === undefined) {
-        this.setState({ fonts, size: -1 });
-      }
-      else {
-        this.setState({ fonts, size: fonts.lenght });
-      }
+      NativeModules.FontLookup.getRegisteredFonts()
+        .then((fonts) => {
+          ToastAndroid.show(`${fonts}`, ToastAndroid.LONG);
+          this.setState({ fonts: fonts, size: fonts.lenght }); 
+          return fonts;
+        })
+        .catch((err) => { });
     }
   }
 }
