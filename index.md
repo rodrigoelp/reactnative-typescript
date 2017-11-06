@@ -103,7 +103,15 @@ Wondering if there is a dynamic way of getting all the systems fonts, if react n
 
 This means: time for interops `iOS => React Native` and `Android => React Native`! (and maybe back?)
 
-## 12. Back to the Futuredux (redux and navigation) (Upcoming)
+## 12. Tabatha (tab navigation)
+
+To avoid information overload, is important to know how to organise and present data to the user. Let's use twitter as an example: the application presents a tweet stream, users, mentions and settings in clear sections. These sections have clear defined functionality which is very different to the one provided by a `StackNavigator`... So, I might need to take a look at other ways of navigating the content provided by an application.
+
+Ideally, I would like to start with the next exercise (the reduxed tabatha) but decided to reduce the scope before starting to redux ;)
+
+Info to [tabnavigator](https://reactnavigation.org/docs/navigators/tab)
+
+## 13. Reduxed tabatha. (Tab navigation and redux) (Upcoming)
 
 Uhms... I used the `StackNavigator` and completely ignored `TabNavigator`.
 
@@ -111,7 +119,7 @@ In fact, how do I do navigators with [redux](https://reactnavigation.org/docs/gu
 
 Info to [tabnavigator](https://reactnavigation.org/docs/navigators/tab)
 
-## 13. Making feeder great again (not building a wall) (upcoming)
+## 14. Making feeder great again (not building a wall) (upcoming)
 
 The rest api has lots of things I did not explore...
 
@@ -119,11 +127,11 @@ How about if we have a list of the users and from there explore their photos? Ma
 
 How about if we show the details of one of the posts with its comments?
 
-## 14. How do I persist things locally? (need to read more)
+## 15. How do I persist things locally? (need to read more)
 
 Reading about [redux-persist](https://github.com/rt2zz/redux-persist/blob/master/README.md) makes me think that downloading everything from the rest api is not a great experience for the users. Maybe I can find a way to retain some of the information between sessions without having to deal with databases right away.
 
-## 15. Time to hit the couch! (need to read more)
+## 16. Time to hit the couch! (need to read more)
 
 Simple storage: [plain react native storage](https://facebook.github.io/react-native/docs/asyncstorage.html)
 Couchbasing: [To the blog](https://blog.couchbase.com/getting-started-with-react-native-android-and-couchbase-lite/)
