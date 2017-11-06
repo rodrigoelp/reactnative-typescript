@@ -97,7 +97,7 @@ As much fun as I had building the feeder app, I've started to notice I've not pl
 
 Over these past exercises, just noticed the font names have unexpected names (some times)... So, let's create a simple app that explores all the different fonts available to us in react native.
 
-## 11. Typography 2.0 (Upcoming)
+## 11. Typography 2.0
 
 Wondering if there is a dynamic way of getting all the systems fonts, if react native does not provide it, could I create a native service to look that for me and pass it through the react native side of the app?
 
