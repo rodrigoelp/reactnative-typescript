@@ -1,6 +1,7 @@
 import * as React from "react";
-import { View, StyleSheet, FlatList, Text, AppRegistry } from "react-native";
+import { View, FlatList, Text, AppRegistry } from "react-native";
 import { fetchSystemFonts } from "./fontLookup";
+import { styles } from "./styles";
 
 interface IProps {
 }
@@ -38,18 +39,5 @@ class App extends React.Component<IProps, IState> {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 40,
-    },
-    item: {
-        paddingRight: 20,
-        paddingLeft: 20,
-        paddingBottom: 16,
-        fontSize: 20
-    },
-});
 
 AppRegistry.registerComponent("typography", () => App);
