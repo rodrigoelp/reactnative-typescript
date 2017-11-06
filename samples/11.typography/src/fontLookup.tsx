@@ -13,11 +13,9 @@ interface IFontLookup {
 const NativeFontLookup = NativeModules.FontLookup as IFontLookup;
 
 function fetchSystemFonts(): Promise<string[]> {
-    const emptyList: string[] = [];
-    return Platform.select({ // done like this to prevent failure in android whilst we prepare the android solution.
-        ios: NativeFontLookup.getFontFamilies(),
-        android: Promise.resolve(emptyList)
-    });
+    // Given I coded both interfaces to match the definition above, I don't
+    // need to continue calling platform.select
+    return NativeFontLookup.getFontFamilies()
 }
 
 export { NativeFontLookup, fetchSystemFonts };
