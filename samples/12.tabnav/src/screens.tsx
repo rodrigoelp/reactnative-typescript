@@ -1,9 +1,18 @@
 import * as React from "react";
-import { View, Text } from "react-native";
-import { TabNavigator, TabNavigatorConfig, NavigationRouteConfigMap } from "react-navigation";
+import { View, Text, Image } from "react-native";
+import { TabNavigator, TabNavigatorConfig, NavigationRouteConfigMap, NavigationTabScreenOptions } from "react-navigation";
 import { styles } from "./styles";
 
 class FirstScreen extends React.Component {
+    static navigationOptions: NavigationTabScreenOptions = {
+        // when the definition of the screen is loaded
+        // this static field is read and loaded into the tabbar.
+        tabBarLabel: "The First!",
+        tabBarIcon: ({ tintColor }) => (
+            <Image source={{}} />
+        ),
+    };
+
     public render() {
         return (
             <View style={[styles.container, styles.firstScreen]}>
@@ -14,6 +23,13 @@ class FirstScreen extends React.Component {
 }
 
 class SecondScreen extends React.Component {
+    static navigationOptions: NavigationTabScreenOptions = {
+        tabBarLabel: "More...",
+        tabBarIcon: ({ tintColor }) => (
+            <Image source={{}} />
+        ),
+    };
+    
     public render() {
         return (
             <View style={[styles.container, styles.secondScreen]}>
@@ -24,6 +40,13 @@ class SecondScreen extends React.Component {
 }
 
 class ThirdScreen extends React.Component {
+    static navigationOptions: NavigationTabScreenOptions = {
+        tabBarLabel: "More more..?",
+        tabBarIcon: ({ tintColor }) => (
+            <Image source={{}} />
+        ),
+    };
+
     public render() {
         return (
             <View style={[styles.container, styles.thirdScreen]}>
@@ -34,6 +57,13 @@ class ThirdScreen extends React.Component {
 }
 
 class FourthScreen extends React.Component {
+    static navigationOptions: NavigationTabScreenOptions = {
+        tabBarLabel: "Settings?",
+        tabBarIcon: ({ tintColor }) => (
+            <Image source={{}} />
+        ),
+    };
+
     public render() {
         return (
             <View style={[styles.container, styles.fourthScreen]}>
@@ -52,7 +82,10 @@ enum Screens {
 }
 
 const routeConfig: NavigationRouteConfigMap = {
-    // the first part of the dictionary is used as the name of the screen.
+    // If you do not provide the static field called `navigationOptions` on each screen
+    // the key of the dictionary below is used as the label
+    // for the tab button
+    // (for example: `[Screens.Home]` which is translated to`Home` - its literal string)
     [Screens.Home]: { path: "/", screen: FirstScreen },
     [Screens.Second]: { path: "/second", screen: SecondScreen },
     [Screens.Third]: { path: "/third", screen: ThirdScreen },
