@@ -271,3 +271,5 @@ Icon
 # if you just want to ignore the map files.
 #**/lib/*.js.map
 #**/lib/*/*.js.map
+
+lib/

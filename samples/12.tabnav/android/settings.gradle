@@ -1,0 +1,3 @@
+rootProject.name = 'tabnav'
+
+include ':app'
