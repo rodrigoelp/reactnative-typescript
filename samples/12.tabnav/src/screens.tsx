@@ -3,6 +3,7 @@ import { View, Text, Image } from "react-native";
 import { TabNavigator, TabNavigatorConfig, NavigationRouteConfigMap, NavigationTabScreenOptions } from "react-navigation";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { styles, iconMaxSize } from "./styles";
+import IconSetList from "./iconSetList";
 
 class FirstScreen extends React.Component {
     static navigationOptions: NavigationTabScreenOptions = {
@@ -31,8 +32,9 @@ class SecondScreen extends React.Component {
     public render() {
         const title = "Second\nScreen";
         return (
-            <View style={[styles.container, styles.secondScreen]}>
-                <Text style={styles.labelOnLightBackground}>{title}</Text>
+            <View style={[styles.fullViewContainer, styles.secondScreen, { paddingTop: 40 }]}>
+                <IconSetList />
+                {/* <Text style={styles.labelOnLightBackground}>{title}</Text> */}
             </View>
         );
     }

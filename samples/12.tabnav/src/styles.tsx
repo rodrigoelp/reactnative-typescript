@@ -20,6 +20,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
+    fullViewContainer: {
+        flex: 1
+    },
     firstScreen: {
         backgroundColor: Colours.First,
     },
