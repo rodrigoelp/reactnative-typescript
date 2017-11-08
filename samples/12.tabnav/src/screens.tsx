@@ -1,22 +1,22 @@
 import * as React from "react";
 import { View, Text, Image } from "react-native";
 import { TabNavigator, TabNavigatorConfig, NavigationRouteConfigMap, NavigationTabScreenOptions } from "react-navigation";
-import { styles } from "./styles";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { styles, iconMaxSize } from "./styles";
 
 class FirstScreen extends React.Component {
     static navigationOptions: NavigationTabScreenOptions = {
         // when the definition of the screen is loaded
         // this static field is read and loaded into the tabbar.
         tabBarLabel: "The First!",
-        tabBarIcon: ({ tintColor }) => (
-            <Image source={{}} />
-        ),
+        tabBarIcon: (options) => (<Icon name="rocket" size={iconMaxSize} color={options.tintColor!} />),
     };
 
     public render() {
+        const title = "First\nScreen"
         return (
             <View style={[styles.container, styles.firstScreen]}>
-                <Text style={styles.labelOnDarkBackground}>First screen</Text>
+                <Text style={styles.labelOnDarkBackground}>{title}</Text>
             </View>
         );
     }
@@ -25,15 +25,14 @@ class FirstScreen extends React.Component {
 class SecondScreen extends React.Component {
     static navigationOptions: NavigationTabScreenOptions = {
         tabBarLabel: "More...",
-        tabBarIcon: ({ tintColor }) => (
-            <Image source={{}} />
-        ),
+        tabBarIcon: (options) => (<Icon name="bell" size={iconMaxSize} color={options.tintColor!} />),
     };
-    
+
     public render() {
+        const title = "Second\nScreen";
         return (
             <View style={[styles.container, styles.secondScreen]}>
-                <Text style={styles.labelOnLightBackground}>Second screen</Text>
+                <Text style={styles.labelOnLightBackground}>{title}</Text>
             </View>
         );
     }
@@ -42,15 +41,14 @@ class SecondScreen extends React.Component {
 class ThirdScreen extends React.Component {
     static navigationOptions: NavigationTabScreenOptions = {
         tabBarLabel: "More more..?",
-        tabBarIcon: ({ tintColor }) => (
-            <Image source={{}} />
-        ),
+        tabBarIcon: (options) => (<Icon name="calendar" size={iconMaxSize} color={options.tintColor!} />),
     };
 
     public render() {
+        const title = "Third\nScreen";
         return (
             <View style={[styles.container, styles.thirdScreen]}>
-                <Text style={styles.labelOnDarkBackground}>Third screen</Text>
+                <Text style={styles.labelOnDarkBackground}>{title}</Text>
             </View>
         );
     }
@@ -59,15 +57,14 @@ class ThirdScreen extends React.Component {
 class FourthScreen extends React.Component {
     static navigationOptions: NavigationTabScreenOptions = {
         tabBarLabel: "Settings?",
-        tabBarIcon: ({ tintColor }) => (
-            <Image source={{}} />
-        ),
+        tabBarIcon: (options) => (<Icon name="shield" size={iconMaxSize} color={options.tintColor!} />),
     };
 
     public render() {
+        const title = "Fourth\nScreen";
         return (
             <View style={[styles.container, styles.fourthScreen]}>
-                <Text style={styles.labelOnDarkBackground}>Fourth screen</Text>
+                <Text style={styles.labelOnDarkBackground}>{title}</Text>
             </View>
         );
     }

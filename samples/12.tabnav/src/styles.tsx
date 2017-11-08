@@ -11,7 +11,7 @@ const appFontFamily = Platform.select({
     ios: "Zapfino",
     android: "Roboto",
 });
-const appFontSize = 30;
+const appFontSize = 56;
 const iconMaxSize = 26;
 
 const styles = StyleSheet.create({
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     icon: {
         width: iconMaxSize,
         height: iconMaxSize,
-    }
+    },
 });
 
-export { Colours, styles };
+export { Colours, styles, iconMaxSize };
