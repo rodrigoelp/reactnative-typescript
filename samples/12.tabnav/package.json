@@ -9,6 +9,7 @@
     "dependencies": {
         "@types/react": "16.0.20",
         "@types/react-native": "^0.50.2",
+        "@types/react-native-vector-icons": "^4.4.2",
         "@types/react-navigation": "^1.0.22",
         "react": "16.0.0",
         "react-native": "0.50.1",
