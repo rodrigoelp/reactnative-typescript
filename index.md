@@ -25,9 +25,13 @@ If you want to know more about npm: [Follow this link](https://docs.npmjs.com/ge
 
 Minimum configuration to build and execute a react-native app in iOS and Android, written in typescript + tslint + vscode configurations.
 
+[Source code](./samples/1.hellworld/)
+
 ## 2. Actions
 
 Just an increment of the previous sample. Learning about subcomponents, styles and usage of resources.
+
+[Source code](./samples/2.Actions/)
 
 ## 3. ToDos (really simple-poorly built- list of todos)
 
@@ -41,6 +45,8 @@ Getting the practice of setting up a new react-native + typescript is boring but
 >
 > Hopefully, you will notice some of the mistakes I have made in that app. It made me understand that I needed to spend more time looking at some of the dependencies (and youtube videos to learn more).
 
+[Source code](./samples/3.ToDos/)
+
 ## 4. NavScreen (Navigating between screens and passing data through)
 
 Going back to baby steps. Let's get navigation to work. The objective is:
@@ -49,6 +55,8 @@ Going back to baby steps. Let's get navigation to work. The objective is:
 - How to pass arguments between each other (more especifically, how to send data to the top of the stack)
 - What's the minimum configuration to get the navigator to work.
 - Improving my understanding of flex.
+
+[Source code](./samples/4.NavScreen/)
 
 ## 5. Declarations
 
@@ -62,6 +70,8 @@ Typescript gives you a rich way to understand your code. It gives you guidance w
 
 Unfortunately, most of the Javascript developer have not used Typescript (_shocking! I know!_) and sometimes you will find a library that has not been 'defined' for typescript. The type definition file bridges your Javascript and Typescript world.
 
+[Source code](./samples/5.Declarations/)
+
 ## 6. Simple Redux
 
 From the react-native site to most tutorials around the web, one common topic spoken around is Redux.
@@ -71,6 +81,8 @@ Plainly put, is a framework (not attached to react-native in particular) that tr
 
 These are the first steps towards building an application with React-Native, Typescript and Redux. Unfortunately, I end up complicating things a bit too much. Exercise 7 should be easier to follow to begin with.
 
+[Source code](./samples/6.simpleredux/)
+
 ## 7. Simple Redux app (A counter)
 
 This application will increase or decrease the current count... By how much you ask? I don't know... let's be crazy and get random numbers.
@@ -78,6 +90,8 @@ This application will increase or decrease the current count... By how much you 
 This second exercise should allow me to practice and understand just redux concepts without having to worry about multiple reducers, action creators and the store.
 
 In here you will find a single container, single reducer, two action creators and one store (is always one store in redux). Also, will be trying to fix that nasty declaration from the simple redux exercise `class Container extends React.Component<any>`.
+
+[Source code](./samples/7.counterredux/)
 
 ## 8. A feeder app (first try)
 
@@ -89,19 +103,27 @@ What should I learn to deal asyncrhonous state?
 
 Let's find out!
 
+[Source code](./samples/8.asyncredux/)
+
 ## 9. Back to basics (standard controls)
 
 As much fun as I had building the feeder app, I've started to notice I've not played with most controls... and as the matter of fact, haven't played with the android emulator either... so, I will create a project that allows me to practice different controls, nothing fancy and no logic behind all the controls, just a showcase of the controls.
 
+[Source code](./samples/9.standardControls/)
+
 ## 10. Typography
 
 Over these past exercises, just noticed the font names have unexpected names (some times)... So, let's create a simple app that explores all the different fonts available to us in react native.
+
+[Source code](./samples/10.typography/)
 
 ## 11. Typography 2.0
 
 Wondering if there is a dynamic way of getting all the systems fonts, if react native does not provide it, could I create a native service to look that for me and pass it through the react native side of the app?
 
 This means: time for interops `iOS => React Native` and `Android => React Native`! (and maybe back?)
+
+[Source code](./samples/11.typography/)
 
 ## 12. Tab Navigation
 
@@ -110,6 +132,8 @@ To avoid information overload, is important to know how to organise and present 
 Ideally, I would like to start with the next exercise (the reduxed tabnav) but decided to reduce the scope before starting to redux ;)
 
 Info to [tabnavigator](https://reactnavigation.org/docs/navigators/tab)
+
+[Source code](./samples/12.tabnav/)
 
 ## 13. Reduxing the Tab Navigator. (Tab navigation and redux) (Upcoming)
 
