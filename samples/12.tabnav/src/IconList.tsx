@@ -2,6 +2,7 @@ import * as React from "react";
 import { View, Text, SectionList, ListRenderItemInfo, SectionListData, Dimensions, StyleSheet } from "react-native";
 import * as uuid from "uuid";
 import { setsWithIcons, iconElementCreator, IconSetGroup } from "./icons";
+import { sectionStyles, Colours } from "./styles";
 
 interface ISection {
     title: IconSetGroup,
@@ -18,7 +19,7 @@ interface ISectionSubItem {
 }
 
 const numberOfColumns = 4;
-const numberOfItemsPerCell = 12 * numberOfColumns;
+const numberOfItemsPerCell = 24 * numberOfColumns;
 const { height, width } = Dimensions.get("window");
 const cellItemSize = Math.floor((width - 40) / numberOfColumns);
 
@@ -32,6 +33,33 @@ class IconList extends React.PureComponent {
                     renderItem={this.renderItem}
                     keyExtractor={this.getKeyForItem}
                 />
+            </View>
+        );
+    }
+    private renderSectionHeader(title: string) {
+        const sectionHeaderKey = `header_${title}`
+        return (
+            <View key={sectionHeaderKey} style={sectionStyles.headerContainer}>
+                <Text style={sectionStyles.headerTitle}>{title}</Text>
+            </View>
+        );
+    }
+
+    private renderItem({ item }: ListRenderItemInfo<ISectionItem>) {
+        const subitems = item.subItems.map(
+            (i) => {
+                const { name, iconCreator } = i;
+                const key = uuid.v1();
+                return (
+                    <View key={key} style={[subStyles.iconContainer, { height: cellItemSize + 20, width: cellItemSize }]}>
+                        {iconCreator(name, cellItemSize - 24, Colours.First, subStyles.centeredIcon)}
+                        <Text style={subStyles.iconTitle}>{name}</Text>
+                    </View>
+                );
+            });
+        return (
+            <View style={subStyles.wrappingCellContainer}>
+                {subitems}
             </View>
         );
     }
@@ -60,37 +88,10 @@ class IconList extends React.PureComponent {
         return items;
     }
 
-    private renderSectionHeader(title: string) {
-        const sectionHeaderKey = `header_${title}`
-        return (
-            <View key={sectionHeaderKey}>
-                <Text style={subStyles.sectionTitle}>{title}</Text>
-            </View>
-        );
-    }
-
     private getKeyForItem(item: ISectionItem, index: number) {
         return index.toString();
     }
 
-    private renderItem({ item }: ListRenderItemInfo<ISectionItem>) {
-        const subitems = item.subItems.map(
-            (i) => {
-                const { name, iconCreator } = i;
-                const key = uuid.v1();
-                return (
-                    <View key={key} style={[subStyles.iconContainer, { height: cellItemSize + 20, width: cellItemSize }]}>
-                        {iconCreator(name, cellItemSize - 24, "#000", subStyles.centeredIcon)}
-                        <Text style={{}}>{name}</Text>
-                    </View>
-                );
-            });
-        return (
-            <View style={subStyles.wrappingCellContainer}>
-                {subitems}
-            </View>
-        );
-    }
 }
 
 const subStyles = StyleSheet.create({
