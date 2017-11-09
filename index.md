@@ -103,15 +103,15 @@ Wondering if there is a dynamic way of getting all the systems fonts, if react n
 
 This means: time for interops `iOS => React Native` and `Android => React Native`! (and maybe back?)
 
-## 12. Tabatha (tab navigation)
+## 12. Tab Navigation
 
 To avoid information overload, is important to know how to organise and present data to the user. Let's use twitter as an example: the application presents a tweet stream, users, mentions and settings in clear sections. These sections have clear defined functionality which is very different to the one provided by a `StackNavigator`... So, I might need to take a look at other ways of navigating the content provided by an application.
 
-Ideally, I would like to start with the next exercise (the reduxed tabatha) but decided to reduce the scope before starting to redux ;)
+Ideally, I would like to start with the next exercise (the reduxed tabnav) but decided to reduce the scope before starting to redux ;)
 
 Info to [tabnavigator](https://reactnavigation.org/docs/navigators/tab)
 
-## 13. Reduxed tabatha. (Tab navigation and redux) (Upcoming)
+## 13. Reduxing the Tab Navigator. (Tab navigation and redux) (Upcoming)
 
 Uhms... I used the `StackNavigator` and completely ignored `TabNavigator`.
 
