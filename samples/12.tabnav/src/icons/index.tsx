@@ -1,5 +1,5 @@
 import * as React from "react";
-import { } from "react-native";
+import { TextStyle } from "react-native";
 import Entypo from "react-native-vector-icons/Entypo";
 import EvilIcon from "react-native-vector-icons/EvilIcons";
 import FeatherIcon from "react-native-vector-icons/Feather";
@@ -51,16 +51,72 @@ const allIconSetGroups = [
     IconSetGroup.Zotial,
 ];
 
+type iconElementCreator = (name: string, size: number, color: string, style: TextStyle) => JSX.Element;
+
 const setsWithIcons = [
-    { nameOfSet: IconSetGroup.AwesomeFonts, icon: (name: string, color: string) => (<FontAwesomeIcon name={name} size={36} color={color} />), names: awesomeFontsNames },
-    { nameOfSet: IconSetGroup.Evil, icon: (name: string, color: string) => (<EvilIcon name={name} size={36} color={color} />), names: evilNames },
-    { nameOfSet: IconSetGroup.Feather, icon: (name: string, color: string) => (<FeatherIcon name={name} size={36} color={color} />), names: featherNames },
-    { nameOfSet: IconSetGroup.Foundation, icon: (name: string, color: string) => (<FoundationIcon name={name} size={36} color={color} />), names: foundationNames },
-    { nameOfSet: IconSetGroup.IonIcons, icon: (name: string, color: string) => (<IonIcon name={name} size={36} color={color} />), names: ionIconsNames },
-    { nameOfSet: IconSetGroup.Material, icon: (name: string, color: string) => (<MaterialIcon name={name} size={36} color={color} />), names: materialNames },
-    { nameOfSet: IconSetGroup.MaterialCommuninity, icon: (name: string, color: string) => (<MaterialCommunityIcon name={name} size={36} color={color} />), names: materialCommunityNames },
-    { nameOfSet: IconSetGroup.OctIcons, icon: (name: string, color: string) => (<OctIcon name={name} size={36} color={color} />), names: octIconsNames },
-    { nameOfSet: IconSetGroup.SimpleLine, icon: (name: string, color: string) => (<SimpleLineIcon name={name} size={36} color={color} />), names: simpleLineNames },
+    {
+        nameOfSet: IconSetGroup.AwesomeFonts, icon:
+            (name: string, size: number, color: string, style: TextStyle) => (
+                <FontAwesomeIcon name={name} size={size} color={color} style={style} />
+            ),
+        names: awesomeFontsNames
+    },
+    {
+        nameOfSet: IconSetGroup.Evil,
+        icon: (name: string, size: number, color: string, style: TextStyle) => (
+            <EvilIcon name={name} size={size} color={color} style={style} />
+        ),
+        names: evilNames
+    },
+    {
+        nameOfSet: IconSetGroup.Feather,
+        icon: (name: string, size: number, color: string, style: TextStyle) => (
+            <FeatherIcon name={name} size={size} color={color} style={style} />
+        ),
+        names: featherNames
+    },
+    {
+        nameOfSet: IconSetGroup.Foundation,
+        icon: (name: string, size: number, color: string, style: TextStyle) => (
+            <FoundationIcon name={name} size={size} color={color} style={style} />
+        ),
+        names: foundationNames
+    },
+    {
+        nameOfSet: IconSetGroup.IonIcons,
+        icon: (name: string, size: number, color: string, style: TextStyle) => (
+            <IonIcon name={name} size={size} color={color} style={style} />
+        ),
+        names: ionIconsNames
+    },
+    {
+        nameOfSet: IconSetGroup.Material,
+        icon: (name: string, size: number, color: string, style: TextStyle) => (
+            <MaterialIcon name={name} size={size} color={color} style={style} />
+        ),
+        names: materialNames
+    },
+    {
+        nameOfSet: IconSetGroup.MaterialCommuninity,
+        icon: (name: string, size: number, color: string, style: TextStyle) => (
+            <MaterialCommunityIcon name={name} size={size} color={color} style={style} />
+        ),
+        names: materialCommunityNames
+    },
+    {
+        nameOfSet: IconSetGroup.OctIcons,
+        icon: (name: string, size: number, color: string, style: TextStyle) => (
+            <OctIcon name={name} size={size} color={color} style={style} />
+        ),
+        names: octIconsNames
+    },
+    {
+        nameOfSet: IconSetGroup.SimpleLine,
+        icon: (name: string, size: number, color: string, style: TextStyle) => (
+            <SimpleLineIcon name={name} size={size} color={color} style={style} />
+        ),
+        names: simpleLineNames
+    },
     // [IconSetGroup.Zotial]: { icon: ZotialIcon, names: zotialNames },
 ];
 
@@ -77,5 +133,6 @@ export {
     zotialNames,
     IconSetGroup,
     allIconSetGroups,
-    setsWithIcons
+    setsWithIcons,
+    iconElementCreator
 };

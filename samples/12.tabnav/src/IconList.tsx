@@ -1,27 +1,34 @@
 import * as React from "react";
-import { View, Text, SectionList, ListRenderItemInfo, SectionListData } from "react-native";
-import { setsWithIcons, IconSetGroup } from "./icons";
+import { View, Text, SectionList, ListRenderItemInfo, SectionListData, Dimensions, StyleSheet } from "react-native";
+import * as uuid from "uuid";
+import { setsWithIcons, iconElementCreator, IconSetGroup } from "./icons";
+
+interface ISection {
+    title: IconSetGroup,
+    data: ISectionItem[], // the idea with this one is to create groups of (upto) 50 icons per row
+}
 
 interface ISectionItem {
-    iconFunc: (name: string, color: string) => JSX.Element,
+    subItems: ISectionSubItem[],
+}
+
+interface ISectionSubItem {
+    iconCreator: iconElementCreator,
     name: string
 }
 
+const numberOfColumns = 4;
+const numberOfItemsPerCell = 12 * numberOfColumns;
+const { height, width } = Dimensions.get("window");
+const cellItemSize = Math.floor((width - 40) / numberOfColumns);
+
 class IconList extends React.PureComponent {
     public render() {
-        const sections = setsWithIcons.map(
-            item => {
-                const { nameOfSet, icon, names } = item;
-                const iconsAndNames = names.map(n => ({ iconFunc: icon, name: n }));
-                return { title: nameOfSet, data: iconsAndNames };
-            }
-        );
-
         return (
             <View>
                 <SectionList
-                    sections={sections}
-                    renderSectionHeader={({section}) => this.renderSectionHeader(section.title)}
+                    sections={this.iconSetsToSections()}
+                    renderSectionHeader={({ section }) => this.renderSectionHeader(section.title)}
                     renderItem={this.renderItem}
                     keyExtractor={this.getKeyForItem}
                 />
@@ -29,30 +36,83 @@ class IconList extends React.PureComponent {
         );
     }
 
+    private iconSetsToSections(): ISection[] {
+        return setsWithIcons.map(
+            item => {
+                const { nameOfSet, icon, names } = item;
+                const iconsAndNames = names.map<ISectionSubItem>(n => ({ iconCreator: icon, name: n }));
+                return { title: nameOfSet, data: this.chunkIt(iconsAndNames, numberOfItemsPerCell) };
+            }
+        );
+    }
+
+    private chunkIt(allItems: ISectionSubItem[], maxItemsPerChunk: number): ISectionItem[] {
+        if (maxItemsPerChunk <= 0) {
+            throw "Can't do chunks like this mate...";
+        }
+        let items = new Array<ISectionItem>();
+        const numberOfItems = Math.ceil(allItems.length / maxItemsPerChunk);
+        for (let itemIndex = 0; itemIndex < numberOfItems; itemIndex++) {
+            const start = itemIndex * maxItemsPerChunk;
+            const end = (itemIndex + 1) * maxItemsPerChunk;
+            items.push({ subItems: allItems.slice(start, end) });
+        }
+        return items;
+    }
+
     private renderSectionHeader(title: string) {
+        const sectionHeaderKey = `header_${title}`
         return (
-            <View>
-                <Text style={{ fontSize: 40 }}>{title}</Text>
+            <View key={sectionHeaderKey}>
+                <Text style={subStyles.sectionTitle}>{title}</Text>
             </View>
         );
     }
 
-    private getKeyForItem(item: any, index: number) {
+    private getKeyForItem(item: ISectionItem, index: number) {
         return index.toString();
     }
 
-    private renderItem(item: ListRenderItemInfo<ISectionItem>) {
-        const { name, iconFunc } = item.item;
-        const icon = iconFunc(name, "#000");
+    private renderItem({ item }: ListRenderItemInfo<ISectionItem>) {
+        const subitems = item.subItems.map(
+            (i) => {
+                const { name, iconCreator } = i;
+                const key = uuid.v1();
+                return (
+                    <View key={key} style={[subStyles.iconContainer, { height: cellItemSize + 20, width: cellItemSize }]}>
+                        {iconCreator(name, cellItemSize - 24, "#000", subStyles.centeredIcon)}
+                        <Text style={{}}>{name}</Text>
+                    </View>
+                );
+            });
         return (
-            <View style={{height: 60, width:60, backgroundColor: "pink"}}>
-                {icon}
-                <Text>
-                    {item.item.name}
-                </Text>
+            <View style={subStyles.wrappingCellContainer}>
+                {subitems}
             </View>
         );
     }
 }
+
+const subStyles = StyleSheet.create({
+    wrappingCellContainer: {
+        flex: 1,
+        flexWrap: "wrap",
+        justifyContent: "center",
+        flexDirection: "row"
+    },
+    centeredIcon: {
+        textAlign: "center", justifyContent: "center"
+    },
+    iconTitle: {
+        textAlign: "center",
+        minHeight: 20,
+    },
+    iconContainer: {
+        justifyContent: "center", alignContent: "center"
+    },
+    sectionTitle: {
+        fontSize: 40,
+    }
+});
 
 export { IconList };

@@ -34,7 +34,6 @@ class SecondScreen extends React.Component {
         return (
             <View style={[styles.fullViewContainer, styles.secondScreen, { paddingTop: 40 }]}>
                 <IconList />
-                {/* <Text style={styles.labelOnLightBackground}>{title}</Text> */}
             </View>
         );
     }
