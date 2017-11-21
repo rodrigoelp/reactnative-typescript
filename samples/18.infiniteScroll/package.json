@@ -10,9 +10,11 @@
 		"@types/react": "^16.0.25",
 		"@types/react-native": "^0.50.7",
 		"@types/react-native-elements": "^0.16.4",
+		"@types/react-native-vector-icons": "^4.4.2",
 		"react": "16.0.0",
 		"react-native": "0.50.3",
-		"react-native-elements": "^0.18.2"
+		"react-native-elements": "^0.18.2",
+		"react-native-vector-icons": "^4.4.2"
 	},
 	"devDependencies": {
 		"babel-jest": "21.2.0",
