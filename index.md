@@ -162,3 +162,17 @@ Couchbasing: [To the blog](https://blog.couchbase.com/getting-started-with-react
 Couchbase: [Github](https://github.com/couchbaselabs/react-native-couchbase-lite)... It worries me there has not been any activity for a while (being one of their products)
 Sample app: [thank you library for all](https://github.com/libraryforall/ebook-catalog-react-native)
 Pouching?: [Pouch sample](https://blog.yld.io/2016/07/05/building-a-offline-first-application-using-react-native-and-pouchdb/#.Wfux0BOCyRc)
+
+## 17. Swiftly. (working with swift as your project template) (under development, parked as there is a weird issue with the cocoapod and fishhook.h)
+
+So far, we have been working with the ObjectiveC (which is quite a dated language)... so... how difficult would it be to make react-native work with swift?
+
+Basically, we will need to include a set of cocoapods (configuring a workspace with all the different projects required by react-native), create an `RCTRootView` in which all the react-native code is going to live.
+
+*If you want to know more, check the branch `swiftly`*
+
+## 18. Infinite Scrolls
+
+One of the awesome things of learning from an online community is, you get to interact with other developers and get ideas from other people.
+
+This exercise is a reimplementation done by [Spencer Carli on his flat list demo](https://github.com/spencercarli/react-native-flatlist-demo)... but in typescript :P
