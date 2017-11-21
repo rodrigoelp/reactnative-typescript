@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Text, View } from "react-native";
+import { FlatList, Text, View, StyleSheet } from "react-native";
+import { List, ListItem } from "react-native-elements";
 
 // this definition is equals to `{}` which I could have used when declaring the AppShell...
 // decided against it to be more clear.
@@ -25,17 +26,40 @@ class AppShell extends React.Component<IProps, IState> {
      */
     constructor(props: IProps) {
         super(props);
+
+        this.state = {
+            loading: false,
+            refreshing: false,
+            data: [],
+            page: 1,
+            seed: 1
+        };
     }
 
     public render() {
         return (
-            <View style={{ flex: 1, paddingVertical: 44 }}>
-                <Text style={{ alignSelf: "stretch", textAlign: "center", textAlignVertical: "center" }}>
-                    Boilerplate component to get typescript going.
-                </Text>
-            </View>
+            <List containerStyle={styles.listContainer}>
+                <FlatList data={this.state.data} renderItem={({ item }) => this.renderItem(item)} />
+            </List>
         );
     }
+
+    componentDidMount() {
+    }
+
+    renderItem = (item: any): JSX.Element => {
+        return <ListItem roundAvatar title="" subtitle="" avatar={{}} containerStyle={{}} />;
+    }
 }
+
+const styles = StyleSheet.create({
+    listContainer: { // these conform with the ScrollViewStyle type
+        borderTopWidth: 0,
+        borderBottomWidth: 0,
+    },
+    listItemContainer: {
+        borderBottomWidth: 0,
+    }
+});
 
 export { AppShell };
