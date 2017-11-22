@@ -1,44 +1,44 @@
 
 /** auto generated from the serviceby calling json2ts https://randomuser.me/api/?seed=1&page=1&results=1  */
-interface UserListResult {
-  results: Result[];
-  info: Info;
+interface IUserListResult {
+  results: IUser[];
+  info: IInfo;
 }
 
-interface Info {
+interface IInfo {
   seed: string;
   results: number;
   page: number;
   version: string;
 }
 
-interface Result {
+interface IUser {
   gender: string;
-  name: Name;
-  location: Location;
+  name: IName;
+  location: ILocation;
   email: string;
-  login: Login;
+  login: ILogin;
   dob: string;
   registered: string;
   phone: string;
   cell: string;
-  id: Id;
-  picture: Picture;
+  id: IIdentifier;
+  picture: IPicture;
   nat: string;
 }
 
-interface Picture {
+interface IPicture {
   large: string;
   medium: string;
   thumbnail: string;
 }
 
-interface Id {
+interface IIdentifier {
   name: string;
   value?: string;
 }
 
-interface Login {
+interface ILogin {
   username: string;
   password: string;
   salt: string;
@@ -47,18 +47,18 @@ interface Login {
   sha256: string;
 }
 
-interface Location {
+interface ILocation {
   street: string;
   city: string;
   state: string;
   postcode: number;
 }
 
-interface Name {
+interface IName {
   title: string;
   first: string;
   last: string;
 }
 /** end of autogeneration */
 
-export { UserListResult, Info, Result, Picture, Id, Login, Location, Name };
+export { IUserListResult, IInfo, IUser, IPicture, IIdentifier, ILogin, ILocation, IName };

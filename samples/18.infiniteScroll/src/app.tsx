@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FlatList, Text, View, StyleSheet } from "react-native";
 import { List, ListItem } from "react-native-elements";
-import { UserListResult, Result } from "./models";
+import { IUserListResult, IUser } from "./models";
 
 // this definition is equals to `{}` which I could have used when declaring the AppShell...
 // decided against it to be more clear.
@@ -44,7 +44,7 @@ class AppShell extends React.Component<IProps, IState> {
                     <FlatList
                         data={this.state.data}
                         renderItem={({ item }) => this.renderItem(item)}
-                        keyExtractor={(item: Result) => item.email}
+                        keyExtractor={(item: IUser) => item.email}
                     />
                 </List>
             </View>
@@ -55,8 +55,8 @@ class AppShell extends React.Component<IProps, IState> {
         this.loadUsers();
     }
 
-    renderItem = (item: Result): JSX.Element => {
-        return <ListItem roundAvatar title={`${item.name.first} ${item.name.last}`} subtitle={item.email} avatar={{}} containerStyle={{}} />;
+    renderItem = (item: IUser): JSX.Element => {
+        return <ListItem roundAvatar title={`${item.name.first} ${item.name.last}`} subtitle={item.email} avatar={item.picture.thumbnail} containerStyle={styles.listItemContainer} />;
     }
 
     loadUsers = () => {
@@ -81,11 +81,11 @@ class AppShell extends React.Component<IProps, IState> {
 
     /* -------- */
     /* added logic here... created the method in a functional way so the `setState` happens somewhere else. */
-    requestUsersAsync = (page: number, seed: number): Promise<UserListResult> => {
+    requestUsersAsync = (page: number, seed: number): Promise<IUserListResult> => {
         const serviceUrl = `https://randomuser.me/api/?seed=${seed}&page=${page}&results=20`;
         return fetch(serviceUrl)
             .then(res => res.json()) // this gives me all the data as type `any` which does not give me any type safety, nor intellisense.
-            .then(res => res as UserListResult); // assigns an interface to the respose so now there is a type
+            .then(res => res as IUserListResult); // assigns an interface to the respose so now there is a type
     }
 }
 
