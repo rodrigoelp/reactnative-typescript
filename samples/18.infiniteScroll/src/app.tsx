@@ -1,6 +1,7 @@
 import * as React from "react";
 import { FlatList, Text, View, StyleSheet } from "react-native";
 import { List, ListItem } from "react-native-elements";
+import { UserListResult, Result } from "./models";
 
 // this definition is equals to `{}` which I could have used when declaring the AppShell...
 // decided against it to be more clear.
@@ -38,29 +39,61 @@ class AppShell extends React.Component<IProps, IState> {
 
     public render() {
         return (
-            <List containerStyle={styles.listContainer}>
-                <FlatList data={this.state.data} renderItem={({ item }) => this.renderItem(item)} />
-            </List>
+            <View style={styles.container}>
+                <List containerStyle={styles.listContainer}>
+                    <FlatList
+                        data={this.state.data}
+                        renderItem={({ item }) => this.renderItem(item)}
+                        keyExtractor={(item: Result) => item.email}
+                    />
+                </List>
+            </View>
         );
     }
 
     componentDidMount() {
+        this.loadUsers();
     }
 
-    renderItem = (item: any): JSX.Element => {
-        return <ListItem roundAvatar title="" subtitle="" avatar={{}} containerStyle={{}} />;
+    renderItem = (item: Result): JSX.Element => {
+        return <ListItem roundAvatar title={`${item.name.first} ${item.name.last}`} subtitle={item.email} avatar={{}} containerStyle={{}} />;
+    }
+
+    loadUsers = () => {
+        const { page, seed, data } = this.state;
+        this.setState({ loading: true },
+            () => {
+                this.requestUsersAsync(page, seed)
+                    .then(res => {
+                        this.setState({
+                            data: page === 1 ? res.results : data.concat(res.results),
+                            error: undefined,
+                            loading: false,
+                            refreshing: false,
+                        } as IState);
+                    })
+                    .catch(error => {
+                        this.setState({ error, loading: false, refreshing: false });
+                    });
+            }
+        );
     }
 
     /* -------- */
     /* added logic here... created the method in a functional way so the `setState` happens somewhere else. */
-    requestUsers = (page: number, seed: number) => {
+    requestUsersAsync = (page: number, seed: number): Promise<UserListResult> => {
         const serviceUrl = `https://randomuser.me/api/?seed=${seed}&page=${page}&results=20`;
         return fetch(serviceUrl)
-            .then(res => res.json()); // this gives me all the data as type `any` which does not give me any type safety, nor intellisense.
+            .then(res => res.json()) // this gives me all the data as type `any` which does not give me any type safety, nor intellisense.
+            .then(res => res as UserListResult); // assigns an interface to the respose so now there is a type
     }
 }
 
 const styles = StyleSheet.create({
+    container: {
+        paddingTop: 44,
+        paddingBottom: 22,
+    },
     listContainer: { // these conform with the ScrollViewStyle type
         borderTopWidth: 0,
         borderBottomWidth: 0,
