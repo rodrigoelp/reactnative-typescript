@@ -50,6 +50,14 @@ class AppShell extends React.Component<IProps, IState> {
     renderItem = (item: any): JSX.Element => {
         return <ListItem roundAvatar title="" subtitle="" avatar={{}} containerStyle={{}} />;
     }
+
+    /* -------- */
+    /* added logic here... created the method in a functional way so the `setState` happens somewhere else. */
+    requestUsers = (page: number, seed: number) => {
+        const serviceUrl = `https://randomuser.me/api/?seed=${seed}&page=${page}&results=20`;
+        return fetch(serviceUrl)
+            .then(res => res.json()); // this gives me all the data as type `any` which does not give me any type safety, nor intellisense.
+    }
 }
 
 const styles = StyleSheet.create({
