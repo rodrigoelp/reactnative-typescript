@@ -1,10 +1,11 @@
 import * as React from "react";
 import { FlatList, Text, View, ActivityIndicator } from "react-native";
 import { NavigationScreenProps, NavigationScreenOptions } from "react-navigation";
-import { List, ListItem,SearchBar  } from "react-native-elements";
-import { IUserListResult, IUser, RouteNames } from "./models";
-import { styles } from "./styles";
+import { List, ListItem, SearchBar } from "react-native-elements";
 import { IUserDetailsProps } from "./userDetails";
+import { styles } from "./styles";
+import { IUserListResult, IUser, RouteNames, IUniqueUser } from "./models";
+import { newUid } from "./functions";
 
 // this definition is equals to `{}` which I could have used when declaring the AppShell...
 // decided against it to be more clear.
@@ -15,8 +16,8 @@ interface IProps extends NavigationScreenProps<{}> { }
 interface IState { // this defines the shape of the state we are going to be using in the component.
     loading: boolean;
     refreshing: boolean;
-    data: IUser[],
-    filteredData: IUser[],
+    data: IUniqueUser[],
+    filteredData: IUniqueUser[],
     page: number,
     seed: number,
     filter: string,
@@ -53,12 +54,12 @@ class AppShell extends React.Component<IProps, IState> {
                 <List containerStyle={styles.listContainer}>
                     <FlatList
                         data={this.state.filteredData}
-                        keyExtractor={(item: IUser) => item.email}
+                        keyExtractor={(item: IUniqueUser) => item.uid}
                         renderItem={({ item }) => this.renderItem(item)}
                         ItemSeparatorComponent={this.renderItemSeparator}
                         ListHeaderComponent={this.renderHeader}
                         ListFooterComponent={this.renderFooter}
-                        onEndReachedThreshold={50}
+                        onEndReachedThreshold={100}
                         onEndReached={this.loadMoreUsers}
                         refreshing={this.state.refreshing}
                         onRefresh={this.handleRefresh}
@@ -105,6 +106,7 @@ class AppShell extends React.Component<IProps, IState> {
     }
 
     handleRefresh = () => {
+        console.log("refreshing the application");
         this.setState({
             page: 1,
             seed: this.state.seed + 1,
@@ -116,6 +118,7 @@ class AppShell extends React.Component<IProps, IState> {
     }
 
     handleFilter = (text: string) => {
+        console.log("Filtering information");
         const { data } = this.state;
         text = text.toLocaleLowerCase();
         let filtered = data;
@@ -137,13 +140,16 @@ class AppShell extends React.Component<IProps, IState> {
     }
 
     loadUsers = (pageToFetch?: number) => {
+        console.debug(`Fetching page ${pageToFetch}`);
         const { page, seed, data, refreshing } = this.state;
         pageToFetch = pageToFetch || page;
         this.setState({ page: pageToFetch!, loading: true },
             () => {
                 this.requestUsersAsync(pageToFetch!, seed)
                     .then(res => {
-                        const newData = page === 1 ? res.results : data.concat(res.results);
+                        const newResults = res.results.map((u) => ({ ...u, uid: newUid() } as IUniqueUser));
+                        // const newData = page === 1 ? newResults : data.concat(newResults);
+                        const newData = page === 1 ? newResults : [...data, ...newResults];
                         this.setState({
                             data: newData,
                             filteredData: newData,
@@ -164,9 +170,20 @@ class AppShell extends React.Component<IProps, IState> {
     /* added logic here... created the method in a functional way so the `setState` happens somewhere else. */
     requestUsersAsync = (page: number, seed: number): Promise<IUserListResult> => {
         const serviceUrl = `https://randomuser.me/api/?seed=${seed}&page=${page}&results=20`;
-        return fetch(serviceUrl)
-            .then(res => res.json()) // this gives me all the data as type `any` which does not give me any type safety, nor intellisense.
-            .then(res => res as IUserListResult); // assigns an interface to the respose so now there is a type
+        return new Promise<IUserListResult>(
+            (resolved, rejected) => {
+                setTimeout(
+                    () => {
+                        console.debug(`Fetched users for page ${page}`);
+                        fetch(serviceUrl)
+                            .then(res => res.json()) // this gives me all the data as type `any` which does not give me any type safety, nor intellisense.
+                            .then(res => res as IUserListResult)  // assigns an interface to the respose so now there is a type
+                            .then(resolved, rejected);
+                    },
+                    1500
+                )
+            }
+        );
     }
 }
 

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { View, Text, Image } from "react-native";
-import { IUser } from "./models";
 import { NavigationScreenProps, NavigationScreenOptions } from "react-navigation";
+import { IUser } from "./models";
 
 interface IUserDetailsProps {
     user: IUser

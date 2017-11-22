@@ -66,4 +66,8 @@ enum RouteNames {
   UserDetails = "UserDetails",
 }
 
-export { IUserListResult, IInfo, IUser, IPicture, IIdentifier, ILogin, ILocation, IName, RouteNames };
+interface IUniqueUser extends IUser {
+  uid: string;
+}
+
+export { IUserListResult, IInfo, IUser, IPicture, IIdentifier, ILogin, ILocation, IName, RouteNames, IUniqueUser };
