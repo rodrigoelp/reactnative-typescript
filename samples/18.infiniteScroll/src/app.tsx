@@ -12,9 +12,11 @@ interface IProps { }
 interface IState { // this defines the shape of the state we are going to be using in the component.
     loading: boolean;
     refreshing: boolean;
-    data: any[],
+    data: IUser[],
+    filteredData: IUser[],
     page: number,
     seed: number,
+    filter: string,
     error?: Error
 }
 
@@ -32,8 +34,10 @@ class AppShell extends React.Component<IProps, IState> {
             loading: false,
             refreshing: false,
             data: [],
+            filteredData: [],
             page: 1,
             seed: 1,
+            filter: "",
         };
     }
 
@@ -42,7 +46,7 @@ class AppShell extends React.Component<IProps, IState> {
             <View style={styles.container}>
                 <List containerStyle={styles.listContainer}>
                     <FlatList
-                        data={this.state.data}
+                        data={this.state.filteredData}
                         keyExtractor={(item: IUser) => item.email}
                         renderItem={({ item }) => this.renderItem(item)}
                         ItemSeparatorComponent={this.renderItemSeparator}
@@ -71,7 +75,7 @@ class AppShell extends React.Component<IProps, IState> {
     }
 
     renderHeader = (): JSX.Element => {
-        return <SearchBar placeholder="Type to search." lightTheme={true} round={true} />
+        return <SearchBar placeholder="Type to search." onChangeText={this.handleFilter} lightTheme={true} round={true} />
     }
 
     renderFooter = (): JSX.Element => {
@@ -98,6 +102,22 @@ class AppShell extends React.Component<IProps, IState> {
         });
     }
 
+    handleFilter = (text: string) => {
+        const { data } = this.state;
+        text = text.toLocaleLowerCase();
+        let filtered = data;
+        if (text !== "") {
+            filtered = data.filter(
+                (user) => user.name.first.startsWith(text) || user.name.last.startsWith(text) || user.email.startsWith(text)
+            );
+        }
+
+        this.setState({
+            filter: text,
+            filteredData: filtered
+        });
+    }
+
     loadUsers = (pageToFetch?: number) => {
         const { page, seed, data, refreshing } = this.state;
         pageToFetch = pageToFetch || page;
@@ -105,8 +125,11 @@ class AppShell extends React.Component<IProps, IState> {
             () => {
                 this.requestUsersAsync(pageToFetch!, seed)
                     .then(res => {
+                        const newData = page === 1 ? res.results : data.concat(res.results);
                         this.setState({
-                            data: page === 1 ? res.results : data.concat(res.results),
+                            data: newData,
+                            filteredData: newData,
+                            filter: "",
                             error: undefined,
                             loading: false,
                             refreshing: false,
