@@ -1,7 +1,8 @@
 import * as React from "react";
-import { FlatList, Text, View, StyleSheet, ActivityIndicator } from "react-native";
+import { FlatList, Text, View, ActivityIndicator } from "react-native";
 import { List, ListItem,SearchBar  } from "react-native-elements";
 import { IUserListResult, IUser } from "./models";
+import { styles } from "./styles";
 
 // this definition is equals to `{}` which I could have used when declaring the AppShell...
 // decided against it to be more clear.
@@ -152,33 +153,5 @@ class AppShell extends React.Component<IProps, IState> {
     }
 }
 
-enum Colors {
-    Separator= "#CED0CE",
-}
-
-const styles = StyleSheet.create({
-    container: {
-        paddingTop: 44,
-        paddingBottom: 22,
-    },
-    listContainer: { // these conform with the ScrollViewStyle type
-        borderTopWidth: 0,
-        borderBottomWidth: 0,
-    },
-    listItemContainer: {
-        borderBottomWidth: 0,
-    },
-    separator: {
-        height: 1,
-        width: "84%",
-        backgroundColor: Colors.Separator,
-        marginLeft: "16%"
-    },
-    loadingContainer: {
-        paddingVertical: 20,
-        borderTopWidth: 1,
-        borderColor: Colors.Separator,
-    }
-});
 
 export { AppShell };
