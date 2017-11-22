@@ -1,6 +1,6 @@
 import * as React from "react";
-import { FlatList, Text, View, StyleSheet } from "react-native";
-import { List, ListItem } from "react-native-elements";
+import { FlatList, Text, View, StyleSheet, ActivityIndicator } from "react-native";
+import { List, ListItem,SearchBar  } from "react-native-elements";
 import { IUserListResult, IUser } from "./models";
 
 // this definition is equals to `{}` which I could have used when declaring the AppShell...
@@ -33,7 +33,7 @@ class AppShell extends React.Component<IProps, IState> {
             refreshing: false,
             data: [],
             page: 1,
-            seed: 1
+            seed: 1,
         };
     }
 
@@ -43,8 +43,15 @@ class AppShell extends React.Component<IProps, IState> {
                 <List containerStyle={styles.listContainer}>
                     <FlatList
                         data={this.state.data}
-                        renderItem={({ item }) => this.renderItem(item)}
                         keyExtractor={(item: IUser) => item.email}
+                        renderItem={({ item }) => this.renderItem(item)}
+                        ItemSeparatorComponent={this.renderItemSeparator}
+                        ListHeaderComponent={this.renderHeader}
+                        ListFooterComponent={this.renderFooter}
+                        onEndReachedThreshold={50}
+                        onEndReached={this.loadMoreUsers}
+                        refreshing={this.state.refreshing}
+                        onRefresh={this.handleRefresh}
                     />
                 </List>
             </View>
@@ -56,14 +63,47 @@ class AppShell extends React.Component<IProps, IState> {
     }
 
     renderItem = (item: IUser): JSX.Element => {
-        return <ListItem roundAvatar title={`${item.name.first} ${item.name.last}`} subtitle={item.email} avatar={item.picture.thumbnail} containerStyle={styles.listItemContainer} />;
+        return <ListItem roundAvatar={true} title={`${item.name.first} ${item.name.last}`} subtitle={item.email} avatar={item.picture.thumbnail} containerStyle={styles.listItemContainer} />;
     }
 
-    loadUsers = () => {
-        const { page, seed, data } = this.state;
-        this.setState({ loading: true },
+    renderItemSeparator = (): JSX.Element => {
+        return <View style={styles.separator} />
+    }
+
+    renderHeader = (): JSX.Element => {
+        return <SearchBar placeholder="Type to search." lightTheme={true} round={true} />
+    }
+
+    renderFooter = (): JSX.Element => {
+        if (this.state.loading === false) return <View />;
+        return (
+            <View style={styles.loadingContainer}>
+                <ActivityIndicator animating={true} size="large" />
+            </View>
+        );
+    }
+
+    loadMoreUsers = () => {
+        this.loadUsers(this.state.page + 1);
+    }
+
+    handleRefresh = () => {
+        this.setState({
+            page: 1,
+            seed: this.state.seed + 1,
+            refreshing: true,
+            data: []
+        }, () => {
+            this.loadUsers();
+        });
+    }
+
+    loadUsers = (pageToFetch?: number) => {
+        const { page, seed, data, refreshing } = this.state;
+        pageToFetch = pageToFetch || page;
+        this.setState({ page: pageToFetch!, loading: true },
             () => {
-                this.requestUsersAsync(page, seed)
+                this.requestUsersAsync(pageToFetch!, seed)
                     .then(res => {
                         this.setState({
                             data: page === 1 ? res.results : data.concat(res.results),
@@ -89,6 +129,10 @@ class AppShell extends React.Component<IProps, IState> {
     }
 }
 
+enum Colors {
+    Separator= "#CED0CE",
+}
+
 const styles = StyleSheet.create({
     container: {
         paddingTop: 44,
@@ -100,6 +144,17 @@ const styles = StyleSheet.create({
     },
     listItemContainer: {
         borderBottomWidth: 0,
+    },
+    separator: {
+        height: 1,
+        width: "84%",
+        backgroundColor: Colors.Separator,
+        marginLeft: "16%"
+    },
+    loadingContainer: {
+        paddingVertical: 20,
+        borderTopWidth: 1,
+        borderColor: Colors.Separator,
     }
 });
 
