@@ -1,14 +1,16 @@
 import * as React from "react";
 import { FlatList, Text, View, ActivityIndicator } from "react-native";
+import { NavigationScreenProps, NavigationScreenOptions } from "react-navigation";
 import { List, ListItem,SearchBar  } from "react-native-elements";
-import { IUserListResult, IUser } from "./models";
+import { IUserListResult, IUser, RouteNames } from "./models";
 import { styles } from "./styles";
+import { IUserDetailsProps } from "./userDetails";
 
 // this definition is equals to `{}` which I could have used when declaring the AppShell...
 // decided against it to be more clear.
 // Note: Linter does not like this and will suggest you to replace the usage of the interface
 // to `{}`
-interface IProps { }
+interface IProps extends NavigationScreenProps<{}> { }
 
 interface IState { // this defines the shape of the state we are going to be using in the component.
     loading: boolean;
@@ -25,6 +27,9 @@ interface IState { // this defines the shape of the state we are going to be usi
 // alternatively, the declaration could have been `export class AppShell extends...` but I prefer
 // to declare all my exports together at the bottom.
 class AppShell extends React.Component<IProps, IState> {
+    static navigationOptions: NavigationScreenOptions = {
+        title: "Welcome to Usr!"
+    };
     /**
      * Initializes an instance of AppShell.
      */
@@ -68,7 +73,14 @@ class AppShell extends React.Component<IProps, IState> {
     }
 
     renderItem = (item: IUser): JSX.Element => {
-        return <ListItem roundAvatar={true} title={`${item.name.first} ${item.name.last}`} subtitle={item.email} avatar={item.picture.thumbnail} containerStyle={styles.listItemContainer} />;
+        return <ListItem
+            roundAvatar={true}
+            title={`${item.name.first} ${item.name.last}`}
+            subtitle={item.email}
+            avatar={item.picture.thumbnail}
+            containerStyle={styles.listItemContainer}
+            onPress={() => this.showUser(item)}
+        />;
     }
 
     renderItemSeparator = (): JSX.Element => {
@@ -117,6 +129,11 @@ class AppShell extends React.Component<IProps, IState> {
             filter: text,
             filteredData: filtered
         });
+    }
+
+    showUser = (user: IUser) => {
+        const params: IUserDetailsProps = { user };
+        this.props.navigation.navigate(RouteNames.UserDetails, params);
     }
 
     loadUsers = (pageToFetch?: number) => {

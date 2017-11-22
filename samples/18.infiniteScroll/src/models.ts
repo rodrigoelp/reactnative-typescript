@@ -61,4 +61,9 @@ interface IName {
 }
 /** end of autogeneration */
 
-export { IUserListResult, IInfo, IUser, IPicture, IIdentifier, ILogin, ILocation, IName };
+enum RouteNames {
+  UserList = "UserList",
+  UserDetails = "UserDetails",
+}
+
+export { IUserListResult, IInfo, IUser, IPicture, IIdentifier, ILogin, ILocation, IName, RouteNames };

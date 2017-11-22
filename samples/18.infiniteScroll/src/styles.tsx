@@ -6,7 +6,6 @@ enum Colors {
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 44,
         paddingBottom: 22,
     },
     listContainer: { // these conform with the ScrollViewStyle type
