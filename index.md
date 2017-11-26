@@ -135,7 +135,7 @@ Info to [tabnavigator](https://reactnavigation.org/docs/navigators/tab)
 
 [Source code](./samples/12.tabnav/)
 
-## 13. Reduxing the Tab Navigator. (Tab navigation and redux) (Upcoming)
+## 13. Reduxing the Tab Navigator. (Tab navigation and redux) (In progress)
 
 Uhms... I used the `StackNavigator` and completely ignored `TabNavigator`.
 
@@ -176,3 +176,5 @@ Basically, we will need to include a set of cocoapods (configuring a workspace w
 One of the awesome things of learning from an online community is, you get to interact with other developers and get ideas from other people.
 
 This exercise is a reimplementation done by [Spencer Carli on his flat list demo](https://github.com/spencercarli/react-native-flatlist-demo)... but in typescript 😝
+
+[Source code](./samples/18.infiniteScroll/)
