@@ -1,11 +1,11 @@
 import { applyMiddleware, combineReducers, createStore, Reducer, AnyAction } from "redux";
+import { logger } from "redux-logger";
+import { tabbarReducer } from "./reducers";
 
-const initialState: any = new Object();
-
-const dummyReducer: Reducer<any> = (state: any = initialState, action: AnyAction): any => {
-    return state;
-};
+const getMiddleware = () => {
+    return applyMiddleware(logger);
+}
 
 export default createStore(combineReducers({
-    dummy: dummyReducer
-}));
+    tabBar: tabbarReducer,
+}), getMiddleware());

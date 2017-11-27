@@ -1,13 +1,13 @@
 import * as React from "react";
-import { AppRegistry, View } from "react-native";
-import store from "./store";
-import { TabNavigator } from "./tabNavigator";
+import { AppRegistry } from "react-native";
 import { Provider } from "react-redux";
+import { AppTabNavigator } from "./tabNavigator";
+import store from "./store";
 
 const AppShell = () => {
     return (
         <Provider store={store}>
-            <TabNavigator />
+            <AppTabNavigator />
         </Provider>
     );
 }

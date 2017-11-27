@@ -1,13 +1,19 @@
 import * as React from "react";
 import { View } from "react-native";
+import { TabNavigator, NavigationRouteConfigMap, TabNavigatorConfig } from "react-navigation";
+import { RouteNames, One, Two, Three } from "./screens";
 
-class TabNavigator extends React.Component {
-    public render() {
-        return (
-            <View style={{ flex: 1, backgroundColor: "#addfad" }}>
-            </View>
-        );
+const routeConfig: NavigationRouteConfigMap = {
+    [RouteNames.ScreenOne]: { screen: One },
+    [RouteNames.ScreenTwo]: { screen: Two },
+    [RouteNames.ScreenThree]: { screen: Three },
+};
+
+const tabConfig: TabNavigatorConfig = {
+    tabBarOptions: {
+        activeTintColor: "black",
     }
-}
+};
 
-export { TabNavigator };
+const AppTabNavigator = TabNavigator(routeConfig, tabConfig);
+export { AppTabNavigator };
