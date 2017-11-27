@@ -51890,6 +51890,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var _components = {
+    AppNavigatorContainer: {
+        displayName: "AppNavigatorContainer"
+    },
     AppShell: {
         displayName: "AppShell"
     }
@@ -51931,6 +51934,27 @@ var stackConfig = {
 var AppNavigator = react_navigation_1.StackNavigator(routeConfig, stackConfig);
 exports.AppNavigator = AppNavigator;
 
+var AppNavigatorContainer = _wrapComponent("AppNavigatorContainer")(function (_React$Component) {
+    _inherits(AppNavigatorContainer, _React$Component);
+
+    function AppNavigatorContainer(props) {
+        _classCallCheck(this, AppNavigatorContainer);
+
+        return _possibleConstructorReturn(this, (AppNavigatorContainer.__proto__ || Object.getPrototypeOf(AppNavigatorContainer)).call(this, props));
+    }
+
+    _createClass(AppNavigatorContainer, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(AppNavigator, null);
+        }
+    }]);
+
+    return AppNavigatorContainer;
+}(React.Component));
+
+var ConnectedAppNavigatorContainer = react_redux_1.connect()(AppNavigatorContainer);
+
 var AppShell = _wrapComponent("AppShell")(function (_React$PureComponent) {
     _inherits(AppShell, _React$PureComponent);
 
@@ -51943,7 +51967,7 @@ var AppShell = _wrapComponent("AppShell")(function (_React$PureComponent) {
     _createClass(AppShell, [{
         key: "render",
         value: function render() {
-            return React.createElement(react_redux_1.Provider, { store: store_1.default }, React.createElement(AppNavigator, null));
+            return React.createElement(react_redux_1.Provider, { store: store_1.default }, React.createElement(ConnectedAppNavigatorContainer, null));
         }
     }]);
 
