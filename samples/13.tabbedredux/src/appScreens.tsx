@@ -1,12 +1,18 @@
 import * as React from "react";
 import { View } from "react-native";
 import { TabNavigator, NavigationRouteConfigMap, TabNavigatorConfig } from "react-navigation";
-import { RouteNames, One, Two, Three } from "./screens";
+import { TabRouteNames } from "./models";
 
 const routeConfig: NavigationRouteConfigMap = {
-    [RouteNames.ScreenOne]: { screen: One },
-    [RouteNames.ScreenTwo]: { screen: Two },
-    [RouteNames.ScreenThree]: { screen: Three },
+    [TabRouteNames.One]: {
+        screen: () => (<View style={{ flex: 1, backgroundColor: "red" }}></View>)
+    },
+    [TabRouteNames.Two]: {
+        screen: () => (<View style={{ flex: 1, backgroundColor: "green" }}></View>)
+    },
+    [TabRouteNames.Three]: {
+        screen: () => (<View style={{ flex: 1, backgroundColor: "blue" }}></View>)
+    },
 };
 
 const tabConfig: TabNavigatorConfig = {
@@ -16,4 +22,5 @@ const tabConfig: TabNavigatorConfig = {
 };
 
 const AppTabNavigator = TabNavigator(routeConfig, tabConfig);
+
 export { AppTabNavigator };

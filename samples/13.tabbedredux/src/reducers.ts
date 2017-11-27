@@ -1,5 +1,5 @@
 import { Reducer, AnyAction } from "redux";
-import { AppTabNavigator } from "./tabNavigator";
+import { AppTabNavigator } from "./appScreens";
 
 enum ActionTypes {
     GoToTab = "SelectTabIndex",
