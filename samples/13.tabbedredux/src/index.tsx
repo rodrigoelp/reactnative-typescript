@@ -20,14 +20,6 @@ import * as React from "react";
 import { AppRegistry } from "react-native";
 import { Provider } from "react-redux";
 import store from "./store";
-import { AppNavigator } from "./appShell";
+import { AppShell } from "./appShell";
 
-const App = () => {
-    return (
-        <Provider store={store}>
-            <AppNavigator />
-        </Provider>
-    );
-}
-
-AppRegistry.registerComponent("tabbedredux", () => App);
+AppRegistry.registerComponent("tabbedredux", () => AppShell);
