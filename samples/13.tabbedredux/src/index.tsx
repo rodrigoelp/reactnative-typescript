@@ -24,10 +24,11 @@
 
 import * as React from "react";
 import { AnyAction, combineReducers, createStore, applyMiddleware } from "redux";
-import { NavigationScreenProps, StackNavigatorConfig, StackNavigator, addNavigationHelpers } from "react-navigation";
-import { View, Button, Text, AppRegistry } from "react-native";
 import { connect, Provider } from "react-redux";
 import { logger } from "redux-logger";
+import { NavigationScreenProps, StackNavigatorConfig, StackNavigator, addNavigationHelpers } from "react-navigation";
+import { View, Text, AppRegistry } from "react-native";
+import { Button } from "react-native-elements";
 
 /**
  * Describing the state I want to track in my application.
@@ -90,9 +91,9 @@ class ScreenOne extends React.Component<ScreenOneProps> {
     public render() {
         const { navigate } = this.props.navigation;
         return (
-            <View style={{ flex: 1, backgroundColor: "#acdcff" }}>
-                <Button title="Log In!" onPress={() => navigate(RouteNames.Two)} />
-                <Text>{`${this.props.count}`}</Text>
+            <View style={{ flex: 1, backgroundColor: "#acdcff", alignContent: "center", justifyContent: "center" }}>
+                <Text style={{ textAlign: "center" }}>{`${this.props.count}`}</Text>
+                <Button title="Log In!" icon={{ name: "cached" }} onPress={() => navigate(RouteNames.Two)} />
             </View>
         );
     }
