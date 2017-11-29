@@ -2,29 +2,22 @@
 # yarn lockfile v1
 
 
-"@types/react-native-vector-icons@^4.4.2":
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/@types/react-native-vector-icons/-/react-native-vector-icons-4.4.2.tgz#dd6b6a4d9dee7c85e3246f6c67905dbc1faee3d5"
-  dependencies:
-    "@types/react" "*"
-    "@types/react-native" "*"
-
 "@types/react-native@*", "@types/react-native@^0.50.7":
   version "0.50.7"
   resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.50.7.tgz#4c18bb14aa08f11934f539d2b8dcb2f1a6b88bd8"
   dependencies:
     "@types/react" "*"
 
-"@types/react-navigation@^1.0.23":
-  version "1.0.23"
-  resolved "https://registry.yarnpkg.com/@types/react-navigation/-/react-navigation-1.0.23.tgz#338e04c0f7381176899a379efbd651ddda8a2e97"
+"@types/react-navigation@^1.0.24":
+  version "1.0.24"
+  resolved "https://registry.yarnpkg.com/@types/react-navigation/-/react-navigation-1.0.24.tgz#4f55429b62f05786ae4dc14c725b4e761a4f0bee"
   dependencies:
     "@types/react" "*"
     "@types/react-native" "*"
 
-"@types/react-redux@^5.0.13":
-  version "5.0.13"
-  resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-5.0.13.tgz#dcc67764b7455ed54422a0302fedf47e32db3579"
+"@types/react-redux@^5.0.14":
+  version "5.0.14"
+  resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-5.0.14.tgz#f3fc30dcbb2d20455a714f591cc27f77b4df09bb"
   dependencies:
     "@types/react" "*"
     redux "^3.6.0"
@@ -1075,8 +1068,8 @@ combined-stream@^1.0.5, combined-stream@~1.0.5:
     delayed-stream "~1.0.0"
 
 commander@^2.9.0, commander@~2.12.1:
-  version "2.12.1"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.12.1.tgz#468635c4168d06145b9323356d1da84d14ac4a7a"
+  version "2.12.2"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.12.2.tgz#0f5946c427ed9ec0d91a46bb9def53e54650e555"
 
 compressible@~2.0.5:
   version "2.0.12"
@@ -3392,7 +3385,7 @@ react-native-vector-icons@^4.4.2:
     prop-types "^15.5.10"
     yargs "^8.0.2"
 
-react-native@0.50.4:
+react-native@^0.50.4:
   version "0.50.4"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.50.4.tgz#194f5da4939087b3acee712a503475f4942dca7e"
   dependencies:
@@ -3497,9 +3490,9 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react@16.0.0:
-  version "16.0.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.0.0.tgz#ce7df8f1941b036f02b2cca9dbd0cb1f0e855e2d"
+react@^16.2.0:
+  version "16.2.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.2.0.tgz#a31bd2dab89bff65d42134fa187f24d054c273ba"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -4058,8 +4051,8 @@ supports-color@^4.0.0:
     has-flag "^2.0.0"
 
 symbol-observable@^1.0.3:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.0.4.tgz#29bf615d4aa7121bdd898b22d4b3f9bc4e2aa03d"
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.1.0.tgz#5c68fd8d54115d9dfb72a84720549222e8db9b32"
 
 symbol-tree@^3.2.1:
   version "3.2.2"

@@ -17,9 +17,80 @@
  */
 
 import * as React from "react";
-import { AppRegistry } from "react-native";
-import { Provider } from "react-redux";
-import store from "./store";
-import { AppShell } from "./appShell";
+import { AppRegistry, View, Button, Text } from "react-native";
+import { StackNavigator, addNavigationHelpers, StackNavigatorConfig } from "react-navigation";
+import { createStore, combineReducers, applyMiddleware, AnyAction, bindActionCreators, Dispatch } from "redux";
+import { Provider, connect } from "react-redux";
+import { logger } from "redux-logger";
 
-AppRegistry.registerComponent("tabbedredux", () => AppShell);
+interface IAppState {
+    currentCount: number;
+    nav: any;
+}
+
+
+const countReducer = (state: number = 42, action: AnyAction): number => {
+    console.debug("getting the reducer...");
+    return state;
+}
+
+const ScreenOne = (props:any) => (
+    <View style={{ flex: 1, backgroundColor: "green" }}>
+        <Button title="Click me" onPress={() => props.navigation.navigate("Two")} />
+    </View>
+)
+
+const ScreenTwo = () => (
+    <View style={{ flex: 1, backgroundColor: "blue" }}></View>
+)
+
+const routeMap = {
+    One: { screen: ScreenOne },
+    Two: { screen: ScreenTwo }
+};
+const navConfig: StackNavigatorConfig = {
+    initialRouteName: "One",
+};
+const RootNavigator = StackNavigator(routeMap, navConfig);
+const navReducer = (state: any, action: AnyAction) => {
+    const newState = RootNavigator.router.getStateForAction(action, state);
+    return newState || state;
+}
+
+const allReducers = combineReducers({ currentCount: countReducer, nav: navReducer });
+const store = createStore(allReducers, applyMiddleware(logger));
+
+
+interface IAppNavHostProps {
+    count: number;
+    navState: any;
+    dispatch: any;
+}
+
+class AppNavigatorHost extends React.Component<IAppNavHostProps> {
+    constructor(props: IAppNavHostProps) {
+        super(props);
+    }
+
+    public render() {
+        return <RootNavigator navigation={addNavigationHelpers({
+            dispatch: this.props.dispatch,
+            state: this.props.navState
+        })} />;
+    }
+}
+
+const mapStateToAppNavProps = (state: IAppState) => ({
+    count: state.currentCount,
+    navState: state.nav,
+});
+
+const AppNavigatorContainer = connect(mapStateToAppNavProps)(AppNavigatorHost);
+
+const App = () => (
+    <Provider store={store}>
+        <AppNavigatorContainer />
+    </Provider>
+);
+
+AppRegistry.registerComponent("tabbedredux", () => App);
