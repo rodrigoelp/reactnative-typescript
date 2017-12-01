@@ -31,7 +31,7 @@ Minimum configuration to build and execute a react-native app in iOS and Android
 
 Just an increment of the previous sample. Learning about subcomponents, styles and usage of resources.
 
-[Source code](./samples/2.Actions/)
+[Source code](./samples/2.actions/)
 
 ## 3. ToDos (really simple-poorly built- list of todos)
 
