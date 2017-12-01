@@ -17,7 +17,15 @@ const initialCountState = 42;
  * @param action action indicating how to change the state.
  */
 const countReducer = (state: number = initialCountState, action: AnyAction): number => {
-    return state;
+    let newState = state;
+    switch (action.type) {
+        case "Adjust":
+            newState = action.adjust(state);
+            break;
+        default:
+            break; 
+    }
+    return newState;
 }
 
 /**
@@ -71,4 +79,10 @@ const logOutUserActionCreator = () => (dispatch: Dispatch<any>) => {
     dispatch({ type: ActionType.UserLoggedOut });
 }
 
-export { countReducer, rootNavigationReducer, secureNavigationReducer, logInUserActionCreator, logOutUserActionCreator };
+type adjustmentFunction = (x: number) => number;
+
+const adjustCounterActionCreator = (adjust: adjustmentFunction) => (dispatch: Dispatch<any>) => {
+    dispatch({ type: "Adjust", adjust });
+}
+
+export { countReducer, rootNavigationReducer, secureNavigationReducer, logInUserActionCreator, logOutUserActionCreator, adjustmentFunction, adjustCounterActionCreator };
