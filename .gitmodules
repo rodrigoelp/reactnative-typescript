@@ -1,3 +1,6 @@
 [submodule "samples/1.helloworld"]
 	path = samples/1.helloworld
 	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-1.git
+[submodule "samples/2.actions"]
+	path = samples/2.actions
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-2.git
