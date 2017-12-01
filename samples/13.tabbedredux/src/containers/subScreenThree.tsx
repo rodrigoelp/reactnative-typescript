@@ -9,10 +9,16 @@ import { RouteNames } from "../routes";
 import { logOutUserActionCreator } from "../reducers";
 import { bindActionCreators } from "redux";
 
+/**
+ * Defines the state to be injected to the container.
+ */
 interface ISubScreenThreeProps {
     navState: any
 }
 
+/**
+ * Defines the actions exposed to this container.
+ */
 interface ISubScreenThreeActions {
     logOut: () => void;
 }
@@ -28,7 +34,7 @@ class SubScreenThree extends React.Component<SubScreenThreeProps> {
         const { navigation } = this.props;
         // try calling the log out and you will notice the navigation used is the tab navigation... we will try to solve this next.
         return (
-            <View style={{ flex: 1, backgroundColor: "cyan", justifyContent: "center" }}>
+            <View style={{ flex: 1, backgroundColor: "#8b233f", justifyContent: "center" }}>
                 <Button title="Log Out!" onPress={this.logOut} />
             </View>
         );

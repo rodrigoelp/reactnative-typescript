@@ -10,7 +10,10 @@ const initialCountState = 42;
 /**
  * This reducer will allow me to mutate data if required. At the moment I will
  * fix it to the answer of life, universe and everything.
- * @param state state of the counter (IAppState.count)
+ * 
+ * This reducer is a dummy reducer, does not need to be here.
+ * 
+ * @param state state of the counter.
  * @param action action indicating how to change the state.
  */
 const countReducer = (state: number = initialCountState, action: AnyAction): number => {
@@ -20,7 +23,8 @@ const countReducer = (state: number = initialCountState, action: AnyAction): num
 /**
  * Allows to change the store and its nav property.
  * @param state no idea what this state really is.
- * @param action
+ * @param action the action provided will be used to determine if the user is logging in or logging out
+ * triggering the appropriate navigation.
  */
 const rootNavigationReducer = (state: any, action: AnyAction) => {
     let nextState: any;
@@ -44,17 +48,27 @@ const rootNavigationReducer = (state: any, action: AnyAction) => {
     return nextState || state;
 }
 
-const logInUserActionCreator = () => (dispatch: Dispatch<any>) => {
-    dispatch({ type: ActionType.UserLoggedIn });
-}
-
-const logOutUserActionCreator = () => (dispatch: Dispatch<any>) => {
-    dispatch({ type: ActionType.UserLoggedOut });
-}
-
+/**
+ * Allows to change store for the secure area.
+ * @param state this state is meaningless for the tabs.
+ * @param action action specifying information to the tabbar.
+ */
 const secureNavigationReducer = (state: any, action: AnyAction) => {
     const newState = SecureNavigator.router.getStateForAction(action, state);
     return newState || state;
+}
+
+/**
+ * Action creator used to log in somebody.
+ */
+const logInUserActionCreator = () => (dispatch: Dispatch<any>) => {
+    dispatch({ type: ActionType.UserLoggedIn });
+}
+/**
+ * Action creator used to log out somebody.
+ */
+const logOutUserActionCreator = () => (dispatch: Dispatch<any>) => {
+    dispatch({ type: ActionType.UserLoggedOut });
 }
 
 export { countReducer, rootNavigationReducer, secureNavigationReducer, logInUserActionCreator, logOutUserActionCreator };

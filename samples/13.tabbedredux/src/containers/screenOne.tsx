@@ -20,7 +20,7 @@ interface IScreenOneProps {
 }
 
 interface IScreenOneActions {
-    logIn: () => void;
+    logIn: () => any;
 }
 
 /**
@@ -42,7 +42,7 @@ class ScreenOne extends React.Component<ScreenOneProps> {
         const { navigate } = this.props.navigation;
         return (
             <View style={{ flex: 1, backgroundColor: "#acdcff", alignContent: "center", justifyContent: "center" }}>
-                <Text style={{ textAlign: "center" }}>{`${this.props.count}`}</Text>
+                <Text style={{ textAlign: "center" }}>{`This is the application state: ${this.props.count}`}</Text>
                 <Button title="Log In!" icon={{ name: "cached" }} onPress={this.logIn} />
             </View>
         );

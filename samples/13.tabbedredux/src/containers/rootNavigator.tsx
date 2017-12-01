@@ -5,6 +5,7 @@ import { RouteNames } from "../routes";
 import { ScreenOneContainer } from "./screenOne";
 import { ScreenTwo } from "./screenTwo";
 import { IAppState } from "../models";
+import { INavigatorHostProps } from "./navigationHelpers";
 
 /**
  * Defines the component handling the navigation at the root level (transitioning between users
@@ -21,17 +22,10 @@ const RootNavigator = StackNavigator(
 );
 
 /**
- * Properties of the root navigator
- */
-interface IRootNavigatorHostProps {
-    navState: any;
-    dispatch: any;
-}
-/**
  * Host of the root navigator
  */
-class RootNavigatorHost extends React.PureComponent<IRootNavigatorHostProps> {
-    constructor(props: IRootNavigatorHostProps) {
+class RootNavigatorHost extends React.PureComponent<INavigatorHostProps> {
+    constructor(props: INavigatorHostProps) {
         super(props);
     }
 

@@ -7,4 +7,12 @@ import { NavigationScreenProps } from "react-navigation";
  */
 interface INavigationScreenProps extends NavigationScreenProps<{}> { }
 
-export { INavigationScreenProps };
+/**
+ * Properties of a navigator host
+ */
+interface INavigatorHostProps {
+    navState: any;
+    dispatch: any;
+}
+
+export { INavigationScreenProps, INavigatorHostProps };

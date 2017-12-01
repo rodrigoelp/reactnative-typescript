@@ -1,12 +1,13 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import { TabNavigator, NavigationRouteConfigMap, TabNavigatorConfig, addNavigationHelpers } from "react-navigation";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { IAppState } from "../models";
 import { SubRoutes } from "../routes";
+import { INavigatorHostProps } from "./navigationHelpers";
 import { SubScreenOneContainer } from "./subScreenOne";
 import { SubScreenTwoContainer } from "./subScreenTwo";
 import { SubScreenThreeContainer } from "./subScreenThree";
-import { IAppState } from "../models";
-import { connect } from "react-redux";
-import Icon from "react-native-vector-icons/FontAwesome";
 
 /**
  * Creates the tab bar configuration (three tabs)
@@ -48,20 +49,9 @@ const navigatorConfig: TabNavigatorConfig = {
 const SecureNavigator = TabNavigator(routeConfig, navigatorConfig);
 
 /**
- * Properties of a navigator host
- */
-interface INavigatorHostProps {
-    navState: any;
-    dispatch: any;
-}
-
-/**
  * Host of the tab navigator
  */
 class SecureNavigatorHost extends React.Component<INavigatorHostProps> {
-    /**
-     *
-     */
     constructor(props: INavigatorHostProps) {
         super(props);
     }
