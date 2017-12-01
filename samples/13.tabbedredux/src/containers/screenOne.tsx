@@ -1,26 +1,41 @@
 import * as React from "react";
 import { View, Text } from "react-native";
 import { Button } from "react-native-elements";
+import { bindActionCreators } from "redux";
 import { connect, Dispatch } from "react-redux";
 import { INavigationScreenProps } from "./navigationHelpers";
 import { RouteNames } from "../routes";
 import { IAppState, ActionType } from "../models";
-import { bindActionCreators } from "redux";
 import { logInUserActionCreator, adjustCounterActionCreator, adjustmentFunction } from "../reducers";
 
 /**
  * Let's create the first screen that we are going to call in a very
  * original way: ScreenOne.
- * This screen is going to have the same properties as the store on this exercise,
- * but in reality it should be a subsection of the store.
+ * This screen is going to expose the count and the navigation between
+ * the authentication and authenticated areas
  */
 interface IScreenOneProps {
+    /**
+     * Just any property exposed by the component to demonstrate the plain
+     * usage of redux.
+     */
     count: number;
     navState: any;
 }
 
+/**
+ * These are the actions/commands/operations the container exposes
+ * mapped to action creators.
+ */
 interface IScreenOneActions {
+    /**
+     * Allows you to log in. Once done it will transition to the 
+     * authenticated area.
+     */
     logIn: () => any;
+    /**
+     * Adjusts the count stored in the store.
+     */
     adjust: (adjuster: adjustmentFunction) => any;
 }
 
@@ -55,11 +70,12 @@ class ScreenOne extends React.Component<ScreenOneProps> {
     }
 
     private logIn = () => {
-        this.props.logIn();
+        this.props.logIn(); // this will trigger the navigation. Check the rootNavigationReducer.
     }
 
+    // from this point onwards (in this class) the methods will modify the count in the store.
     private increase = () => {
-        this.props.adjust((x: number) => x + Math.floor(Math.random() * 10))
+        this.props.adjust((x: number) => x + Math.floor(Math.random() * 10));
     }
 
     private decrease = () => {
@@ -79,6 +95,10 @@ const mapStateToScreenOneProps = (state: IAppState): IScreenOneProps => {
     };
 }
 
+/**
+ * Maps action creators to properties in the container.
+ * @param dispatch action dispatcher
+ */
 const mapDispatchToProps = (dispatch: Dispatch<any>): IScreenOneActions => {
     return bindActionCreators({
         logIn: logInUserActionCreator,

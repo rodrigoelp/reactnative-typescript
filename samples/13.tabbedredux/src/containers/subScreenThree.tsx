@@ -45,9 +45,12 @@ class SubScreenThree extends React.Component<SubScreenThreeProps> {
     }
 }
 
+// mapping state data to the properties in the container.
 const mapStateToProps = (state: IAppState): ISubScreenThreeProps => ({ navState: state.secureNavigationState });
+// mapping action creators to properties in the container.
 const mapDispatchToProps = (dispatch: Dispatch<any>): ISubScreenThreeActions => bindActionCreators({ logOut: logOutUserActionCreator }, dispatch);
 
+// Turning the component to the container.
 const SubScreenThreeContainer = connect(mapStateToProps, mapDispatchToProps)(SubScreenThree);
 
 export { SubScreenThreeContainer };
