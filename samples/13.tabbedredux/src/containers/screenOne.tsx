@@ -1,10 +1,12 @@
 import * as React from "react";
 import { View, Text } from "react-native";
 import { Button } from "react-native-elements";
-import { connect } from "react-redux";
+import { connect, Dispatch } from "react-redux";
 import { INavigationScreenProps } from "./navigationHelpers";
 import { RouteNames } from "../routes";
-import { IAppState } from "../models";
+import { IAppState, ActionType } from "../models";
+import { bindActionCreators } from "redux";
+import { logInUserActionCreator } from "../reducers";
 
 /**
  * Let's create the first screen that we are going to call in a very
@@ -17,11 +19,15 @@ interface IScreenOneProps {
     navState: any;
 }
 
+interface IScreenOneActions {
+    logIn: () => void;
+}
+
 /**
  * Quickly merging this screen props with the navigation props so I can access
  * the navigator and request a different route.
  */
-type ScreenOneProps = IScreenOneProps & INavigationScreenProps;
+type ScreenOneProps = IScreenOneProps & IScreenOneActions & INavigationScreenProps;
 
 /**
  * Implementing the ScreenOne component. It displays a 'log in!' button and that
@@ -37,9 +43,13 @@ class ScreenOne extends React.Component<ScreenOneProps> {
         return (
             <View style={{ flex: 1, backgroundColor: "#acdcff", alignContent: "center", justifyContent: "center" }}>
                 <Text style={{ textAlign: "center" }}>{`${this.props.count}`}</Text>
-                <Button title="Log In!" icon={{ name: "cached" }} onPress={() => navigate(RouteNames.Two)} />
+                <Button title="Log In!" icon={{ name: "cached" }} onPress={this.logIn} />
             </View>
         );
+    }
+
+    private logIn = () => {
+        this.props.logIn();
     }
 }
 
@@ -55,9 +65,15 @@ const mapStateToScreenOneProps = (state: IAppState): IScreenOneProps => {
     };
 }
 
+const mapDispatchToProps = (dispatch: Dispatch<any>) => {
+    return bindActionCreators({
+        logIn : logInUserActionCreator
+    }, dispatch);
+}
+
 /**
  * Turning the component into a container (as defined by redux)
  */
-const ScreenOneContainer = connect(mapStateToScreenOneProps)(ScreenOne);
+const ScreenOneContainer = connect(mapStateToScreenOneProps, mapDispatchToProps)(ScreenOne);
 
 export { ScreenOneContainer };

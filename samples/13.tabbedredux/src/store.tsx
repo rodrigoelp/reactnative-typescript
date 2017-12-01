@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { logger } from "redux-logger";
+import thunk from "redux-thunk";
 import { countReducer, rootNavigationReducer, secureNavigationReducer } from "./reducers";
 
 /**
@@ -11,6 +12,6 @@ const store = createStore(
         rootNavigator: rootNavigationReducer,
         secureNavigationState: secureNavigationReducer,
     }),
-    applyMiddleware(logger));
+    applyMiddleware(logger, thunk));
 
 export { store };

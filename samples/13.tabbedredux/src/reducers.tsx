@@ -1,6 +1,10 @@
 import * as React from "react";
 import { AnyAction } from "redux";
+import { NavigationActions } from "react-navigation";
 import { RootNavigator, SecureNavigator } from "./containers";
+import { ActionType } from "./models";
+import { RouteNames } from "./routes";
+import { Dispatch } from "react-redux";
 
 const initialCountState = 42;
 /**
@@ -19,8 +23,33 @@ const countReducer = (state: number = initialCountState, action: AnyAction): num
  * @param action
  */
 const rootNavigationReducer = (state: any, action: AnyAction) => {
-    const newState = RootNavigator.router.getStateForAction(action, state);
-    return newState || state;
+    let nextState: any;
+    switch (action.type) {
+        case ActionType.UserLoggedIn:
+            nextState = RootNavigator.router.getStateForAction(
+                NavigationActions.navigate({ routeName: RouteNames.Two }),
+                state
+            );
+            break;
+        case ActionType.UserLoggedOut:
+            nextState = RootNavigator.router.getStateForAction(
+                NavigationActions.back(),
+                state
+            );
+            break;
+        default:
+            nextState = RootNavigator.router.getStateForAction(action, state);
+            break;
+    }
+    return nextState || state;
+}
+
+const logInUserActionCreator = () => (dispatch: Dispatch<any>) => {
+    dispatch({ type: ActionType.UserLoggedIn });
+}
+
+const logOutUserActionCreator = () => (dispatch: Dispatch<any>) => {
+    dispatch({ type: ActionType.UserLoggedOut });
 }
 
 const secureNavigationReducer = (state: any, action: AnyAction) => {
@@ -28,4 +57,4 @@ const secureNavigationReducer = (state: any, action: AnyAction) => {
     return newState || state;
 }
 
-export { countReducer, rootNavigationReducer, secureNavigationReducer };
+export { countReducer, rootNavigationReducer, secureNavigationReducer, logInUserActionCreator, logOutUserActionCreator };

@@ -12,4 +12,9 @@ interface IAppState { // remember, every time this object changes shape, you nee
     secureNavigationState: any;
 }
 
-export { IAppState };
+enum ActionType {
+    UserLoggedIn = "Navigate_To_Secure",
+    UserLoggedOut = "Navigate_To_Login",
+}
+
+export { IAppState, ActionType };
