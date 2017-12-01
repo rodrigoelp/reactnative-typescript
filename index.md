@@ -25,13 +25,13 @@ If you want to know more about npm: [Follow this link](https://docs.npmjs.com/ge
 
 Minimum configuration to build and execute a react-native app in iOS and Android, written in typescript + tslint + vscode configurations.
 
-[Source code](./samples/1.hellworld/)
+[Source code](https://github.com/rodrigoelp/reactnative-typescript-exercise-1)
 
 ## 2. Actions
 
 Just an increment of the previous sample. Learning about subcomponents, styles and usage of resources.
 
-[Source code](./samples/2.actions/)
+[Source code](https://github.com/rodrigoelp/reactnative-typescript-exercise-2)
 
 ## 3. ToDos (really simple-poorly built- list of todos)
 
