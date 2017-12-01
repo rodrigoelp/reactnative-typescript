@@ -45,7 +45,7 @@ Getting the practice of setting up a new react-native + typescript is boring but
 >
 > Hopefully, you will notice some of the mistakes I have made in that app. It made me understand that I needed to spend more time looking at some of the dependencies (and youtube videos to learn more).
 
-[Source code](./samples/3.ToDos/)
+[Source code](https://github.com/rodrigoelp/reactnative-typescript-exercise-3)
 
 ## 4. NavScreen (Navigating between screens and passing data through)
 
