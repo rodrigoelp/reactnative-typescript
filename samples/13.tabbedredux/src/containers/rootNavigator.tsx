@@ -49,7 +49,7 @@ class RootNavigatorHost extends React.PureComponent<IRootNavigatorHostProps> {
  * @param state application state.
  */
 const mapStateToAppNavProps = (state: IAppState) => ({
-    navState: state.nav,
+    navState: state.rootNavigator,
 });
 /**
  * Turning the root navigator host component into a container.

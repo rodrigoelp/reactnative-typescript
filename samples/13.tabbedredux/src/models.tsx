@@ -6,9 +6,10 @@
  * This definition gives me an idea of what I want my store to have.
  * Next, I will be creating the reducers to operate on each of these sections.
  */
-interface IAppState {
+interface IAppState { // remember, every time this object changes shape, you need to update the store to provide the same name.
     currentCount: number;
-    nav: any;
+    rootNavigator: any;
+    secureNavigationState: any;
 }
 
 export { IAppState };

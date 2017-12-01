@@ -51,7 +51,7 @@ class ScreenOne extends React.Component<ScreenOneProps> {
 const mapStateToScreenOneProps = (state: IAppState): IScreenOneProps => {
     return {
         count: state.currentCount,
-        navState: state.nav
+        navState: state.rootNavigator
     };
 }
 

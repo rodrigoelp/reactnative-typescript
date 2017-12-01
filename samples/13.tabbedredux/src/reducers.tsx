@@ -1,6 +1,6 @@
 import * as React from "react";
 import { AnyAction } from "redux";
-import { RootNavigator } from "./containers";
+import { RootNavigator, SecureNavigator } from "./containers";
 
 const initialCountState = 42;
 /**
@@ -18,9 +18,14 @@ const countReducer = (state: number = initialCountState, action: AnyAction): num
  * @param state no idea what this state really is.
  * @param action
  */
-const navReducer = (state: any, action: AnyAction) => {
+const rootNavigationReducer = (state: any, action: AnyAction) => {
     const newState = RootNavigator.router.getStateForAction(action, state);
     return newState || state;
 }
 
-export { countReducer, navReducer };
+const secureNavigationReducer = (state: any, action: AnyAction) => {
+    const newState = SecureNavigator.router.getStateForAction(action, state);
+    return newState || state;
+}
+
+export { countReducer, rootNavigationReducer, secureNavigationReducer };
