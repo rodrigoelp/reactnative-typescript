@@ -233,6 +233,6 @@ As I explored before, I had to fetch the typography from the system or download 
 
 Looking for better ways to deal with this I bumped into [Spencer Carli youtube channel](https://www.youtube.com/channel/UC_uuod9nde9Hoea8xIVBeZQ) and his infinite scrolling app. The basic idea is, download just a few pages worth of data and display is as quickly as possible. This gives you great responsiveness and saves resources.
 
-This exercise is a reimplementation done by [Spencer Carli on his flat list demo](https://github.com/spencercarli/react-native-flatlist-demo)... but in typescript 😝 with some custom variation 🤨
+This exercise is a reimplementation of [Spencer Carli flat list demo](https://github.com/spencercarli/react-native-flatlist-demo)... but in typescript 😝 with some custom variation 🤨
 
 [Source code](https://github.com/rodrigoelp/reactnative-typescript-exercise-18)
