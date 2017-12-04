@@ -25,3 +25,6 @@
 [submodule "samples/9.standardcontrols"]
 	path = samples/9.standardcontrols
 	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-9.git
+[submodule "samples/10.typography"]
+	path = samples/10.typography
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-10.git
