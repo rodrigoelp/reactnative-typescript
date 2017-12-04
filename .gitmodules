@@ -13,3 +13,6 @@
 [submodule "samples/5.declarations"]
 	path = samples/5.declarations
 	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-5.git
+[submodule "samples/6.simpleredux"]
+	path = samples/6.simpleredux
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-6.git
