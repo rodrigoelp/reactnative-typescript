@@ -31,3 +31,6 @@
 [submodule "samples/11.typography"]
 	path = samples/11.typography
 	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-11.git
+[submodule "samples/12.tabnav"]
+	path = samples/12.tabnav
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-12.git
