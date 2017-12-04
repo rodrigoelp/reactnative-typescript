@@ -37,3 +37,6 @@
 [submodule "samples/13.tabbedredux"]
 	path = samples/13.tabbedredux
 	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-13.git
+[submodule "samples/18.infinitescroll"]
+	path = samples/18.infinitescroll
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-18.git
