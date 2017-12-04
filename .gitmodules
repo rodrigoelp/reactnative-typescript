@@ -19,3 +19,6 @@
 [submodule "samples/7.counterredux"]
 	path = samples/7.counterredux
 	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-7.git
+[submodule "samples/8.asyncredux"]
+	path = samples/8.asyncredux
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-8.git
