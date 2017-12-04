@@ -22,3 +22,6 @@
 [submodule "samples/8.asyncredux"]
 	path = samples/8.asyncredux
 	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-8.git
+[submodule "samples/9.standardcontrols"]
+	path = samples/9.standardcontrols
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-9.git
