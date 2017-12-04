@@ -7,3 +7,6 @@
 [submodule "samples/3.todos"]
 	path = samples/3.todos
 	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-3.git
+[submodule "samples/4.navscreen"]
+	path = samples/4.navscreen
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-4.git
