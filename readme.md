@@ -10,7 +10,7 @@ Multiple examples (and hopefully some explanation) of things you need to get rea
 
 - Learn react-native
 - Share with others working examples of react-native and typescript.
-- Get feedback from others, if you have more knowledge and you have ways to improve these examples? by all means contribute to this or provide feedback.
+- Get feedback from others, if you have more knowledge and you have ways to improve these examples? by all means contribute to this or provide feedback. (Raise any feedback as an issue of this repo)
 
 ## Background
 
@@ -30,11 +30,35 @@ You will need already installed to use/try/abuse/copy/whatever this code:
 
 > _I am a Mac user. Take these recommendations with a pinch of salt as it might not apply to your system._
 
+- First and extremely important, you will need `git`. Without it this repo might not make sense as every exercise has been stored in a separate repository and added to this one as submodules. If you want to check each individual project I have set up an [index](./index.md) with a basic description and observations gathered along its development process.
 - [XCode](https://developer.apple.com/xcode/) with command line tooling installed already. This is **required to run your code in iOS**.
 - [Android Studio](https://developer.android.com/studio/index.html) or  [Visual Studio for Mac](https://docs.microsoft.com/en-us/visualstudio/mac/) with the Android tooling and an emulator.
 - A text editor of sorts. I like [vscode](https://code.visualstudio.com/) a lot.
 - [Node](https://nodejs.org/en/). Best way to get it into your system is via [brew](https://brew.sh/) as I have tried the mac installer and it wasn't as flexible as with brew. There are other mechanisms to get it such as the [node version manager](https://github.com/creationix/nvm/blob/master/README.md) but I found it was much easier to do `brew install node`
 - You will need React-Native which can be installed via node package manager: `npm install react-native -g`
+
+## How to clone this repo?
+
+Cloning a repo with submodules is not too much of a problem (although dealing with submodules can be a pain)
+
+Just type in a terminal:
+
+`git clone --recursive -j8 git@github.com:rodrigoelp/reactnative-typescript.git`
+
+*What are those parameters?*
+
+Pretty easy:
+
+- `--recursive` tells `git` that you want to download everything in this repo, as well as anything included in the `.gitmodules` file.
+- `-j8` tells `git` you want to download anything additional in parallel.
+
+### But I have already typed in git clone before I read this message!
+
+That's fine... if you have already typed `git clone git@github.com:rodrigo.elp/....git` then you can initialize and download the exercises as follows (you must be at the root of the cloned project):
+
+`git submodule update --init --recursive`
+
+This will take care of the submodules and set it up for you.
 
 ## Anything else?
 
