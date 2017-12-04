@@ -34,3 +34,6 @@
 [submodule "samples/12.tabnav"]
 	path = samples/12.tabnav
 	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-12.git
+[submodule "samples/13.tabbedredux"]
+	path = samples/13.tabbedredux
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-13.git
