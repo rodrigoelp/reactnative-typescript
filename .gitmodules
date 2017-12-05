@@ -1,0 +1,42 @@
+[submodule "samples/1.helloworld"]
+	path = samples/1.helloworld
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-1.git
+[submodule "samples/2.actions"]
+	path = samples/2.actions
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-2.git
+[submodule "samples/3.todos"]
+	path = samples/3.todos
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-3.git
+[submodule "samples/4.navscreen"]
+	path = samples/4.navscreen
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-4.git
+[submodule "samples/5.declarations"]
+	path = samples/5.declarations
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-5.git
+[submodule "samples/6.simpleredux"]
+	path = samples/6.simpleredux
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-6.git
+[submodule "samples/7.counterredux"]
+	path = samples/7.counterredux
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-7.git
+[submodule "samples/8.asyncredux"]
+	path = samples/8.asyncredux
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-8.git
+[submodule "samples/9.standardcontrols"]
+	path = samples/9.standardcontrols
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-9.git
+[submodule "samples/10.typography"]
+	path = samples/10.typography
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-10.git
+[submodule "samples/11.typography"]
+	path = samples/11.typography
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-11.git
+[submodule "samples/12.tabnav"]
+	path = samples/12.tabnav
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-12.git
+[submodule "samples/13.tabbedredux"]
+	path = samples/13.tabbedredux
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-13.git
+[submodule "samples/18.infinitescroll"]
+	path = samples/18.infinitescroll
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-18.git

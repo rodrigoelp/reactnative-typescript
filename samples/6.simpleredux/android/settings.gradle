@@ -1,3 +1,0 @@
-rootProject.name = 'simpleredux'
-
-include ':app'
