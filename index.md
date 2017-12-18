@@ -197,25 +197,31 @@ A great place of inspiration, perspiration and examples was the [redux example](
 
 [Source code](https://github.com/rodrigoelp/reactnative-typescript-exercise-13)
 
-### 14. Making feeder great again (not building a wall) (upcoming)
+### 14. How do I persis things locally?
+
+So far, we've learnt libraries to develop our applications such as: `react-navigation`, `react-native-vector-icons`, `react-native-elements`, and `redux`. All very useful but... I keep losing the data I've input when the application is deallocated from memory.
+
+Ideally, I should be able to preserve the application data store... and that is exactly what `redux-persist` does for you. Redux persist is not going to replace your usage or configuration or your redux application, it will enhance it and extend it for you. This means you need to be more conscious about the state you put in your application data store, otherwise you will find yourself writing lots of transformation from a previous state to your new state, but at this very moment, we will focus on just creating a simple application requesting information from a slow data source and display it on the screen.
+
+In this exercise we will be writing an application to count your energy intake (or caloric intake, although the application is going to have the data expressed in kilo joules or kJ), meaning we need to get a list of products (or available energy sources) and mark the quantity of each as we ingest it.
+
+[More info about redux-persist](https://github.com/rt2zz/redux-persist/)
+[Source code](https://github.com/rodrigoelp/reactnative-typescript-exercise-14)
+
+### 15. Other forms of persistance... Let's check out the couch
+
+Couchbasing: [To the blog](https://blog.couchbase.com/getting-started-with-react-native-android-and-couchbase-lite/)
+Couchbase: [Github](https://github.com/couchbaselabs/react-native-couchbase-lite)... It worries me there has not been any activity for a while (being one of their products)
+Sample app: [thank you library for all](https://github.com/libraryforall/ebook-catalog-react-native)
+Pouching?: [Pouch sample](https://blog.yld.io/2016/07/05/building-a-offline-first-application-using-react-native-and-pouchdb/#.Wfux0BOCyRc)
+
+### 16. Making feeder great again (not building a wall) (upcoming)
 
 The rest api has lots of things I did not explore...
 
 How about if we have a list of the users and from there explore their photos? Maybe it will be a good opportunity to use the section list and try to implement refresh.
 
 How about if we show the details of one of the posts with its comments?
-
-### 15. How do I persist things locally? (need to read more)
-
-Reading about [redux-persist](https://github.com/rt2zz/redux-persist/blob/master/README.md) makes me think that downloading everything from the rest api is not a great experience for the users. Maybe I can find a way to retain some of the information between sessions without having to deal with databases right away.
-
-### 16. Time to hit the couch! (need to read more)
-
-Simple storage: [plain react native storage](https://facebook.github.io/react-native/docs/asyncstorage.html)
-Couchbasing: [To the blog](https://blog.couchbase.com/getting-started-with-react-native-android-and-couchbase-lite/)
-Couchbase: [Github](https://github.com/couchbaselabs/react-native-couchbase-lite)... It worries me there has not been any activity for a while (being one of their products)
-Sample app: [thank you library for all](https://github.com/libraryforall/ebook-catalog-react-native)
-Pouching?: [Pouch sample](https://blog.yld.io/2016/07/05/building-a-offline-first-application-using-react-native-and-pouchdb/#.Wfux0BOCyRc)
 
 ### 17. Swiftly. (working with swift as your project template) (under development, parked as there is a weird issue with the cocoapod and fishhook.h)
 
