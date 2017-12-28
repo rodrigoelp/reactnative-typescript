@@ -208,20 +208,19 @@ In this exercise we will be writing an application to count your energy intake (
 [More info about redux-persist](https://github.com/rt2zz/redux-persist/)
 [Source code](https://github.com/rodrigoelp/reactnative-typescript-exercise-14)
 
-### 15. Other forms of persistance... Let's check out the couch
+### 15. Let's check other persistance forms... Couch, Pouch or Sqlite?
 
-Couchbasing: [To the blog](https://blog.couchbase.com/getting-started-with-react-native-android-and-couchbase-lite/)
-Couchbase: [Github](https://github.com/couchbaselabs/react-native-couchbase-lite)... It worries me there has not been any activity for a while (being one of their products)
-Sample app: [thank you library for all](https://github.com/libraryforall/ebook-catalog-react-native)
-Pouching?: [Pouch sample](https://blog.yld.io/2016/07/05/building-a-offline-first-application-using-react-native-and-pouchdb/#.Wfux0BOCyRc)
+A common example to investigate is the integration to any database of sorts.
 
-### 16. Making feeder great again (not building a wall) (upcoming)
+Reading about different technologies can open up your mind to new ways to fullfil your goals, but reading for the sake of reading does not give you these ideals, we need to tackle a problem.
 
-The rest api has lots of things I did not explore...
+An application to browse an online catalog would be great, but what about if we could take that store and make it offline? wouldn't that make your application more responsive and save up resources?
 
-How about if we have a list of the users and from there explore their photos? Maybe it will be a good opportunity to use the section list and try to implement refresh.
+On this first exercise, we will look into sqlite before we try to dive head first in pouchdb.
 
-How about if we show the details of one of the posts with its comments?
+### 16. Same book catalog, but in pouchdb!
+
+Reimplementing exercise 15, but using pouch db with async storage.
 
 ### 17. Swiftly. (working with swift as your project template) (under development, parked as there is a weird issue with the cocoapod and fishhook.h)
 
@@ -242,3 +241,19 @@ Looking for better ways to deal with this I bumped into [Spencer Carli youtube c
 This exercise is a reimplementation of [Spencer Carli flat list demo](https://github.com/spencercarli/react-native-flatlist-demo)... but in typescript 😝 with some custom variation 🤨
 
 [Source code](https://github.com/rodrigoelp/reactnative-typescript-exercise-18)
+
+### 19. Making feeder great again (not building a wall) (upcoming)
+
+The rest api has lots of things I did not explore...
+
+How about if we have a list of the users and from there explore their photos? Maybe it will be a good opportunity to use the section list and try to implement refresh.
+
+How about if we show the details of one of the posts with its comments?
+
+
+#### Useful readings:
+
+Couchbasing: [To the blog](https://blog.couchbase.com/getting-started-with-react-native-android-and-couchbase-lite/)
+Couchbase: [Github](https://github.com/couchbaselabs/react-native-couchbase-lite)... It worries me there has not been any activity for a while (being one of their products)
+Sample app: [thank you library for all](https://github.com/libraryforall/ebook-catalog-react-native)
+Pouching?: [Pouch sample](https://blog.yld.io/2016/07/05/building-a-offline-first-application-using-react-native-and-pouchdb/#.Wfux0BOCyRc)

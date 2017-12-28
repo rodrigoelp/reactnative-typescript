@@ -43,3 +43,6 @@
 [submodule "samples/14.reduxpersistcounter"]
 	path = samples/14.reduxpersistcounter
 	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-14.git
+[submodule "samples/15.pouchBook"]
+	path = samples/15.pouchBook
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-15.git
