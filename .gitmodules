@@ -37,12 +37,15 @@
 [submodule "samples/13.tabbedredux"]
 	path = samples/13.tabbedredux
 	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-13.git
-[submodule "samples/18.infinitescroll"]
-	path = samples/18.infinitescroll
-	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-18.git
 [submodule "samples/14.reduxpersistcounter"]
 	path = samples/14.reduxpersistcounter
 	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-14.git
 [submodule "samples/15.pouchBook"]
 	path = samples/15.pouchBook
 	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-15.git
+[submodule "samples/16.pouchBook2"]
+	path = samples/16.pouchBook2
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-16.git
+[submodule "samples/18.infinitescroll"]
+	path = samples/18.infinitescroll
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-18.git
