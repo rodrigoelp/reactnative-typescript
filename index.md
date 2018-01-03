@@ -218,17 +218,33 @@ An application to browse an online catalog would be great, but what about if we 
 
 On this first exercise, we will look into sqlite before we try to dive head first in pouchdb.
 
+[Source code](https://github.com/rodrigoelp/reactnative-typescript-exercise-15)
+
 ### 16. Same book catalog, but in pouchdb!
 
 Reimplementing exercise 15, but using pouch db with async storage.
 
-### 17. Swiftly. (working with swift as your project template) (under development, parked as there is a weird issue with the cocoapod and fishhook.h)
+This exercise will illustrate how much or how little code you need to achieve a similar behaviour with PouchDB (as well as understanding how to use it).
 
-So far, we have been working with the ObjectiveC (which is quite a dated language)... so... how difficult would it be to make react-native work with swift?
+[Source code](https://github.com/rodrigoelp/reactnative-typescript-exercise-16)
 
-Basically, we will need to include a set of cocoapods (configuring a workspace with all the different projects required by react-native), create an `RCTRootView` in which all the react-native code is going to live.
+### 17. Swiftly. Wondering what you need to do to get a swift project to work nicely with react native?
 
-*If you want to know more, check the branch `swiftly`*
+So far, we have been working with the ObjectiveC (which is quite a dated language)... so... how difficult would it be to make react-native work with Swift?
+
+Swift is a better language than ObjC (although XCode has become horribly slow... no idea if the root cause is Swift support) but... It would be lovely to have the option to pick which programming language your template is going to be based upon (more on this a little bit later)
+
+So... this exercise will take a new project we just created in xcode (choosing swift as our programming language) and add react native support to display a view or what have you.
+
+[Source code](https://github.com/rodrigoelp/reactnative-typescript-exercise-17)
+
+#### I see you continued reading... perhaps you like idea about getting react native cli to generate a template that better fits your native programming skills
+
+I love Swift as a programming language as much as I love C# (which is a lot) and F# (although I do not have a lot of experience with this one)... So, I was mildly annoyed when you need to go around so many different loops to get a simple Swift project up and running with React Native. Because of that I've created a feature request, to extend `react-native init` to take in a series of parameters to specify if you want your template to be based on swift or objective c for ios or java/kotlin on the android side.
+
+Ideally, this feature request should also enrich the ecosystem as building application in react native tend to drive you a little towards the native side to solve some issues.
+
+If you want to support this idea, please vote on [canny.io](https://react-native.canny.io/feature-requests/p/initialise-a-new-project-with-specific-native-language) to get the facebook people interested on this.
 
 ### 18. Infinite Scrolls
 
@@ -242,16 +258,25 @@ This exercise is a reimplementation of [Spencer Carli flat list demo](https://gi
 
 [Source code](https://github.com/rodrigoelp/reactnative-typescript-exercise-18)
 
-### 19. Making feeder great again (not building a wall) (upcoming)
+### 19. Basic animations
 
-The rest api has lots of things I did not explore...
+We've looked into lots of different controls, interops with native code (at least in iOS), dealing with data storage and persistance, navigation and immutability of global state (redux)... all of that is good but the finess and delightful experience does not come from just a good and stable application, it is generate from the interactions with the application.
 
-How about if we have a list of the users and from there explore their photos? Maybe it will be a good opportunity to use the section list and try to implement refresh.
+Indicating how different elements variate over time is a great way of communication with the user, so the next exercise is about the animation api provided by react native.
 
-How about if we show the details of one of the posts with its comments?
+### 20. Animations 2. React native animatable library
 
+What to build? TBA
 
-#### Useful readings:
+### 21. Fancy animations or Animations 3. Lots start looking into professional animations that we can import... Lottie to the rescue!
+
+What to build? TBA
+
+### 22. Gestures.
+
+What to build? TBA
+
+## Useful readings:
 
 Couchbasing: [To the blog](https://blog.couchbase.com/getting-started-with-react-native-android-and-couchbase-lite/)
 Couchbase: [Github](https://github.com/couchbaselabs/react-native-couchbase-lite)... It worries me there has not been any activity for a while (being one of their products)
