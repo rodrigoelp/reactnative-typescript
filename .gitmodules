@@ -52,3 +52,6 @@
 [submodule "samples/17.swiftly"]
 	path = samples/17.swiftly
 	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-17.git
+[submodule "samples/19.animations-v1.0"]
+	path = samples/19.animations-v1.0
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-19.git
