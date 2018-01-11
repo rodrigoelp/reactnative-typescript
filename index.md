@@ -264,6 +264,10 @@ We've looked into lots of different controls, interops with native code (at leas
 
 Indicating how different elements variate over time is a great way of communication with the user, so the next exercise is about the animation api provided by react native.
 
+What would be a great little animation to make? let's get the little prince to take off his little planet.
+
+[Source code](https://github.com/rodrigoelp/reactnative-typescript-exercise-19)
+
 ### 20. Animations 2. React native animatable library
 
 What to build? TBA
