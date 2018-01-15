@@ -55,3 +55,6 @@
 [submodule "samples/19.animations-v1.0"]
 	path = samples/19.animations-v1.0
 	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-19.git
+[submodule "samples/20.animateflex"]
+	path = samples/20.animateflex
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-20
