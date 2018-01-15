@@ -268,15 +268,21 @@ What would be a great little animation to make? let's get the little prince to t
 
 [Source code](https://github.com/rodrigoelp/reactnative-typescript-exercise-19)
 
-### 20. Animations 2. React native animatable library
+### 20. Animating flex box. Expanding a set of sections.
+
+Wondering how to expand and collapse sections with an smooth experience? So am I, let's do this!
+
+[Source code](https://github.com/rodrigoelp/reactnative-typescript-exercise-20)
+
+### 21. Animations 2. React native animatable library
+
+Checking out what is possible with animatable library and how is different to the one that is already part of react-native.
+
+### 22. Fancy animations or Animations 3. Lots start looking into professional animations that we can import... Lottie to the rescue!
 
 What to build? TBA
 
-### 21. Fancy animations or Animations 3. Lots start looking into professional animations that we can import... Lottie to the rescue!
-
-What to build? TBA
-
-### 22. Gestures.
+### 23. Gestures.
 
 What to build? TBA
 
