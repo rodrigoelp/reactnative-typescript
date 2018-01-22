@@ -278,6 +278,10 @@ Wondering how to expand and collapse sections with an smooth experience? So am I
 
 Checking out what is possible with animatable library and how is different to the one that is already part of react-native.
 
+As it turns out, `react-native-animatable` will provide you with a easy to use mechanism to inject animations into your UI elements, giving it a little bit of life on its own in case you need to draw their attention to specific areas. If you will be implementing a complex animation, you might need to look back at the standard animated library or... I wonder if it is possible to import animations from Adobe After Effects.
+
+[Source code](https://github.com/rodrigoelp/reactnative-typescript-exercise-21)
+
 ### 22. Fancy animations or Animations 3. Lots start looking into professional animations that we can import... Lottie to the rescue!
 
 What to build? TBA
