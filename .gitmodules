@@ -61,3 +61,6 @@
 [submodule "samples/21.animatable"]
 	path = samples/21.animatable
 	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-21
+[submodule "samples/22.lottie"]
+	path = samples/22.lottie
+	url = git@github.com:rodrigoelp/reactnative-typescript-exercise-22

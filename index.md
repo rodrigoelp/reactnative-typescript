@@ -284,15 +284,10 @@ As it turns out, `react-native-animatable` will provide you with a easy to use m
 
 ### 22. Fancy animations or Animations 3. Lots start looking into professional animations that we can import... Lottie to the rescue!
 
-What to build? TBA
+Getting nice animations just the way your designers want has never been easier. Airbnb has made a library for react-native allowing you to import your animations without hassle.
+
+[Source code](https://github.com/rodrigoelp/reactnative-typescript-exercise-22)
 
 ### 23. Gestures.
 
 What to build? TBA
-
-## Useful readings:
-
-Couchbasing: [To the blog](https://blog.couchbase.com/getting-started-with-react-native-android-and-couchbase-lite/)
-Couchbase: [Github](https://github.com/couchbaselabs/react-native-couchbase-lite)... It worries me there has not been any activity for a while (being one of their products)
-Sample app: [thank you library for all](https://github.com/libraryforall/ebook-catalog-react-native)
-Pouching?: [Pouch sample](https://blog.yld.io/2016/07/05/building-a-offline-first-application-using-react-native-and-pouchdb/#.Wfux0BOCyRc)
